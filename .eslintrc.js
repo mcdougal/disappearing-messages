@@ -14,6 +14,7 @@ module.exports = {
     { files: `.lintstagedrc.js`, env: { node: true } },
     { files: `.stylelintrc.js`, env: { node: true } },
     { files: `jest.config.js`, env: { node: true } },
+    { files: `postcss.config.js`, env: { node: true } },
     {
       files: `*.{js,ts,tsx}`,
       extends: [

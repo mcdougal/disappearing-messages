@@ -25,6 +25,12 @@ next-env.d.ts
 # Sentry
 .sentryclirc
 
+# Vercel
+.vercel
+
 # Production build
 .next
 .build
+
+# Misc
+*.pem

@@ -11,8 +11,9 @@ const nextConfig = {
   // Exposing the framework used can make it easier for attackers to
   // discover vulnerabilities, so we hide the `x-powered-by` header
   poweredByHeader: false,
+  // Enabled by default in `app` directory, but disabled in `pages`. We don't
+  // use pages, but set it to true to be explicit.
   reactStrictMode: true,
-  swcMinify: true,
 };
 
 module.exports = nextConfig;

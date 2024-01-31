@@ -1,10 +1,10 @@
 'use client';
 
-import SendIcon from '@mui/icons-material/Send';
-import { Button, Stack, TextField } from '@mui/material';
+import { PaperAirplaneIcon } from '@heroicons/react/20/solid';
 import { useFormState } from 'react-dom';
 
 import { createMessage } from '@/app/actions';
+import { Textarea } from '@/app/components';
 
 const AddForm = (): React.ReactElement => {
   const [formState, formAction] = useFormState(createMessage, {
@@ -15,21 +15,15 @@ const AddForm = (): React.ReactElement => {
 
   return (
     <form action={formAction}>
-      <Stack>
-        <TextField
-          autoFocus
-          error={Boolean(errorMessage)}
-          helperText={errorMessage}
-          id="message"
-          multiline
-          name="message"
-          placeholder="Write a disappearing message..."
-          rows={4}
-        />
-        <Button startIcon={<SendIcon />} type="submit" variant="contained">
-          Send
-        </Button>
-      </Stack>
+      <Textarea
+        autoFocus
+        error={Boolean(errorMessage)}
+        helperText={errorMessage}
+        id="add-form-message"
+        name="message"
+        placeholder="Write a disappearing message..."
+        submit={{ label: `Send`, icon: PaperAirplaneIcon }}
+      />
     </form>
   );
 };
