@@ -1,10 +1,12 @@
 /* eslint-disable filenames/match-exported */
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import './globals.module.scss';
+import './globals.css';
 
-const inter = Inter({ subsets: [`latin`] });
+// eslint-disable-next-line @typescript-eslint/quotes
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: `Disappearing Messages`,
@@ -18,7 +20,11 @@ interface Props {
 const RootLayout = ({ children }: Readonly<Props>): React.ReactElement => {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+          {children}
+        </AppRouterCacheProvider>
+      </body>
     </html>
   );
 };

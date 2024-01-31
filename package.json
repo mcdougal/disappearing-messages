@@ -10,7 +10,7 @@
     "delta-lint:markdown": "markdownlint **/*.md",
     "delta-lint:styles": "stylelint '**/*.scss'",
     "delta-lint": "run-p delta-lint:**",
-    "dev": "next dev",
+    "dev": "npm run dev -w @disappearing-messages/app",
     "lint:code": "npm run lint:code --workspaces --if-present",
     "lint:markdown": "markdownlint **/*.md",
     "lint:styles": "stylelint '**/*.scss'",
