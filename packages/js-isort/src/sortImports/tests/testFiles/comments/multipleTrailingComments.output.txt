@@ -1,0 +1,6 @@
+import {
+// this is comment for foo2
+foo1 // this is comment for foo1
+,
+// this is comment for foo3
+foo2, foo3 } from 'foo';

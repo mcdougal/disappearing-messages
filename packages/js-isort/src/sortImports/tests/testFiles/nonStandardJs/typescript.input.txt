@@ -1,0 +1,5 @@
+import { QueryHookOptions, MutationHookOptions } from '@apollo/react-hooks';
+  
+function greeter(person: string) {
+  return "Hello, " + person;
+}

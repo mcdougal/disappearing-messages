@@ -1,0 +1,20 @@
+import { kkk, jjj, iii, hhh, ggg, fff, eee, ddd, ccc, bbb, aaa } from "h";
+import {
+  s,
+  r,
+  q,
+} from 'g';
+import {
+p,
+  o ,
+
+n,
+} from "f";
+import { m,
+  l, k    ,
+} from 'e'    ;
+import { j,
+  i, h} from 'd';
+import { g,f} from "c";
+import {e        , d} from 'b';
+import { c, b, a } from 'a';

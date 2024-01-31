@@ -1,0 +1,7 @@
+import { Mutation } from 'react-apollo'; // { Mutation }
+// { ApolloProvider }
+import { ApolloProvider } from 'react-apollo';
+/**
+ *ReactApollo
+ */
+import ReactApollo from 'react-apollo';

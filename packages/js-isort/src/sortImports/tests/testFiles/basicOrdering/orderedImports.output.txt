@@ -1,0 +1,4 @@
+import b from 'bar';
+import a from 'foo';
+
+console.log('foo');

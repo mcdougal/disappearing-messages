@@ -1,0 +1,6 @@
+import c from 'baz';
+import a from 'foo';
+
+const jsxElem = (
+  <h1>Hi</h1>
+);

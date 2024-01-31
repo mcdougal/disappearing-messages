@@ -1,0 +1,10 @@
+import c from 'baz';
+import a from 'foo';
+
+const d1 = {a: 1, b:2};
+
+const d2 = {
+  ...d1,
+  c: 1,
+  d: 2,
+};

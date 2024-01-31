@@ -1,0 +1,12 @@
+import test1 from "zar";
+import * as test2 from "yar";
+import { test3 } from "xar";
+import { test4 as alias } from "qar";
+import { test5, test6 } from "par";
+import { test7, test8 as alias2 } from "dar";
+import test9, { test10, test11, test12 } from "car";
+import test13 from "bar";
+import * as test15 from "bar";
+import "aar";
+
+console.log('foo');

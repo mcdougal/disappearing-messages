@@ -1,0 +1,2 @@
+import ReactApollo, { ApolloProvider, Mutation } from 'react-apollo';
+import ReactApollo2, { ApolloProvider2, Mutation2 } from 'react-apollo2';

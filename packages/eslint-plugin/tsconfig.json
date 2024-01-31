@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "isolatedModules": true,
+    "jsx": "react",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "outDir": ".build",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ES5"
+  },
+  "include": ["**/*.d.ts", "**/*.js", "**/*.ts", "**/*.tsx"],
+  "exclude": [".build", "node_modules"]
+}

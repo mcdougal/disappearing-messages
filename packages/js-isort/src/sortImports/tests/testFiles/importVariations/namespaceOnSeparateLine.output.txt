@@ -1,0 +1,4 @@
+import * as baz from "bar";
+import foo from "bar";
+
+console.log('foo');

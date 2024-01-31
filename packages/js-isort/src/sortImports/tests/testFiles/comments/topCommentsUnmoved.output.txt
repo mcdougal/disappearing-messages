@@ -1,0 +1,12 @@
+/**
+ * This is a description of the module
+ */
+// @flow
+/* eslint-disable */
+// This is above 'bar'
+import b from 'bar';
+import c from 'car';
+// This is above 'foo'
+import a from 'foo';
+
+console.log('foo');

@@ -1,0 +1,1 @@
+import { foo1000, foo200, foo30, foo4 } from "foo";

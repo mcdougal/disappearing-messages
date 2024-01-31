@@ -1,0 +1,10 @@
+import c from 'baz';
+import a from 'foo';
+
+class Test {
+
+  state = {
+    testState: false,
+  };
+
+}

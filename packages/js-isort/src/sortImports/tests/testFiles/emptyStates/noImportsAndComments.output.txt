@@ -1,0 +1,4 @@
+/**
+ * This is a description of the file.
+ */
+console.log('foo');

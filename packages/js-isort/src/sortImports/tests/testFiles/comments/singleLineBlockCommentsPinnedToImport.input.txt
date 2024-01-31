@@ -1,0 +1,7 @@
+import c from 'car';
+/* This is above 'foo' */
+import a from 'foo';
+/* This is above 'bar' */
+import b from 'bar';
+
+console.log('foo');

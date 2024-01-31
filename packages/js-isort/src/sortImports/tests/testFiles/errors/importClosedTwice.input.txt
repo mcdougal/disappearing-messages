@@ -1,0 +1,9 @@
+import {
+  a3,
+  a2,
+  a1,
+} from 'foo';
+} from 'foo';
+import b from 'baz';
+
+console.log('foo');

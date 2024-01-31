@@ -1,0 +1,5 @@
+import c from 'car'; // This is next to 'car'
+import a from 'foo'; // This is next to 'foo'
+import b from 'bar'; // This is next to 'bar'
+
+console.log('foo');

@@ -1,0 +1,4 @@
+import * as foo from 'bar';
+import * as foo from 'bar';
+import { baz } from 'bar';
+import bop from 'bar';

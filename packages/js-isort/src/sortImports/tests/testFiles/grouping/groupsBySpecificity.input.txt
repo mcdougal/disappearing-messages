@@ -1,0 +1,15 @@
+import 'prevent-comment-from-pinning-to-top';
+// 7: index.js in the same directory
+import indexFunc from './';
+// 6: Sibling modules
+import siblingFunc from './siblingModule';
+// 5: Modules from parent directory
+import parentFunc from '../parentModule';
+// 4: Aliases
+import utilFunc from 'utils/utilModule';
+// 3: External modules
+import webpack from 'webpack';
+// 2: Node builtin modules
+import fs from 'fs';
+// 1: Import with side effects
+import 'babel-polyfill';

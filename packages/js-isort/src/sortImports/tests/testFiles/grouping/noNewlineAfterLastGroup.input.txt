@@ -1,0 +1,5 @@
+import React from 'react';
+import http from 'http';
+import webpack from 'webpack';
+
+console.log('foo');

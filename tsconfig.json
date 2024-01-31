@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "allowJs": true
+  },
+  "include": [
+    ".eslintrc.js",
+    ".lintstagedrc.js",
+    ".stylelintrc.js"
+  ],
+  "exclude": ["node_modules"]
+}

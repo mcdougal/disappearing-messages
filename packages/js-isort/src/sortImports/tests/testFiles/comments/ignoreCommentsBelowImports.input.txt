@@ -1,0 +1,10 @@
+import c from 'car';
+import a from 'foo';
+import b from 'bar';
+
+// This comment should be ignored
+/**
+ * This comment should also be ignored
+ */
+
+console.log('foo');

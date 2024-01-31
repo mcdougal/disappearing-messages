@@ -1,0 +1,15 @@
+/**
+ * This is also also above 'bar'
+ */
+/* This is also above 'bar' */
+// This is above 'bar'
+import b from 'bar';
+import c from 'car';
+// This is above 'foo'
+/* This is also above 'foo' */
+/**
+ * This is also also above 'foo'
+ */
+import a from 'foo';
+
+console.log('foo');

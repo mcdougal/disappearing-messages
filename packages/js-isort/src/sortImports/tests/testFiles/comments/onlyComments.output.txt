@@ -1,0 +1,10 @@
+// This comment should be ignored
+/**
+ * This comment should also be ignored
+ */
+/**
+ * This comment has multiple lines and...
+
+ * You guessed it, it should be ignored.
+ */
+// One more for good measure

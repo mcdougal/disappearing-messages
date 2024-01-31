@@ -1,0 +1,2 @@
+import ReactApollo, { Mutation } from 'react-apollo';
+import ReactApollo from 'react-apollo';
