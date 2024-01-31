@@ -1,1 +1,0 @@
-import { foo4, foo30, foo200, foo1000 } from "foo";

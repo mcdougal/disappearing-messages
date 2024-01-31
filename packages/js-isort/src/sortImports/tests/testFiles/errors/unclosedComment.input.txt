@@ -1,5 +1,0 @@
-/* I forgot to close this comment
-import a from 'foo';
-import b from 'baz';
-
-console.log('foo');

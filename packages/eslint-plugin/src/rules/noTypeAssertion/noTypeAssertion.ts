@@ -14,7 +14,7 @@ export default createRule<Options, MessageIds>({
   meta: {
     docs: {
       description: `Prevent the use of type assertions. Type assertions weaken the type safety of our system, increasing the likelihood of runtime errors. Consider using a zod schema instead.`,
-      recommended: `error`,
+      recommended: `strict`,
     },
     messages: {
       noTypeAssertion: `Do not use type assertions. Type assertions weaken the type safety of our system, increasing the likelihood of runtime errors. Consider using a zod schema instead.`,

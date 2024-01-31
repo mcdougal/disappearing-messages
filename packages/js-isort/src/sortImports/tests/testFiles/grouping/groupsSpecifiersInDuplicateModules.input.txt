@@ -1,4 +1,0 @@
-import { Mutation } from 'react-apollo';
-import { ApolloProvider } from 'react-apollo';
-import ReactApollo from 'react-apollo';
-import ReactApollo2, { ApolloProvider2, Mutation2 } from 'react-apollo2';

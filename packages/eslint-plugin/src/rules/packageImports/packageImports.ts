@@ -13,7 +13,7 @@ type Options = [
      * A list of JS Regex patterns that will flag this eslint rule.
      */
     disallowedPatterns?: Array<string>;
-  }
+  },
 ];
 
 type MessageIds = `invalidImport`;
@@ -29,7 +29,7 @@ export default createRule<Options, MessageIds>({
   meta: {
     docs: {
       description: `Prevent importing private files from packages.`,
-      recommended: `error`,
+      recommended: `strict`,
     },
     messages: {
       invalidImport: `{{importPath}} does not use package-style import`,

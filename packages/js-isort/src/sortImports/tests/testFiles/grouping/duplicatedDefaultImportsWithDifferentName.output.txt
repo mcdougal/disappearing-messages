@@ -1,1 +1,0 @@
-import Apollo, ReactApollo, { Mutation } from 'react-apollo';

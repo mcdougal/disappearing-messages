@@ -25,9 +25,6 @@ next-env.d.ts
 # Sentry
 .sentryclirc
 
-# Husky
-.husky
-
 # Production build
 .next
 .build

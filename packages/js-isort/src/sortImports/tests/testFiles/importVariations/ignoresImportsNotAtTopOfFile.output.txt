@@ -1,6 +1,0 @@
-import c from 'baz';
-import a from 'foo';
-
-console.log('foo');
-
-import b from 'bar';

@@ -1,0 +1,25 @@
+{
+  "name": "@disappearing-messages/app",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "next build",
+    "check": "npx npm-check --skip-unused",
+    "delta-lint:code": "eslint $(git diff --name-only --diff-filter=ACMRTUXB origin/main | grep -E 'packages/app/.*(.js$|.ts$|.tsx$)' | sed -e 's:packages/[^/]*/::g')",
+    "dev": "next dev",
+    "lint:code": "eslint .",
+    "start": "next start",
+    "test": "jest --runInBand",
+    "ts-node": "ts-node -r tsconfig-paths/register",
+    "types": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@next/eslint-plugin-next": "^14.1.0",
+    "@types/react": "^18.2.48",
+    "@types/react-dom": "^18.2.18"
+  },
+  "dependencies": {
+    "next": "^14.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

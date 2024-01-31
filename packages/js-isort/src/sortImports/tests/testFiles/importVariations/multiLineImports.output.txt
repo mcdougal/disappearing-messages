@@ -1,5 +1,0 @@
-import { export7 } from 'bar';
-import { export1, export2, export3 } from 'baz';
-import { export1, export2, export3, export4, export5 } from 'foo';
-
-console.log('foo');
