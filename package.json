@@ -18,6 +18,7 @@
     "lint": "run-p lint:**",
     "postinstall": "npm run build -w @disappearing-messages/eslint-plugin",
     "prepare": "husky",
+    "start": "npm run start -w @disappearing-messages/app",
     "test": "npm run test --workspaces --if-present",
     "types": "npm run types --workspaces --if-present"
   },
