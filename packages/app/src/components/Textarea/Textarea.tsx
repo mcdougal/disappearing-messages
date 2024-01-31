@@ -51,7 +51,7 @@ const Textarea = ({
         {submit && (
           <div className="flex justify-end py-2 pl-3 pr-2">
             <div className="flex-shrink-0">
-              <Button endIcon={submit.icon} size="sm" type="submit">
+              <Button endIcon={submit.icon} size="md" type="submit">
                 {submit.label}
               </Button>
             </div>
