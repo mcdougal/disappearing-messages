@@ -10,7 +10,9 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "noEmit": true,
-    "paths": { "@/app/*": ["./src/*"] },
+    "paths": {
+      "@/app/*": ["./src/*"],
+    },
     "plugins": [{ "name": "next" }],
     "resolveJsonModule": true,
     "skipLibCheck": true,

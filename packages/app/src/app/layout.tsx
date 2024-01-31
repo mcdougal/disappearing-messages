@@ -13,11 +13,11 @@ export const metadata: Metadata = {
   description: `Post public messages that disappear.`,
 };
 
-interface Props {
+type Props = Readonly<{
   children: React.ReactNode;
-}
+}>;
 
-const RootLayout = ({ children }: Readonly<Props>): React.ReactElement => {
+const RootLayout = ({ children }: Props): React.ReactElement => {
   return (
     <html lang="en">
       <body className={inter.className}>

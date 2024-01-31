@@ -84,6 +84,11 @@ module.exports = {
           `record`,
         ],
 
+        // `type` and `interface` are generally very similar, and can often be
+        // used interchangeably. Using the same style consistently helps with
+        // code readability.
+        '@typescript-eslint/consistent-type-definitions': [`error`, `type`],
+
         // Explicit return types make it visually more clear what type is
         // returned by a function. They can also speed up TypeScript type
         // checking performance in large code bases with many large functions.
