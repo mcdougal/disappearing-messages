@@ -6,7 +6,7 @@
     "delta-lint:code": "eslint $(git diff --name-only --diff-filter=ACMRTUXB origin/main | grep -E 'packages/db/.*(.js$|.ts$|.tsx$)' | sed -e 's:packages/[^/]*/::g')",
     "generate": "drizzle-kit generate:pg",
     "lint:code": "eslint .",
-    "migrate": "npx tsx bin/migrate.ts",
+    "migrate": "npx --yes tsx bin/migrate.ts",
     "ts-node": "ts-node -r tsconfig-paths/register",
     "types": "tsc --noEmit"
   },

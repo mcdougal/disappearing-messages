@@ -5,7 +5,7 @@
     "./packages/*"
   ],
   "scripts": {
-    "build": "npm run build -w @disappearing-messages/app",
+    "build": "npm run db:migrate && npm run build -w @disappearing-messages/app",
     "check": "npx npm-check --skip-unused",
     "db:migrate": "npm run migrate -w @disappearing-messages/db",
     "delta-lint:code": "npm run delta-lint:code --workspaces --if-present",
