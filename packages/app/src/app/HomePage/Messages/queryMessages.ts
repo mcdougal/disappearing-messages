@@ -1,13 +1,13 @@
-import 'client-only';
-
 import 'server-only';
 
-import { db } from '@/db/connection';
+import { db, desc, gt } from '@/db/connection';
+import { messages } from '@/db/schema';
 import { QueryResult } from '@/db/types';
 
-type Message = QueryResult<
+export type Message = QueryResult<
   'messages',
   {
+    createdAt: true;
     expiresAt: true;
     id: true;
     text: true;
@@ -17,9 +17,12 @@ type Message = QueryResult<
 export default async (): Promise<Array<Message>> => {
   return db.query.messages.findMany({
     columns: {
+      createdAt: true,
       expiresAt: true,
       id: true,
       text: true,
     },
+    where: gt(messages.expiresAt, new Date()),
+    orderBy: [desc(messages.expiresAt)],
   });
 };

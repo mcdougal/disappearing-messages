@@ -15,3 +15,5 @@ const PREPARE = false;
 
 export const client = postgres(DATABASE_URL, { prepare: PREPARE });
 export const db = drizzle(client, { schema });
+
+export * from 'drizzle-orm';

@@ -1,11 +1,22 @@
-import { createMessage } from '@/app/actions';
+'use client';
+
+import { useRef } from 'react';
+
+import createMessage from './createMessage';
 
 const AddForm = (): React.ReactElement => {
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const formAction = async (formData: FormData): Promise<void> => {
+    formRef.current?.reset();
+    await createMessage(formData);
+  };
+
   return (
-    <form action={createMessage}>
+    <form ref={formRef} action={formAction}>
       <div className="flex items-center rounded-full ring-1 ring-gray-300 focus-within:shadow-lg">
         <label className="sr-only" htmlFor="messageInput">
-          Write a disappearing message...
+          What do you want to say?
         </label>
         <input
           autoFocus
@@ -13,7 +24,7 @@ const AddForm = (): React.ReactElement => {
           id="messageInput"
           maxLength={255}
           name="message"
-          placeholder="Write a disappearing message..."
+          placeholder="What do you want to say?"
           type="text"
         />
       </div>
