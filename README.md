@@ -1,5 +1,11 @@
 # disappearing-messages
 
+- [disappearing-messages](#disappearing-messages)
+  - [Dev Setup](#dev-setup)
+  - [Migrations](#migrations)
+    - [Development](#development)
+    - [Production](#production)
+
 ## Dev Setup
 
 ```sh
@@ -32,3 +38,15 @@ Run Supabase:
 ```sh
 supabase start
 ```
+
+## Migrations
+
+### Development
+
+1. Update `packages/db/src/schema.ts`
+2. Run `npm run dev:db:generate`
+3. Run `npm run db:migrate`
+
+### Production
+
+Migrations run automatically on deploy.

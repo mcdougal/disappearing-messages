@@ -54,6 +54,15 @@ module.exports = {
         // likelihood of runtime errors.
         '@disappearing-messages/no-type-assertion': `error`,
 
+        // Type assertions weaken the type safety of our system, increasing the
+        // likelihood of runtime errors.
+        '@disappearing-messages/order-unassigned-imports': [
+          `error`,
+          {
+            top: [`client-only`, `server-only`],
+          },
+        ],
+
         // Help keep module implementation details private by preventing imports
         // from anywhere but the top-level exports of the module.
         '@disappearing-messages/package-imports': [
@@ -342,13 +351,13 @@ module.exports = {
           `error`,
           {
             groups: [
+              `unknown`,
               `builtin`,
               `external`,
               `internal`,
               `parent`,
               `sibling`,
               `index`,
-              `unknown`,
             ],
             'newlines-between': `always`,
             alphabetize: {

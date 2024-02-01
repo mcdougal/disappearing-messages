@@ -1,3 +1,1 @@
-import createRule from './createRule';
-
-export { createRule };
+export { default as createRule } from './createRule';

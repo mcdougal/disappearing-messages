@@ -1,3 +1,1 @@
-import noTypeAssertion from './noTypeAssertion';
-
-export default noTypeAssertion;
+export { default } from './noTypeAssertion';
