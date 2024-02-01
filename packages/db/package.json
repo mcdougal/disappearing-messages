@@ -1,0 +1,20 @@
+{
+  "name": "@disappearing-messages/db",
+  "version": "0.0.1",
+  "scripts": {
+    "check": "npx npm-check --skip-unused",
+    "delta-lint:code": "eslint $(git diff --name-only --diff-filter=ACMRTUXB origin/main | grep -E 'packages/db/.*(.js$|.ts$|.tsx$)' | sed -e 's:packages/[^/]*/::g')",
+    "generate": "drizzle-kit generate:pg",
+    "lint:code": "eslint .",
+    "migrate": "npx tsx bin/migrate.ts",
+    "ts-node": "ts-node -r tsconfig-paths/register",
+    "types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.29.3",
+    "postgres": "^3.4.3"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.20.13"
+  }
+}

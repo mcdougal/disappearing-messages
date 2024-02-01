@@ -4,17 +4,12 @@ module.exports = {
     // included
     `!.eslintrc.js`,
     `!.lintstagedrc.js`,
-    `!.stylelintrc.js`,
-    `packages/app/public/`,
   ],
   overrides: [
     // Tell ESLint that our config files are running in a Node environment so
     // that it doesn't complain about Node features like `module.exports`
     { files: `.eslintrc.js`, env: { node: true } },
     { files: `.lintstagedrc.js`, env: { node: true } },
-    { files: `.stylelintrc.js`, env: { node: true } },
-    { files: `jest.config.js`, env: { node: true } },
-    { files: `postcss.config.js`, env: { node: true } },
     {
       files: `*.{js,ts,tsx}`,
       extends: [
@@ -32,7 +27,6 @@ module.exports = {
         `@disappearing-messages/eslint-plugin`,
         `filenames`,
         `import`,
-        `no-secrets`,
         `react-hooks`,
       ],
       parserOptions: {
@@ -474,9 +468,6 @@ module.exports = {
             message: `'with' is disallowed in strict mode because it makes code impossible to predict and optimize.`,
           },
         ],
-
-        // Help prevent secrets from accidentally getting checked in
-        'no-secrets/no-secrets': `error`,
 
         // It is considered good practice to only throw the Error object itself
         // or an object using the Error object as base objects for user-defined

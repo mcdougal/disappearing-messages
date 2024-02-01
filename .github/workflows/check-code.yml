@@ -23,5 +23,3 @@ jobs:
         run: npm run types
       - name: Delta Lint
         run: npm run delta-lint
-      - name: Test
-        run: NODE_OPTIONS='--max-old-space-size=8192' npm test

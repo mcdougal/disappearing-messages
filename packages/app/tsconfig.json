@@ -12,6 +12,7 @@
     "noEmit": true,
     "paths": {
       "@/app/*": ["./src/*"],
+      "@/db/*": ["../db/src/*"],
     },
     "plugins": [{ "name": "next" }],
     "resolveJsonModule": true,
@@ -29,10 +30,5 @@
     "next.config.js",
     "postcss.config.js",
   ],
-  "exclude": ["node_modules"],
-  "ts-node": {
-    "compilerOptions": { "jsx": "react", "module": "CommonJS" },
-    "files": true,
-    "transpileOnly": true,
-  },
+  "exclude": [".next", "node_modules"],
 }

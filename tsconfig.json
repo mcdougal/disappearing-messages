@@ -1,11 +1,8 @@
 {
   "compilerOptions": {
-    "allowJs": true
+    "allowJs": true,
+    "outDir": "dist",
   },
-  "include": [
-    ".eslintrc.js",
-    ".lintstagedrc.js",
-    ".stylelintrc.js"
-  ],
-  "exclude": ["node_modules"]
+  "include": [".eslintrc.js", ".lintstagedrc.js"],
+  "exclude": ["dist", "node_modules"],
 }

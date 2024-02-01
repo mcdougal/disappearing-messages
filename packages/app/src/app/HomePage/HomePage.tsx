@@ -1,4 +1,4 @@
-import AddForm from './AddForm';
+import Messages from './Messages';
 
 const HomePage = (): React.ReactElement => {
   return (
@@ -6,7 +6,7 @@ const HomePage = (): React.ReactElement => {
       <h1 className="mb-12 inline-block bg-gradient-to-b from-black to-white bg-clip-text text-6xl text-transparent">
         Disappearing Messages
       </h1>
-      <AddForm />
+      <Messages />
     </div>
   );
 };

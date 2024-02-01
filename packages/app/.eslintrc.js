@@ -4,7 +4,10 @@ module.exports = {
     `next-env.d.ts`,
   ],
   overrides: [
+    // Tell ESLint that our config files are running in a Node environment so
+    // that it doesn't complain about Node features like `module.exports`
     { files: `next.config.js`, env: { node: true } },
+    { files: `postcss.config.js`, env: { node: true } },
     {
       files: `*.{js,ts,tsx}`,
       plugins: [`@next/eslint-plugin-next`],
