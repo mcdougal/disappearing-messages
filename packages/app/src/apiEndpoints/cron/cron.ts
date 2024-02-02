@@ -17,7 +17,7 @@ type ResponseData = {
   success: true;
 };
 
-export const POST: RouteHandler<RouteParams, ResponseData> = async (
+export const GET: RouteHandler<RouteParams, ResponseData> = async (
   request,
   { params }
 ) => {
