@@ -9,6 +9,7 @@ const config: Config = {
     extend: {
       animation: {
         'fade-in': `fade-in 0.3s ease-in-out`,
+        'grow-in-and-out': `grow-in-and-out 2s ease-in-out forwards`,
       },
       fontFamily: {
         sans: [`Inter var`, ...defaultTheme.fontFamily.sans],
@@ -17,6 +18,15 @@ const config: Config = {
         'fade-in': {
           '0%': { opacity: `0` },
           '100%': { opacity: `1` },
+        },
+        'grow-in-and-out': {
+          '0%': { transform: `scale(0)` },
+          '10%': { transform: `scale(1.1)` },
+          '20%': { transform: `scale(0.9)` },
+          '30%': { transform: `scale(1)` },
+          '80%': { transform: `scale(1)` },
+          '90%': { transform: `scale(1.2)` },
+          '100%': { transform: `scale(0)` },
         },
       },
     },

@@ -30,7 +30,7 @@ const Message = ({ message }: Props): React.ReactElement => {
 
   return (
     <div
-      className="animate-fade-in min-w-64 break-words rounded-lg px-8 py-6 shadow-lg transition ease-linear"
+      className="animate-fade-in min-w-64 break-words rounded-lg px-8 py-6 shadow-lg transition-opacity ease-linear"
       style={{ opacity }}>
       {text}
     </div>

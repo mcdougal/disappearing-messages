@@ -1,16 +1,29 @@
 'use client';
 
-import { useRef } from 'react';
+import { CheckCircleIcon } from '@heroicons/react/24/outline';
+import { useEffect, useRef, useState } from 'react';
 
 import createMessage from './createMessage';
 
 const AddForm = (): React.ReactElement => {
   const formRef = useRef<HTMLFormElement>(null);
+  const [submittedAt, setSubmittedAt] = useState<Date | null>(null);
 
   const formAction = async (formData: FormData): Promise<void> => {
+    setSubmittedAt(new Date());
     formRef.current?.reset();
     await createMessage(formData);
   };
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setSubmittedAt(null);
+    }, 2000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [submittedAt]);
 
   return (
     <form ref={formRef} action={formAction}>
@@ -27,6 +40,11 @@ const AddForm = (): React.ReactElement => {
           placeholder="What do you want to say?"
           type="text"
         />
+        {submittedAt && (
+          <div className="px-5">
+            <CheckCircleIcon className="animate-grow-in-and-out aspect-square w-8" />
+          </div>
+        )}
       </div>
     </form>
   );

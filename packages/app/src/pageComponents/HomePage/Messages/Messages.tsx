@@ -11,7 +11,7 @@ const Messages = async (): Promise<React.ReactElement> => {
       <div className="mb-16">
         <AddForm />
       </div>
-      <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
         {messages.map((message) => {
           return <Message key={message.id} message={message} />;
         })}
