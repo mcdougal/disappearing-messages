@@ -5,6 +5,7 @@
   - [Migrations](#migrations)
     - [Development](#development)
     - [Production](#production)
+  - [Supabase Setup](#supabase-setup)
 
 ## Dev Setup
 
@@ -50,3 +51,9 @@ supabase start
 ### Production
 
 Migrations run automatically on deploy.
+
+## Supabase Setup
+
+1. Force SSL connections ([Settings](https://supabase.com/dashboard/project/yiccmvrkavbejqykifkl/settings/database))
+2. Use transaction mode connection string ([Settings](https://supabase.com/dashboard/project/yiccmvrkavbejqykifkl/settings/database))
+3. Install Vercel integration ([Settings](https://supabase.com/dashboard/project/yiccmvrkavbejqykifkl/settings/integrations))
