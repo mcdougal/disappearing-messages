@@ -1,0 +1,16 @@
+{
+  "name": "@disappearing-messages/integrations",
+  "version": "0.0.1",
+  "scripts": {
+    "check": "npx npm-check --skip-unused",
+    "delta-lint:code": "eslint $(git diff --name-only --diff-filter=ACMRTUXB origin/main | grep -E 'packages/integrations/.*(.js$|.ts$|.tsx$)' | sed -e 's:packages/[^/]*/::g')",
+    "lint:code": "eslint .",
+    "types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@disappearing-messages/common": "file:../common",
+    "pusher": "^5.2.0",
+    "pusher-js": "^8.4.0-rc2",
+    "zod": "^3.22.4"
+  }
+}

@@ -1,1 +1,3 @@
-export { default as createFakeMessage } from './createFakeMessage';
+import createFakeMessage from './createFakeMessage';
+
+export { createFakeMessage };

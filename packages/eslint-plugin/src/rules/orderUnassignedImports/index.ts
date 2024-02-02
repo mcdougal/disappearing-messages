@@ -1,1 +1,3 @@
-export { default } from './orderUnassignedImports';
+import orderUnassignedImports from './orderUnassignedImports';
+
+export default orderUnassignedImports;

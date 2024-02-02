@@ -1,2 +1,4 @@
-export { default } from './AdminComponentsLayout';
-export * from './AdminComponentsLayout';
+import AdminComponentsLayout, { metadata } from './AdminComponentsLayout';
+
+export { metadata };
+export default AdminComponentsLayout;

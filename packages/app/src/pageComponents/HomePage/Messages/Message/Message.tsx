@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 import getOpacity from './getOpacity';
 
@@ -16,11 +16,16 @@ type Props = {
 
 const Message = ({ message }: Props): React.ReactElement => {
   const { createdAt, expiresAt, text } = message;
-  const [opacity, setOpacity] = useState(getOpacity(createdAt, expiresAt));
+  const messageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setOpacity(getOpacity(createdAt, expiresAt));
+      if (messageRef.current) {
+        messageRef.current.style.opacity = getOpacity(
+          createdAt,
+          expiresAt
+        ).toString();
+      }
     }, 1000);
 
     return () => {
@@ -30,8 +35,9 @@ const Message = ({ message }: Props): React.ReactElement => {
 
   return (
     <div
+      ref={messageRef}
       className="animate-fade-in min-w-64 break-words rounded-lg px-8 py-6 shadow-lg transition-opacity ease-linear"
-      style={{ opacity }}>
+      style={{ opacity: getOpacity(createdAt, expiresAt) }}>
       {text}
     </div>
   );

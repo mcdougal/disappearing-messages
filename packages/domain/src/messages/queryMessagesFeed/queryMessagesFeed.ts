@@ -2,7 +2,7 @@ import { db, desc, gt } from '@/db/connection';
 import { messages } from '@/db/schema';
 import { QueryResult } from '@/db/types';
 
-export type Message = QueryResult<
+export type QueryMessagesFeedMessage = QueryResult<
   'messages',
   {
     createdAt: true;
@@ -12,7 +12,7 @@ export type Message = QueryResult<
   }
 >;
 
-export default async (): Promise<Array<Message>> => {
+export default async (): Promise<Array<QueryMessagesFeedMessage>> => {
   return db.query.messages.findMany({
     columns: {
       createdAt: true,

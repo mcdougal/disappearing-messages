@@ -12,8 +12,10 @@
     "noEmit": true,
     "paths": {
       "@/app/*": ["./src/*"],
+      "@/common/*": ["../common/src/*"],
       "@/db/*": ["../db/src/*"],
       "@/domain/*": ["../domain/src/*"],
+      "@/integrations/*": ["../integrations/src/*"],
       "@/jobs/*": ["../jobs/src/*"],
     },
     "plugins": [{ "name": "next" }],

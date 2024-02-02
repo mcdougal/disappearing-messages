@@ -1,1 +1,3 @@
-export * from './cron';
+import { GET } from './cron';
+
+export { GET };

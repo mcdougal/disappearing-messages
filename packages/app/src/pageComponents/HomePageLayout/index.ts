@@ -1,2 +1,4 @@
-export { default } from './HomePageLayout';
-export * from './HomePageLayout';
+import HomePageLayout, { metadata } from './HomePageLayout';
+
+export { metadata };
+export default HomePageLayout;

@@ -1,1 +1,3 @@
-export { default } from './packageImports';
+import packageImports from './packageImports';
+
+export default packageImports;

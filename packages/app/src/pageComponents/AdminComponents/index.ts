@@ -1,1 +1,3 @@
-export { default } from './AdminComponents';
+import AdminComponents from './AdminComponents';
+
+export default AdminComponents;

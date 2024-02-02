@@ -1,1 +1,3 @@
-export { default as getRequiredEnvVar } from './getRequiredEnvVar';
+import getRequiredEnvVar from './getRequiredEnvVar';
+
+export { getRequiredEnvVar };

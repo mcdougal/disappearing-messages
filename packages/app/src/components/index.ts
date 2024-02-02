@@ -1,3 +1,5 @@
-export { default as Button } from './Button';
-export { default as Textarea } from './Textarea';
-export type { ButtonColor, ButtonIcon, ButtonSize } from './Button';
+import Button, { ButtonColor, ButtonIcon, ButtonSize } from './Button';
+import Textarea from './Textarea';
+
+export { Button, Textarea };
+export type { ButtonColor, ButtonIcon, ButtonSize };

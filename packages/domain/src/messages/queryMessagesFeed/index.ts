@@ -1,1 +1,6 @@
-export { default } from './queryMessagesFeed';
+import queryMessagesFeed, {
+  QueryMessagesFeedMessage,
+} from './queryMessagesFeed';
+
+export default queryMessagesFeed;
+export type { QueryMessagesFeedMessage };

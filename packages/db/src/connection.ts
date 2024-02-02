@@ -32,4 +32,7 @@ export const db = drizzle(client, {
   schema,
 });
 
+// There are too many utilities to manually export one-by-one, so we're
+// just re-exporting everything.
+// eslint-disable-next-line @disappearing-messages/no-export-from
 export * from 'drizzle-orm';

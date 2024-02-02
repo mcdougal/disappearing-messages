@@ -50,6 +50,14 @@ module.exports = {
         },
       },
       rules: {
+        // We have a pattern of using `index.ts` files to contain all exports
+        // for a module. This could be done by importing everything at the top
+        // of the file and then exporting it at the bottom, or by directly
+        // exporting using an `export from`. The former is preferred because it
+        // results in a clean list of everything exported from the module,
+        // whereas the latter can be hard to read.
+        '@disappearing-messages/no-export-from': `error`,
+
         // Type assertions weaken the type safety of our system, increasing the
         // likelihood of runtime errors.
         '@disappearing-messages/no-type-assertion': `error`,

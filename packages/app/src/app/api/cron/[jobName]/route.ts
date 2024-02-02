@@ -1,1 +1,4 @@
-export * from '@/app/apiEndpoints/cron';
+/* eslint-disable @disappearing-messages/package-imports */
+import { GET } from '@/app/apiEndpoints/cron';
+
+export { GET };

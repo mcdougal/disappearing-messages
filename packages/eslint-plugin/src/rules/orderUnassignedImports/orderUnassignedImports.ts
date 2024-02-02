@@ -27,9 +27,8 @@ type MessageIds =
   | `notAlphabetical`;
 
 /**
- * Prevent type assertions.
- *
- * See: https://www.bytelimes.com/why-you-should-avoid-type-assertions-in-typescript/
+ * Force specific unassigned imports to be at the top or bottom of the
+ * imports list.
  */
 export default createRule<Options, MessageIds>({
   name: `order-unassigned-imports`,
