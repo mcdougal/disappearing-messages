@@ -88,6 +88,6 @@ Migrations run automatically on deploy.
 
 ### Creating a New Cron Job
 
-1. Add the cron definition to `packages/app/vercel.json`
+1. Add the cron definition to `vercel.json`
 2. Add the job handler to `packages/jobs/src/handlers/`
 3. Call the job handler from `packages/app/src/apiEndpoints/cron/cron.ts`
