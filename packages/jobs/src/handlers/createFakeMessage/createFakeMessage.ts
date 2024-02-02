@@ -1,7 +1,9 @@
 import { createMessage } from '@/domain/messages';
 
 export default async (): Promise<void> => {
-  await createMessage({
-    text: `this is a fake message`,
-  });
+  if (Math.random() < 0.5) {
+    await createMessage({
+      text: `this is a fake message`,
+    });
+  }
 };
