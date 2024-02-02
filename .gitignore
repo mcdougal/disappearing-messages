@@ -28,6 +28,9 @@ next-env.d.ts
 # Vercel
 .vercel
 
+# Supabase
+supabase/migrations
+
 # Production build
 .next
 .build

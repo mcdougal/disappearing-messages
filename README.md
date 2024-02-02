@@ -9,6 +9,17 @@
 
 ## Dev Setup
 
+Install dependencies:
+
+1. Node v20.11.0 ([Instructions](https://nodejs.org/en))
+2. Supabase CLI ([Instructions](https://supabase.com/docs/guides/cli/getting-started))
+
+Environment variables:
+
+1. Copy `.env.template` to `.env`
+2. Restrict access to the `.env` file: `chmod 600 .env`
+3. Fill out environment variables in `.env`
+
 ```sh
 npm run install
 ```
@@ -40,12 +51,18 @@ Run Supabase:
 supabase start
 ```
 
+Sync production data:
+
+```sh
+npm run dev:sync
+```
+
 ## Migrations
 
 ### Development
 
 1. Update `packages/db/src/schema.ts`
-2. Run `npm run dev:db:generate`
+2. Run `npm run dev:generate`
 3. Run `npm run db:migrate`
 
 ### Production
