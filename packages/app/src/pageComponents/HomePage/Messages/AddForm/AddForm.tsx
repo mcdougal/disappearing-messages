@@ -10,9 +10,11 @@ const AddForm = (): React.ReactElement => {
   const [submittedAt, setSubmittedAt] = useState<Date | null>(null);
 
   const formAction = async (formData: FormData): Promise<void> => {
-    setSubmittedAt(new Date());
-    formRef.current?.reset();
-    await createMessage(formData);
+    if (formData.get(`message`)) {
+      setSubmittedAt(new Date());
+      formRef.current?.reset();
+      await createMessage(formData);
+    }
   };
 
   useEffect(() => {

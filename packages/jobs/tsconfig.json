@@ -10,8 +10,10 @@
     "module": "node16",
     "moduleResolution": "Node16",
     "paths": {
+      "@/common/*": ["../common/src/*"],
       "@/db/*": ["../db/src/*"],
       "@/domain/*": ["../domain/src/*"],
+      "@/integrations/*": ["../integrations/src/*"],
       "@/jobs/*": ["./src/*"],
     },
     "resolveJsonModule": true,

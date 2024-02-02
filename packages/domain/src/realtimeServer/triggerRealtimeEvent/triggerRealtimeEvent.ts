@@ -1,7 +1,7 @@
 import { triggerPusherEvent } from '@/integrations/pusherServer';
 import { z } from 'zod';
 
-import { RealtimeEventSchemaType } from '../schemas';
+import { RealtimeEventSchemaType } from '@/domain/realtimeCommon';
 
 export default async <S extends RealtimeEventSchemaType>(
   eventSchema: S,

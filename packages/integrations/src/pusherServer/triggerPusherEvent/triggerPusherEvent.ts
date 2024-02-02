@@ -1,8 +1,7 @@
+import { getRequiredEnvVar } from '@/common/env';
 import { sleep } from '@/common/sleep';
 import Pusher from 'pusher';
 import { z } from 'zod';
-
-import { getRequiredEnvVar } from '@/integrations/utils';
 
 import isRequestError from './isRequestError';
 import { EventSchema } from './types';

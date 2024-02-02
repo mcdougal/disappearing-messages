@@ -4,12 +4,15 @@ import { QueryMessagesFeedMessage } from '@/domain/messages';
 
 import AddForm from './AddForm';
 import Message from './Message';
+import useLiveUpdatingMessages from './useLiveUpdatingMessages';
 
 type Props = {
   messages: Array<QueryMessagesFeedMessage>;
 };
 
-const Messages = ({ messages }: Props): React.ReactElement => {
+const Messages = ({ messages: initialMessages }: Props): React.ReactElement => {
+  const messages = useLiveUpdatingMessages(initialMessages);
+
   return (
     <div>
       <div className="mb-16">

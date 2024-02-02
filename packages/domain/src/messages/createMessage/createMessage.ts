@@ -7,8 +7,8 @@ import { forEachSeries } from 'p-iteration';
 import {
   MessageCreatedEventSchema,
   getPublicChannelName,
-  triggerRealtimeEvent,
-} from '@/domain/realtimeServer';
+} from '@/domain/realtimeCommon';
+import { triggerRealtimeEvent } from '@/domain/realtimeServer';
 
 type InsertData = Omit<
   typeof messages.$inferInsert,

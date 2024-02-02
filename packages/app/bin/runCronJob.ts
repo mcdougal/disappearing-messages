@@ -1,4 +1,4 @@
-import { getRequiredEnvVar } from './utils';
+import { getRequiredEnvVar } from '@/common/env';
 
 const CRON_SECRET = getRequiredEnvVar(`CRON_SECRET`);
 
@@ -9,12 +9,11 @@ const run = async (jobName: string): Promise<void> => {
   );
 
   const result = await fetch(`http://localhost:3000/api/cron/${jobName}`, {
-    method: `POST`,
+    method: `GET`,
     headers: {
       Authorization: `Bearer ${CRON_SECRET}`,
       'Content-Type': `application/json`,
     },
-    body: JSON.stringify({}),
   });
 
   if (result.ok) {

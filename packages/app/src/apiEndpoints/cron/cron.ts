@@ -1,8 +1,7 @@
+import { getRequiredEnvVar } from '@/common/env';
 import { createFakeMessage } from '@/jobs/handlers';
 import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
-
-import { getRequiredEnvVar } from '@/app/envServer';
 
 import { RouteHandler } from '../types';
 

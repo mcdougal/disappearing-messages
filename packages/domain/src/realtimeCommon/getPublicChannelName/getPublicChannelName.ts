@@ -1,4 +1,4 @@
-import { getRequiredEnvVar } from '@/domain/utils';
+import { getRequiredEnvVar } from '@/common/env';
 
 // Prevent events triggered from one environment from impacting
 // other environments

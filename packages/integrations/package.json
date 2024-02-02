@@ -7,6 +7,10 @@
     "lint:code": "eslint .",
     "types": "tsc --noEmit"
   },
+  "peerDependencies": {
+    "@types/react": "^18.2.48",
+    "react": "^18.2.0"
+  },
   "dependencies": {
     "@disappearing-messages/common": "file:../common",
     "pusher": "^5.2.0",
