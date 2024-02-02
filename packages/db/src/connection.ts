@@ -3,7 +3,7 @@ import postgres from 'postgres';
 
 import * as schema from './schema';
 
-const { POSTGRES_URL } = process.env;
+const { NODE_ENV, POSTGRES_URL, SUPABASE_CERT } = process.env;
 
 if (!POSTGRES_URL) {
   throw new Error(`Missing environment variable: POSTGRES_URL`);
@@ -13,7 +13,23 @@ if (!POSTGRES_URL) {
 // See: https://orm.drizzle.team/docs/get-started-postgresql#supabase
 const PREPARE = false;
 
-export const client = postgres(POSTGRES_URL, { prepare: PREPARE, ssl: true });
-export const db = drizzle(client, { schema });
+let ssl: Record<string, string> | undefined = undefined;
+
+if (NODE_ENV === `production`) {
+  if (!SUPABASE_CERT) {
+    throw new Error(`Missing environment variable: SUPABASE_CERT`);
+  }
+
+  ssl = { cert: SUPABASE_CERT };
+}
+
+export const client = postgres(POSTGRES_URL, {
+  prepare: PREPARE,
+  ssl,
+});
+
+export const db = drizzle(client, {
+  schema,
+});
 
 export * from 'drizzle-orm';
