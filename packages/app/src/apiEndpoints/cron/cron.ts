@@ -5,6 +5,7 @@ import { NextResponse } from 'next/server';
 import { getRequiredEnvVar } from '@/app/envServer';
 
 import { RouteHandler } from '../types';
+import { log } from '../utils';
 
 const CRON_SECRET = getRequiredEnvVar(`CRON_SECRET`);
 
@@ -22,6 +23,11 @@ export const POST: RouteHandler<RouteParams, ResponseData> = async (
 ) => {
   const headersList = headers();
   const authHeader = headersList.get(`authorization`);
+
+  log(
+    `headersList: ${JSON.stringify(Array.from(headersList.entries()), null, 2)}`
+  );
+  log(`authHeader: ${authHeader}`);
 
   if (authHeader !== `Bearer ${CRON_SECRET}`) {
     return new NextResponse(`Unauthorized`, { status: 401 });
