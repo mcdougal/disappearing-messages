@@ -54,6 +54,6 @@ Migrations run automatically on deploy.
 
 ## Supabase Setup
 
-1. Force SSL connections ([Settings](https://supabase.com/dashboard/project/yiccmvrkavbejqykifkl/settings/database))
-2. Use transaction mode connection string ([Settings](https://supabase.com/dashboard/project/yiccmvrkavbejqykifkl/settings/database))
-3. Install Vercel integration ([Settings](https://supabase.com/dashboard/project/yiccmvrkavbejqykifkl/settings/integrations))
+1. Install Vercel integration ([Settings](https://supabase.com/dashboard/project/yiccmvrkavbejqykifkl/settings/integrations))
+2. Force SSL connections ([Settings](https://supabase.com/dashboard/project/yiccmvrkavbejqykifkl/settings/database))
+3. Add `SUPABASE_CERT` environment variable to Vercel

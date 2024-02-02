@@ -20,7 +20,7 @@ if (NODE_ENV === `production`) {
     throw new Error(`Missing environment variable: SUPABASE_CERT`);
   }
 
-  ssl = { cert: SUPABASE_CERT };
+  ssl = { ca: SUPABASE_CERT };
 }
 
 export const client = postgres(POSTGRES_URL, {
