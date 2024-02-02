@@ -3,17 +3,17 @@ import postgres from 'postgres';
 
 import * as schema from './schema';
 
-const { DATABASE_URL } = process.env;
+const { POSTGRES_URL } = process.env;
 
-if (!DATABASE_URL) {
-  throw new Error(`Missing environment variable: DATABASE_URL`);
+if (!POSTGRES_URL) {
+  throw new Error(`Missing environment variable: POSTGRES_URL`);
 }
 
 // Disable prefetch as it is not supported for "Transaction" pool mode
 // See: https://orm.drizzle.team/docs/get-started-postgresql#supabase
 const PREPARE = false;
 
-export const client = postgres(DATABASE_URL, { prepare: PREPARE });
+export const client = postgres(POSTGRES_URL, { prepare: PREPARE, ssl: true });
 export const db = drizzle(client, { schema });
 
 export * from 'drizzle-orm';

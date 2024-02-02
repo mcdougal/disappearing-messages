@@ -1,13 +1,13 @@
 import type { Config } from 'drizzle-kit';
 
-const { DATABASE_URL } = process.env;
+const { POSTGRES_URL } = process.env;
 
-if (!DATABASE_URL) {
-  throw new Error(`Missing environment variable: DATABASE_URL`);
+if (!POSTGRES_URL) {
+  throw new Error(`Missing environment variable: POSTGRES_URL`);
 }
 
 export default {
-  dbCredentials: { connectionString: DATABASE_URL },
+  dbCredentials: { connectionString: POSTGRES_URL },
   out: `./drizzle`,
   schema: `./src/schema.ts`,
 } satisfies Config;
