@@ -34,11 +34,13 @@ const Message = ({ message }: Props): React.ReactElement => {
   }, [createdAt, expiresAt]);
 
   return (
-    <div
-      ref={messageRef}
-      className="animate-fade-in min-w-64 break-words rounded-lg px-8 py-6 shadow-lg transition-opacity ease-linear"
-      style={{ opacity: getOpacity(createdAt, expiresAt) }}>
-      {text}
+    <div className="animate-fade-in min-w-64">
+      <div
+        ref={messageRef}
+        className="break-words rounded-lg px-8 py-6 shadow-lg transition-opacity ease-linear"
+        style={{ opacity: getOpacity(createdAt, expiresAt) }}>
+        {text}
+      </div>
     </div>
   );
 };
