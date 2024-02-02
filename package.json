@@ -11,6 +11,7 @@
     "delta-lint:code": "npm run delta-lint:code --workspaces --if-present",
     "delta-lint:markdown": "markdownlint **/*.md",
     "delta-lint": "run-p delta-lint:**",
+    "dev:cron": "npm run cron -w @disappearing-messages/app",
     "dev:generate": "npm run generate -w @disappearing-messages/db",
     "dev:sync": "npm run sync -w @disappearing-messages/db",
     "dev": "npm run dev -w @disappearing-messages/app",

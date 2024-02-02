@@ -1,9 +1,6 @@
 'use server';
 
-import { db } from '@/db/connection';
-import { messages } from '@/db/schema';
-import { createId } from '@paralleldrive/cuid2';
-import ms from 'ms';
+import { createMessage } from '@/domain/messages';
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 
@@ -17,9 +14,7 @@ export default async (formData: FormData): Promise<void> => {
   });
 
   if (parsed.success) {
-    await db.insert(messages).values({
-      expiresAt: new Date(Date.now() + ms(`10 seconds`)),
-      id: createId(),
+    await createMessage({
       text: parsed.data.message.trim(),
     });
 

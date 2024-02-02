@@ -1,5 +1,3 @@
-import 'server-only';
-
 import { db, desc, gt } from '@/db/connection';
 import { messages } from '@/db/schema';
 import { QueryResult } from '@/db/types';

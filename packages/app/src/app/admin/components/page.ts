@@ -1,1 +1,1 @@
-export { default } from './AdminComponents';
+export { default } from '@/app/pageComponents/AdminComponents';

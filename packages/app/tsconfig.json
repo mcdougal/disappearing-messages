@@ -13,6 +13,8 @@
     "paths": {
       "@/app/*": ["./src/*"],
       "@/db/*": ["../db/src/*"],
+      "@/domain/*": ["../domain/src/*"],
+      "@/jobs/*": ["../jobs/src/*"],
     },
     "plugins": [{ "name": "next" }],
     "resolveJsonModule": true,

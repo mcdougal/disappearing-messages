@@ -1,9 +1,10 @@
+import { queryMessagesFeed } from '@/domain/messages';
+
 import AddForm from './AddForm';
 import Message from './Message';
-import queryMessages from './queryMessages';
 
 const Messages = async (): Promise<React.ReactElement> => {
-  const messages = await queryMessages();
+  const messages = await queryMessagesFeed();
 
   return (
     <div>
