@@ -21,13 +21,16 @@ const Messages = ({
   user,
 }: Props): React.ReactElement => {
   const messages = useLiveUpdatingMessages(initialMessages);
-  const [optimisticMessages, addOptimisticMessage] =
+  const [optimisticMessages, upsertOptimisticMessage] =
     useOptimisticMessages(messages);
 
   return (
     <div>
       <div className="mb-16">
-        <AddForm addOptimisticMessage={addOptimisticMessage} user={user} />
+        <AddForm
+          upsertOptimisticMessage={upsertOptimisticMessage}
+          user={user}
+        />
       </div>
       <div className="flex flex-col gap-3">
         {optimisticMessages.map((message) => {
@@ -36,6 +39,7 @@ const Messages = ({
               key={getMessageKey(message)}
               message={message}
               serverRenderedAt={serverRenderedAt}
+              upsertOptimisticMessage={upsertOptimisticMessage}
             />
           );
         })}

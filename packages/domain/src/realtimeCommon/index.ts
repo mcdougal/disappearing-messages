@@ -1,5 +1,13 @@
 import getPublicChannelName from './getPublicChannelName';
-import { MessageCreatedEventSchema, RealtimeEventSchemaType } from './schemas';
+import {
+  MessageUpvotedEventSchema,
+  MessageCreatedEventSchema,
+  RealtimeEventSchemaType,
+} from './schemas';
 
-export { getPublicChannelName, MessageCreatedEventSchema };
+export {
+  getPublicChannelName,
+  MessageCreatedEventSchema,
+  MessageUpvotedEventSchema,
+};
 export type { RealtimeEventSchemaType };

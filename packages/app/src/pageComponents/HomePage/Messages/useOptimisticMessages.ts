@@ -1,7 +1,7 @@
 import { MessagesFeedMessage } from '@/domain/messagesServer';
 import { useOptimistic } from 'react';
 
-import { addMessage } from './utils';
+import { upsertMessage } from './utils';
 
 export default (
   messages: Array<MessagesFeedMessage>
@@ -9,7 +9,7 @@ export default (
   return useOptimistic<Array<MessagesFeedMessage>, MessagesFeedMessage>(
     messages,
     (currentState, optimisticValue) => {
-      return addMessage(optimisticValue, currentState);
+      return upsertMessage(optimisticValue, currentState);
     }
   );
 };

@@ -3,7 +3,6 @@ import 'server-only';
 import { db } from '@/db/connection';
 import { messages } from '@/db/schema';
 import { createId } from '@paralleldrive/cuid2';
-import { forEachSeries } from 'p-iteration';
 
 import {
   MessageCreatedEventSchema,
@@ -14,7 +13,7 @@ import { triggerRealtimeEvent } from '@/domain/realtimeServer';
 type InsertData = Omit<typeof messages.$inferInsert, 'createdAt' | 'id'>;
 
 export default async (data: InsertData): Promise<void> => {
-  const insertedMessages = await db
+  const [insertedMessage] = await db
     .insert(messages)
     .values({
       ...data,
@@ -22,7 +21,7 @@ export default async (data: InsertData): Promise<void> => {
     })
     .returning();
 
-  await forEachSeries(insertedMessages, async (insertedMessage) => {
+  if (insertedMessage) {
     await triggerRealtimeEvent(
       MessageCreatedEventSchema,
       getPublicChannelName(),
@@ -38,5 +37,5 @@ export default async (data: InsertData): Promise<void> => {
         },
       }
     );
-  });
+  }
 };

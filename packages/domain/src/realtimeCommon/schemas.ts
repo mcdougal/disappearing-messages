@@ -16,4 +16,16 @@ export const MessageCreatedEventSchema = z.object({
   }),
 });
 
-export type RealtimeEventSchemaType = typeof MessageCreatedEventSchema;
+export const MessageUpvotedEventSchema = z.object({
+  name: z.literal(`messageUpvoted`),
+  data: z.object({
+    message: z.object({
+      id: z.string(),
+      numUpvotes: z.number(),
+    }),
+  }),
+});
+
+export type RealtimeEventSchemaType =
+  | typeof MessageCreatedEventSchema
+  | typeof MessageUpvotedEventSchema;

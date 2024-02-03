@@ -5,16 +5,23 @@ import { MessagesFeedMessage } from '@/domain/messagesServer';
 import Image from 'next/image';
 import { useRef } from 'react';
 
-import getFormAction from './getFormAction';
+import getCreateMessageFormAction from './getCreateMessageFormAction';
 
 type Props = {
-  addOptimisticMessage: (message: MessagesFeedMessage) => void;
+  upsertOptimisticMessage: (message: MessagesFeedMessage) => void;
   user: User;
 };
 
-const AddForm = ({ addOptimisticMessage, user }: Props): React.ReactElement => {
+const AddForm = ({
+  upsertOptimisticMessage,
+  user,
+}: Props): React.ReactElement => {
   const formRef = useRef<HTMLFormElement>(null);
-  const formAction = getFormAction(addOptimisticMessage, formRef, user);
+  const formAction = getCreateMessageFormAction(
+    upsertOptimisticMessage,
+    formRef,
+    user
+  );
 
   return (
     <form ref={formRef} action={formAction}>

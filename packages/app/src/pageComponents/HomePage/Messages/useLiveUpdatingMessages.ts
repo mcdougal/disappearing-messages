@@ -3,7 +3,7 @@ import { usePublicChannel, useSubscribe } from '@/domain/realtimeClient';
 import { MessageCreatedEventSchema } from '@/domain/realtimeCommon';
 import { useCallback, useState } from 'react';
 
-import { addMessage } from './utils';
+import { upsertMessage } from './utils';
 
 export default (
   initialMessages: Array<MessagesFeedMessage>
@@ -18,7 +18,7 @@ export default (
 
       if (message) {
         setMessages((prevMessages) => {
-          return addMessage(message, prevMessages);
+          return upsertMessage(message, prevMessages);
         });
       }
     }, [])

@@ -13,7 +13,7 @@ const FormDataSchema = z.object({
 type FormAction = (formData: FormData) => Promise<void>;
 
 export default (
-  addOptimisticMessage: (message: MessagesFeedMessage) => void,
+  upsertOptimisticMessage: (message: MessagesFeedMessage) => void,
   formRef: RefObject<HTMLFormElement>,
   user: User
 ): FormAction => {
@@ -31,7 +31,7 @@ export default (
 
     formRef.current?.reset();
 
-    addOptimisticMessage({
+    upsertOptimisticMessage({
       createdAt: new Date(),
       expiresAt,
       id: `optimistic-${uuidv4()}`,

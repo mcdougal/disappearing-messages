@@ -1,4 +1,4 @@
-import addMessage from './addMessage';
 import getMessageKey from './getMessageKey';
+import upsertMessage from './upsertMessage';
 
-export { addMessage, getMessageKey };
+export { getMessageKey, upsertMessage };
