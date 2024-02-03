@@ -35,13 +35,6 @@ npx next telemetry disable
 
 Install Supabase CLI: <https://supabase.com/docs/guides/cli/getting-started?platform=linux>
 
-Set up Supabase:
-
-```sh
-supabase login
-supabase link --project-ref ********************
-```
-
 Run the app:
 
 ```sh
