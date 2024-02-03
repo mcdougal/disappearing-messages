@@ -1,31 +1,25 @@
 'use client';
 
+import { QueryMessagesFeedMessage } from '@/domain/messagesServer';
 import { CheckCircleIcon } from '@heroicons/react/24/outline';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 
-import createMessage from './createMessage';
+import getFormAction from './getFormAction';
+import useSubmittedAt from './useSubmittedAt';
 
-const AddForm = (): React.ReactElement => {
+type Props = {
+  addOptimisticMessage: (message: QueryMessagesFeedMessage) => void;
+};
+
+const AddForm = ({ addOptimisticMessage }: Props): React.ReactElement => {
   const formRef = useRef<HTMLFormElement>(null);
-  const [submittedAt, setSubmittedAt] = useState<Date | null>(null);
+  const [submittedAt, setSubmittedAt] = useSubmittedAt();
 
-  const formAction = async (formData: FormData): Promise<void> => {
-    if (formData.get(`message`)) {
-      setSubmittedAt(new Date());
-      formRef.current?.reset();
-      await createMessage(formData);
-    }
-  };
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setSubmittedAt(null);
-    }, 2000);
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [submittedAt]);
+  const formAction = getFormAction(
+    addOptimisticMessage,
+    formRef,
+    setSubmittedAt
+  );
 
   return (
     <form ref={formRef} action={formAction}>

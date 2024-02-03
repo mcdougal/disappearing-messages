@@ -1,7 +1,9 @@
-import { QueryMessagesFeedMessage } from '@/domain/messages';
+import { QueryMessagesFeedMessage } from '@/domain/messagesServer';
 import { usePublicChannel, useSubscribe } from '@/domain/realtimeClient';
 import { MessageCreatedEventSchema } from '@/domain/realtimeCommon';
 import { useCallback, useEffect, useState } from 'react';
+
+import { addMessage } from './utils';
 
 export default (
   initialMessages: Array<QueryMessagesFeedMessage>
@@ -18,15 +20,7 @@ export default (
 
       if (message) {
         setMessages((prevMessages) => {
-          const exists = prevMessages.find((m) => {
-            m.id === message.id;
-          });
-          if (exists) {
-            return prevMessages;
-          }
-          return [message, ...prevMessages].sort((a, b) => {
-            return b.expiresAt.getTime() - a.expiresAt.getTime();
-          });
+          return addMessage(message, prevMessages);
         });
       }
     }, [])

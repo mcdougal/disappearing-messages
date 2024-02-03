@@ -20,23 +20,17 @@ export default <S extends EventSchema>(
     }
 
     const handler = async (eventData: unknown): Promise<void> => {
-      console.log(`eventData:`, typeof eventData);
-      console.log(eventData);
       const parseResult = eventSchema.safeParse({
         name: eventName,
         data: eventData,
       });
-      console.log(`parseResult:`);
-      console.log(parseResult);
       const validatedEventData = parseResult.success ? parseResult.data : null;
       await callback(validatedEventData?.data || null);
     };
 
-    console.log(`subscribe`);
     channel.bind(eventName, handler);
 
     return () => {
-      console.log(`unsubscribe`);
       channel.unbind(eventName, handler);
     };
   }, [eventSchema, eventName, channel, callback]);

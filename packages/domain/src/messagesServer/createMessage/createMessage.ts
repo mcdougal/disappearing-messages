@@ -10,10 +10,7 @@ import {
 } from '@/domain/realtimeCommon';
 import { triggerRealtimeEvent } from '@/domain/realtimeServer';
 
-type InsertData = Omit<
-  typeof messages.$inferInsert,
-  'createdAt' | 'expiresAt' | 'id'
->;
+type InsertData = Omit<typeof messages.$inferInsert, 'createdAt' | 'id'>;
 
 export default async (data: InsertData): Promise<void> => {
   const insertedMessages = await db

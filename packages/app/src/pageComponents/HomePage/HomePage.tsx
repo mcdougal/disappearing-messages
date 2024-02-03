@@ -1,4 +1,4 @@
-import { queryMessagesFeed } from '@/domain/messages';
+import { queryMessagesFeed } from '@/domain/messagesServer';
 
 import Messages from './Messages';
 
