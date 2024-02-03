@@ -1,6 +1,6 @@
 import getExpiresAt from './getExpiresAt';
-import getRandomUser from './getRandomUser';
+import makeRandomUser from './makeRandomUser';
 import { User } from './types';
 
-export { getExpiresAt, getRandomUser };
+export { getExpiresAt, makeRandomUser };
 export type { User };

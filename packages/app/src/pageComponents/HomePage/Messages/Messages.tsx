@@ -7,6 +7,7 @@ import AddForm from './AddForm';
 import Message from './Message';
 import useLiveUpdatingMessages from './useLiveUpdatingMessages';
 import useOptimisticMessages from './useOptimisticMessages';
+import { getMessageKey } from './utils';
 
 type Props = {
   messages: Array<MessagesFeedMessage>;
@@ -32,7 +33,7 @@ const Messages = ({
         {optimisticMessages.map((message) => {
           return (
             <Message
-              key={message.id}
+              key={getMessageKey(message)}
               message={message}
               serverRenderedAt={serverRenderedAt}
             />

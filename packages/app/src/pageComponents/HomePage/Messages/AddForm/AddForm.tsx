@@ -14,7 +14,7 @@ type Props = {
 
 const AddForm = ({ addOptimisticMessage, user }: Props): React.ReactElement => {
   const formRef = useRef<HTMLFormElement>(null);
-  const formAction = getFormAction(addOptimisticMessage, formRef);
+  const formAction = getFormAction(addOptimisticMessage, formRef, user);
 
   return (
     <form ref={formRef} action={formAction}>

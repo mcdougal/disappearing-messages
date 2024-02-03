@@ -10,19 +10,25 @@ export type MessagesFeedMessage = QueryResult<
     createdAt: true;
     expiresAt: true;
     id: true;
+    numUpvotes: true;
     text: true;
+    userAvatarSrc: true;
+    userName: true;
   }
 >;
 
 export default async (): Promise<Array<MessagesFeedMessage>> => {
   return db.query.messages.findMany({
+    where: gt(messages.expiresAt, new Date()),
+    orderBy: [desc(messages.expiresAt)],
     columns: {
       createdAt: true,
       expiresAt: true,
       id: true,
+      numUpvotes: true,
       text: true,
+      userAvatarSrc: true,
+      userName: true,
     },
-    where: gt(messages.expiresAt, new Date()),
-    orderBy: [desc(messages.expiresAt)],
   });
 };

@@ -1,5 +1,7 @@
 import { MessagesFeedMessage } from '@/domain/messagesServer';
 
+import getMessageKey from './getMessageKey';
+
 export default (
   message: MessagesFeedMessage,
   messages: Array<MessagesFeedMessage>
@@ -8,8 +10,7 @@ export default (
     return (
       m.id === message.id ||
       (message.id.startsWith(`optimistic-`) &&
-        m.text === message.text &&
-        m.expiresAt.getTime() === message.expiresAt.getTime())
+        getMessageKey(m) === getMessageKey(message))
     );
   });
 

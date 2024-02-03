@@ -1,21 +1,9 @@
 'use server';
 
 import { createMessage } from '@/domain/messagesServer';
-import { z } from 'zod';
 
-const FormDataSchema = z.object({
-  message: z.string().min(1),
-});
+type MessageData = Parameters<typeof createMessage>[0];
 
-export default async (formData: FormData, expiresAt: Date): Promise<void> => {
-  const parsed = FormDataSchema.safeParse({
-    message: formData.get(`message`),
-  });
-
-  if (parsed.success) {
-    await createMessage({
-      expiresAt,
-      text: parsed.data.message.trim(),
-    });
-  }
+export default async (messageData: MessageData): Promise<void> => {
+  await createMessage(messageData);
 };

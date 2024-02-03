@@ -8,7 +8,10 @@ export const MessageCreatedEventSchema = z.object({
       createdAt: coercedDate(),
       expiresAt: coercedDate(),
       id: z.string(),
+      numUpvotes: z.number(),
       text: z.string(),
+      userAvatarSrc: z.string(),
+      userName: z.string(),
     }),
   }),
 });

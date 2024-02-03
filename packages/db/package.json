@@ -11,6 +11,7 @@
     "types": "tsc --noEmit"
   },
   "dependencies": {
+    "@disappearing-messages/common": "file:../common",
     "drizzle-orm": "^0.29.3",
     "postgres": "^3.4.3"
   },

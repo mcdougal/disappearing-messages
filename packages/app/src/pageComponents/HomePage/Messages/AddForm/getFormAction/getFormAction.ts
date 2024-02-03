@@ -1,32 +1,51 @@
-import { getExpiresAt } from '@/domain/messagesCommon';
+import { User, getExpiresAt } from '@/domain/messagesCommon';
 import { MessagesFeedMessage } from '@/domain/messagesServer';
 import { RefObject } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { z } from 'zod';
 
 import createMessage from './createMessage';
+
+const FormDataSchema = z.object({
+  message: z.string().min(1),
+});
 
 type FormAction = (formData: FormData) => Promise<void>;
 
 export default (
   addOptimisticMessage: (message: MessagesFeedMessage) => void,
-  formRef: RefObject<HTMLFormElement>
+  formRef: RefObject<HTMLFormElement>,
+  user: User
 ): FormAction => {
   return async (formData): Promise<void> => {
-    const message = formData.get(`message`);
+    const parsed = FormDataSchema.safeParse({
+      message: formData.get(`message`),
+    });
 
-    if (!message) {
+    if (!parsed.success) {
       return;
     }
 
+    const { message } = parsed.data;
     const expiresAt = getExpiresAt();
-    const optimisticMessage = {
-      createdAt: new Date(),
-      expiresAt,
-      id: `optimistic-${Date.now()}`,
-      text: message.toString(),
-    };
 
     formRef.current?.reset();
-    addOptimisticMessage(optimisticMessage);
-    await createMessage(formData, expiresAt);
+
+    addOptimisticMessage({
+      createdAt: new Date(),
+      expiresAt,
+      id: `optimistic-${uuidv4()}`,
+      numUpvotes: 0,
+      text: message,
+      userAvatarSrc: user.avatarSrc,
+      userName: user.name,
+    });
+
+    await createMessage({
+      expiresAt,
+      text: message,
+      userAvatarSrc: user.avatarSrc,
+      userName: user.name,
+    });
   };
 };

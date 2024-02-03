@@ -1,4 +1,5 @@
-import { drizzle } from 'drizzle-orm/postgres-js';
+import { isProduction } from '@/common/env';
+import { PostgresJsDatabase, drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 
 import * as schema from './schema';
@@ -28,9 +29,32 @@ export const client = postgres(POSTGRES_URL, {
   ssl,
 });
 
-export const db = drizzle(client, {
-  schema,
-});
+// Avoid too many connections when we are hot reloading
+declare global {
+  // eslint-disable-next-line no-var
+  var dbGlobal: PostgresJsDatabase<typeof schema> | null;
+}
+
+const makeDrizzleClient = (): PostgresJsDatabase<typeof schema> => {
+  return drizzle(client, {
+    schema,
+  });
+};
+
+const getDrizzleClient = (): PostgresJsDatabase<typeof schema> => {
+  if (isProduction()) {
+    return makeDrizzleClient();
+  }
+
+  // Avoid too many connections when we are hot reloading
+  if (!globalThis.dbGlobal) {
+    globalThis.dbGlobal = makeDrizzleClient();
+  }
+
+  return globalThis.dbGlobal;
+};
+
+export const db = getDrizzleClient();
 
 // There are too many utilities to manually export one-by-one, so we're
 // just re-exporting everything.

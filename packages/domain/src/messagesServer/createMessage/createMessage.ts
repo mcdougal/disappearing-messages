@@ -31,7 +31,10 @@ export default async (data: InsertData): Promise<void> => {
           createdAt: insertedMessage.createdAt,
           expiresAt: insertedMessage.expiresAt,
           id: insertedMessage.id,
+          numUpvotes: insertedMessage.numUpvotes,
           text: insertedMessage.text,
+          userAvatarSrc: insertedMessage.userAvatarSrc,
+          userName: insertedMessage.userName,
         },
       }
     );
