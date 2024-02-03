@@ -1,3 +1,5 @@
+import 'client-only';
+
 import { Channel, useChannel } from '@/integrations/pusherClient';
 
 import { getPublicChannelName } from '@/domain/realtimeCommon';

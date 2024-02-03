@@ -1,9 +1,12 @@
 import { queryMessagesFeed } from '@/domain/messagesServer';
 
 import Messages from './Messages';
+import { getRandomUser } from '@/domain/messagesCommon';
 
 const HomePage = async (): Promise<React.ReactElement> => {
   const messages = await queryMessagesFeed();
+  const serverRenderedAt = new Date();
+  const user = getRandomUser();
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-10">
@@ -13,7 +16,11 @@ const HomePage = async (): Promise<React.ReactElement> => {
       <p className="text-md mb-12 text-gray-400">
         Write a message - we’ll delete it. Upvote to keep it alive.
       </p>
-      <Messages messages={messages} />
+      <Messages
+        messages={messages}
+        serverRenderedAt={serverRenderedAt}
+        user={user}
+      />
     </div>
   );
 };

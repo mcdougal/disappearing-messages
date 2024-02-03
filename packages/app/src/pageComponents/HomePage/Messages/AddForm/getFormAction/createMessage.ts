@@ -1,7 +1,6 @@
 'use server';
 
 import { createMessage } from '@/domain/messagesServer';
-import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 
 const FormDataSchema = z.object({
@@ -18,7 +17,5 @@ export default async (formData: FormData, expiresAt: Date): Promise<void> => {
       expiresAt,
       text: parsed.data.message.trim(),
     });
-
-    revalidatePath(`/`);
   }
 };

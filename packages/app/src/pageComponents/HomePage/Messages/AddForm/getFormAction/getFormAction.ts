@@ -1,15 +1,14 @@
 import { getExpiresAt } from '@/domain/messagesCommon';
-import { QueryMessagesFeedMessage } from '@/domain/messagesServer';
-import { Dispatch, RefObject, SetStateAction } from 'react';
+import { MessagesFeedMessage } from '@/domain/messagesServer';
+import { RefObject } from 'react';
 
 import createMessage from './createMessage';
 
 type FormAction = (formData: FormData) => Promise<void>;
 
 export default (
-  addOptimisticMessage: (message: QueryMessagesFeedMessage) => void,
-  formRef: RefObject<HTMLFormElement>,
-  setSubmittedAt: Dispatch<SetStateAction<Date | null>>
+  addOptimisticMessage: (message: MessagesFeedMessage) => void,
+  formRef: RefObject<HTMLFormElement>
 ): FormAction => {
   return async (formData): Promise<void> => {
     const message = formData.get(`message`);
@@ -26,7 +25,6 @@ export default (
       text: message.toString(),
     };
 
-    setSubmittedAt(new Date());
     formRef.current?.reset();
     addOptimisticMessage(optimisticMessage);
     await createMessage(formData, expiresAt);

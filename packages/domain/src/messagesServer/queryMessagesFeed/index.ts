@@ -1,6 +1,4 @@
-import queryMessagesFeed, {
-  QueryMessagesFeedMessage,
-} from './queryMessagesFeed';
+import queryMessagesFeed, { MessagesFeedMessage } from './queryMessagesFeed';
 
 export default queryMessagesFeed;
-export type { QueryMessagesFeedMessage };
+export type { MessagesFeedMessage };

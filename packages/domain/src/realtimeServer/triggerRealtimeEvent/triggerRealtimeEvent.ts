@@ -1,3 +1,5 @@
+import 'server-only';
+
 import { triggerPusherEvent } from '@/integrations/pusherServer';
 import { z } from 'zod';
 

@@ -1,3 +1,5 @@
+import 'client-only';
+
 import { Channel, useBind } from '@/integrations/pusherClient';
 import { z } from 'zod';
 

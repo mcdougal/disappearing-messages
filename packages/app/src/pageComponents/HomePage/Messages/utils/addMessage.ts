@@ -1,9 +1,9 @@
-import { QueryMessagesFeedMessage } from '@/domain/messagesServer';
+import { MessagesFeedMessage } from '@/domain/messagesServer';
 
 export default (
-  message: QueryMessagesFeedMessage,
-  messages: Array<QueryMessagesFeedMessage>
-): Array<QueryMessagesFeedMessage> => {
+  message: MessagesFeedMessage,
+  messages: Array<MessagesFeedMessage>
+): Array<MessagesFeedMessage> => {
   const exists = messages.find((m) => {
     return (
       m.id === message.id ||
@@ -12,11 +12,6 @@ export default (
         m.expiresAt.getTime() === message.expiresAt.getTime())
     );
   });
-
-  console.log(`----------------------`);
-  console.log(`message:`, message);
-  console.log(`messages:`, messages);
-  console.log(`exists:`, exists);
 
   if (exists) {
     return messages;

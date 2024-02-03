@@ -8,6 +8,10 @@ const nextConfig = {
     // during the build
     ignoreDuringBuilds: true,
   },
+  images: {
+    loader: `custom`,
+    loaderFile: `./cloudinaryLoader.js`,
+  },
   // Exposing the framework used can make it easier for attackers to
   // discover vulnerabilities, so we hide the `x-powered-by` header
   poweredByHeader: false,

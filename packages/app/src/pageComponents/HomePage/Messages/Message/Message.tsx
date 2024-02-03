@@ -12,9 +12,10 @@ type Message = {
 
 type Props = {
   message: Message;
+  serverRenderedAt: Date;
 };
 
-const Message = ({ message }: Props): React.ReactElement => {
+const Message = ({ message, serverRenderedAt }: Props): React.ReactElement => {
   const { createdAt, expiresAt, text } = message;
   const messageRef = useRef<HTMLDivElement>(null);
 
@@ -38,7 +39,7 @@ const Message = ({ message }: Props): React.ReactElement => {
       <div
         ref={messageRef}
         className="break-words rounded-lg px-8 py-6 shadow-lg transition-opacity ease-linear"
-        style={{ opacity: getOpacity(createdAt, expiresAt) }}>
+        style={{ opacity: getOpacity(createdAt, expiresAt, serverRenderedAt) }}>
         {text}
       </div>
     </div>

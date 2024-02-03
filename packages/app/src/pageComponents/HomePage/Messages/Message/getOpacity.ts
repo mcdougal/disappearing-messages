@@ -1,7 +1,8 @@
-export default (createdAt: Date, expiresAt: Date): number => {
-  const msUntilExpiration = expiresAt.getTime() - Date.now();
+export default (createdAt: Date, expiresAt: Date, now?: Date): number => {
+  const nowMs = now?.getTime() || Date.now();
+  const msUntilExpiration = expiresAt.getTime() - nowMs;
   const totalMs = expiresAt.getTime() - createdAt.getTime();
-  const opacity = Math.round((msUntilExpiration / totalMs) * 10) / 10;
+  const opacity = msUntilExpiration / totalMs;
 
   return opacity;
 };

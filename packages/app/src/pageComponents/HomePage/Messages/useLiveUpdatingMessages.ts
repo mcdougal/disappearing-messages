@@ -1,20 +1,18 @@
-import { QueryMessagesFeedMessage } from '@/domain/messagesServer';
+import { MessagesFeedMessage } from '@/domain/messagesServer';
 import { usePublicChannel, useSubscribe } from '@/domain/realtimeClient';
 import { MessageCreatedEventSchema } from '@/domain/realtimeCommon';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { addMessage } from './utils';
 
 export default (
-  initialMessages: Array<QueryMessagesFeedMessage>
-): Array<QueryMessagesFeedMessage> => {
+  initialMessages: Array<MessagesFeedMessage>
+): Array<MessagesFeedMessage> => {
   const [messages, setMessages] = useState(initialMessages);
-
-  const publicChannel = usePublicChannel();
 
   useSubscribe(
     MessageCreatedEventSchema,
-    publicChannel,
+    usePublicChannel(),
     useCallback((eventData) => {
       const message = eventData?.message;
 
@@ -25,10 +23,6 @@ export default (
       }
     }, [])
   );
-
-  useEffect(() => {
-    setMessages(initialMessages);
-  }, [initialMessages]);
 
   return messages;
 };

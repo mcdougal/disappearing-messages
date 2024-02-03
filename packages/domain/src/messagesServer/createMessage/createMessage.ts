@@ -1,7 +1,8 @@
+import 'server-only';
+
 import { db } from '@/db/connection';
 import { messages } from '@/db/schema';
 import { createId } from '@paralleldrive/cuid2';
-import ms from 'ms';
 import { forEachSeries } from 'p-iteration';
 
 import {
@@ -17,7 +18,6 @@ export default async (data: InsertData): Promise<void> => {
     .insert(messages)
     .values({
       ...data,
-      expiresAt: new Date(Date.now() + ms(`30 seconds`)),
       id: createId(),
     })
     .returning();

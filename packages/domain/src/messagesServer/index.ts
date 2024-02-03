@@ -1,7 +1,5 @@
 import createMessage from './createMessage';
-import queryMessagesFeed, {
-  QueryMessagesFeedMessage,
-} from './queryMessagesFeed';
+import queryMessagesFeed, { MessagesFeedMessage } from './queryMessagesFeed';
 
 export { createMessage, queryMessagesFeed };
-export type { QueryMessagesFeedMessage };
+export type { MessagesFeedMessage };
