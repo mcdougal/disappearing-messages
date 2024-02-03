@@ -8,7 +8,6 @@
     "lint:code": "eslint .",
     "migrate": "npx --yes tsx bin/migrate.ts",
     "sync": "npx --yes tsx bin/sync.ts",
-    "ts-node": "ts-node -r tsconfig-paths/register",
     "types": "tsc --noEmit"
   },
   "dependencies": {
