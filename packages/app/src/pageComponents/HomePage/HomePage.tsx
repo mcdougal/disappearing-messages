@@ -3,6 +3,8 @@ import { queryMessagesFeed } from '@/domain/messagesServer';
 
 import Messages from './Messages';
 
+export const dynamic = `force-dynamic`;
+
 const HomePage = async (): Promise<React.ReactElement> => {
   const messages = await queryMessagesFeed();
   const serverRenderedAt = new Date();
