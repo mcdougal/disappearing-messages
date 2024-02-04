@@ -43,6 +43,27 @@
       "when": 1706962477987,
       "tag": "0005_shocking_mongoose",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1707034269500,
+      "tag": "0006_heavy_sleeper",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1707034476547,
+      "tag": "0007_shocking_ares",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1707036618512,
+      "tag": "0008_green_purple_man",
+      "breakpoints": true
     }
   ]
 }

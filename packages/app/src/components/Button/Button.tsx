@@ -6,6 +6,7 @@ import { ButtonColor, ButtonIcon, ButtonSize } from './types';
 
 type Props = Readonly<{
   children: React.ReactNode;
+  className?: string;
   color?: ButtonColor;
   endIcon?: ButtonIcon;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -16,6 +17,7 @@ type Props = Readonly<{
 
 const Button = ({
   children,
+  className,
   color = `primary`,
   endIcon,
   onClick,
@@ -28,7 +30,7 @@ const Button = ({
 
   const classNameByColor: { [key in ButtonColor]: string } = {
     primary: `bg-indigo-600 text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`,
-    secondary: `bg-white text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50`,
+    secondary: `bg-white text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-400`,
   };
 
   const classNameBySize: { [key in ButtonSize]: string } = {
@@ -50,9 +52,10 @@ const Button = ({
   return (
     <button
       className={classNames(
-        `inline-flex items-center font-semibold shadow-sm`,
+        `inline-flex items-center justify-center font-semibold shadow-sm`,
         classNameBySize[size],
-        classNameByColor[color]
+        classNameByColor[color],
+        className
       )}
       onClick={onClick}
       type={type}>

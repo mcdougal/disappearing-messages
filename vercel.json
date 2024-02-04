@@ -1,7 +1,7 @@
 {
   "crons": [
     {
-      "path": "/api/cron/createFakeMessage",
+      "path": "/api/cron/createFakePost",
       "schedule": "*/1 * * * *"
     }
   ]

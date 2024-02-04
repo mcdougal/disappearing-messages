@@ -9,6 +9,7 @@ type Props = Readonly<{
   id: string;
   name: string;
   placeholder?: string;
+  rows?: number;
   submit?: { label: string; icon?: ButtonIcon };
 }>;
 
@@ -19,6 +20,7 @@ const Textarea = ({
   id,
   name,
   placeholder,
+  rows = 3,
   submit,
 }: Props): React.ReactElement => {
   const helperTextId = `${id}-helperText`;
@@ -41,12 +43,12 @@ const Textarea = ({
           aria-describedby={error ? helperTextId : undefined}
           aria-invalid={error}
           autoFocus={autoFocus}
-          className="block w-full resize-none border-0 bg-transparent py-1.5 text-xl text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+          className="block w-full resize-none border-0 bg-transparent px-4 py-3 text-sm leading-6 text-gray-900 placeholder:text-gray-400 focus:ring-0"
           defaultValue=""
           id={id}
           name={name}
           placeholder={placeholder}
-          rows={3}
+          rows={rows}
         />
         {submit && (
           <div className="flex justify-end py-2 pl-3 pr-2">

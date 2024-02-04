@@ -1,29 +1,26 @@
-import { makeRandomUser } from '@/domain/messagesCommon';
-import { queryMessagesFeed } from '@/domain/messagesServer';
+import { queryPostsFeed } from '@/domain/post/server';
+import { getOrCreateUserForSession } from '@/domain/user/server';
+import { cookies } from 'next/headers';
 
-import Messages from './Messages';
-
-export const dynamic = `force-dynamic`;
+import HomePageContent from './HomePageContent';
 
 const HomePage = async (): Promise<React.ReactElement> => {
-  const messages = await queryMessagesFeed();
+  const sessionId = cookies().get(`s`)?.value;
+
+  if (!sessionId) {
+    throw new Error(`No session id`);
+  }
+
+  const sessionUser = await getOrCreateUserForSession({ where: { sessionId } });
+  const posts = await queryPostsFeed();
   const serverRenderedAt = new Date();
-  const user = makeRandomUser();
 
   return (
-    <div className="mx-auto max-w-4xl px-4 pb-40 pt-6 md:pt-10">
-      <h1 className=" mb-4 inline-block bg-gradient-to-b from-black to-white bg-clip-text text-5xl text-transparent md:text-6xl">
-        Disappearing Messages
-      </h1>
-      <p className="text-md mb-12 text-gray-400">
-        Write a message - it will slowly disappear. Upvote to keep it alive.
-      </p>
-      <Messages
-        messages={messages}
-        serverRenderedAt={serverRenderedAt}
-        user={user}
-      />
-    </div>
+    <HomePageContent
+      posts={posts}
+      serverRenderedAt={serverRenderedAt}
+      sessionUser={sessionUser}
+    />
   );
 };
 

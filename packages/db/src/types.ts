@@ -11,20 +11,22 @@ import * as schema from './schema';
 type Schema = typeof schema;
 type TSchema = ExtractTablesWithRelations<Schema>;
 
-type IncludeColumns<TableName extends keyof TSchema> = DBQueryConfig<
+type QueryConfig<TableName extends keyof TSchema> = DBQueryConfig<
   'one' | 'many',
   boolean,
   TSchema,
   TSchema[TableName]
->['columns'];
+>;
 
 export type QueryResult<
   TableName extends keyof TSchema,
-  Columns extends IncludeColumns<TableName> | undefined = undefined,
+  Columns extends QueryConfig<TableName>['columns'] | undefined = undefined,
+  With extends QueryConfig<TableName>['with'] | undefined = undefined,
 > = BuildQueryResult<
   TSchema,
   TSchema[TableName],
   {
     columns: Columns;
+    with: With;
   }
 >;

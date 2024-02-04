@@ -7,8 +7,8 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: `Disappearing Messages`,
-  description: `Post public messages that disappear.`,
+  title: `disappearing.chat`,
+  description: `Posts slowly disappear. Upvote or reply to keep them alive.`,
 };
 
 type Props = Readonly<{

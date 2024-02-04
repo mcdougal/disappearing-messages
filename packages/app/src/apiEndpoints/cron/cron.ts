@@ -1,5 +1,5 @@
 import { getRequiredEnvVar } from '@/common/env';
-import { createFakeMessage } from '@/jobs/handlers';
+import { createFakePost } from '@/jobs/handlers';
 import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 
@@ -28,8 +28,8 @@ export const GET: RouteHandler<RouteParams, ResponseData> = async (
 
   const { jobName } = params;
 
-  if (jobName === `createFakeMessage`) {
-    await createFakeMessage();
+  if (jobName === `createFakePost`) {
+    await createFakePost();
   } else {
     return new NextResponse(`Job ${jobName} not found`, { status: 404 });
   }

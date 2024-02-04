@@ -9,7 +9,10 @@
   },
   "dependencies": {
     "@disappearing-messages/common": "file:../common",
-    "@disappearing-messages/domain": "file:../domain"
+    "@disappearing-messages/domain": "file:../domain",
+    "uuid": "^9.0.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/uuid": "^9.0.8"
+  }
 }

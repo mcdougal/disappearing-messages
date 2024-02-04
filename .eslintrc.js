@@ -76,7 +76,10 @@ module.exports = {
         '@disappearing-messages/package-imports': [
           `error`,
           {
-            disallowedPatterns: [`^@/.*/.*/.*$`],
+            disallowedPatterns: [
+              `^@/((?!domain).*)/.*/.*$`,
+              `^@/domain/.*/.*/.*$`,
+            ],
           },
         ],
 

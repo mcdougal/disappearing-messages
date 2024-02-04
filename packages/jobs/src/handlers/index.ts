@@ -1,3 +1,3 @@
-import createFakeMessage from './createFakeMessage';
+import createFakePost from './createFakePost';
 
-export { createFakeMessage };
+export { createFakePost };
