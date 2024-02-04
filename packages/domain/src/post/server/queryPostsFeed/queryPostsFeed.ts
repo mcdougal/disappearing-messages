@@ -12,12 +12,18 @@ export type PostsFeedPost = QueryResult<
     numUpvotes: true;
     postedAt: true;
     text: true;
+    updatedAt: true;
   },
   {
     author: {
       columns: {
         avatarSrc: true;
         name: true;
+      };
+    };
+    upvotes: {
+      columns: {
+        userId: true;
       };
     };
   }
@@ -30,15 +36,20 @@ export default async (): Promise<Array<PostsFeedPost>> => {
     columns: {
       expiresAt: true,
       id: true,
-      numUpvotes: true,
       postedAt: true,
       text: true,
+      updatedAt: true,
     },
     with: {
       author: {
         columns: {
           avatarSrc: true,
           name: true,
+        },
+      },
+      upvotes: {
+        columns: {
+          userId: true,
         },
       },
     },

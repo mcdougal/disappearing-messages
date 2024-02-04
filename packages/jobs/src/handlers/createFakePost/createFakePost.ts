@@ -9,12 +9,17 @@ export default async (): Promise<void> => {
       where: { sessionId: uuidv4() },
     });
 
+    const postedAt = new Date();
+    const updatedAt = postedAt;
+    const expiresAt = getExpiresAt(updatedAt);
+
     await createPost({
       data: {
         authorId: sessionUser.id,
-        expiresAt: getExpiresAt(),
-        postedAt: new Date(),
+        expiresAt,
+        postedAt,
         text: `this is a fake post`,
+        updatedAt,
       },
     });
   }

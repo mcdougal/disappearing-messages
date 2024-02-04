@@ -1,6 +1,7 @@
 'use client';
 
 import { PostsFeedPost } from '@/domain/post/server';
+import { SessionUser } from '@/domain/user/server';
 import { ArrowUpIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import { useRef } from 'react';
@@ -13,30 +14,34 @@ import useOpacityAnimation from './useOpacityAnimation';
 type Props = {
   post: PostsFeedPost;
   serverRenderedAt: Date;
+  sessionUser: SessionUser;
   upsertOptimisticPost: (post: PostsFeedPost) => void;
 };
 
 const Post = ({
   post: initialPost,
   serverRenderedAt,
+  sessionUser,
   upsertOptimisticPost,
 }: Props): React.ReactElement => {
-  // todo
-  // const post = useLiveUpdatingPost(initialPost);
   const post = initialPost;
-  const { author, expiresAt, id, numUpvotes, postedAt, text } = post;
+  const { author, expiresAt, id, text, updatedAt, upvotes } = post;
 
   const postRef = useRef<HTMLDivElement>(null);
   useOpacityAnimation(postRef, post);
 
-  const formAction = getUpvotePostFormAction(post, upsertOptimisticPost);
+  const formAction = getUpvotePostFormAction(
+    post,
+    sessionUser,
+    upsertOptimisticPost
+  );
 
   return (
     <div className="border-t border-slate-100 last:border-b">
       <div
         ref={postRef}
         className="px-4 pb-4 pt-2 transition-opacity ease-linear md:py-6"
-        style={{ opacity: getOpacity(postedAt, expiresAt, serverRenderedAt) }}>
+        style={{ opacity: getOpacity(updatedAt, expiresAt, serverRenderedAt) }}>
         <div className="mb-4 flex items-center gap-2">
           <div className="flex flex-1 items-center gap-2">
             <Image
@@ -55,7 +60,7 @@ const Post = ({
               title="Upvote"
               type="submit">
               <ArrowUpIcon className="aspect-square w-4" />
-              <span className="text-xs">{numUpvotes}</span>
+              <span className="text-xs">{upvotes.length}</span>
             </button>
           </form>
         </div>

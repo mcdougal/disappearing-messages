@@ -7,7 +7,6 @@ export const PostCreatedEventSchema = z.object({
     post: z.object({
       expiresAt: coercedDate(),
       id: z.string(),
-      numUpvotes: z.number(),
       postedAt: coercedDate(),
       text: z.string(),
       author: z.object({
@@ -22,8 +21,8 @@ export const PostUpvotedEventSchema = z.object({
   name: z.literal(`postUpvoted`),
   data: z.object({
     post: z.object({
-      id: z.string(),
-      numUpvotes: z.number(),
+      postId: z.string(),
+      userId: z.string(),
     }),
   }),
 });

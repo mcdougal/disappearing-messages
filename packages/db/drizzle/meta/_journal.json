@@ -64,6 +64,20 @@
       "when": 1707036618512,
       "tag": "0008_green_purple_man",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "5",
+      "when": 1707046801095,
+      "tag": "0009_adorable_stingray",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "5",
+      "when": 1707047386467,
+      "tag": "0010_secret_hercules",
+      "breakpoints": true
     }
   ]
 }

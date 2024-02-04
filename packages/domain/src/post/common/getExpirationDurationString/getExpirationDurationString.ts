@@ -1,3 +1,3 @@
 export default (): string => {
-  return `24 hours`;
+  return `30 seconds`;
 };

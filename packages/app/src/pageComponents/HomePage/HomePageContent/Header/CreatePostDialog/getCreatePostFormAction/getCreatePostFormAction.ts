@@ -28,21 +28,23 @@ export default (
     }
 
     const { text } = parsed.data;
-    const expiresAt = getExpiresAt();
     const postedAt = new Date();
+    const updatedAt = postedAt;
+    const expiresAt = getExpiresAt(updatedAt);
 
     formRef.current?.reset();
 
     upsertOptimisticPost({
       expiresAt,
       id: `optimistic-${uuidv4()}`,
-      numUpvotes: 0,
       postedAt,
       text,
+      updatedAt,
       author: {
         avatarSrc: sessionUser.avatarSrc,
         name: sessionUser.name,
       },
+      upvotes: [],
     });
 
     await createPost({
@@ -51,6 +53,7 @@ export default (
         expiresAt,
         postedAt,
         text,
+        updatedAt,
       },
     });
   };

@@ -34,6 +34,7 @@ const HomePageContent = ({
         <Posts
           posts={optimisticPosts}
           serverRenderedAt={serverRenderedAt}
+          sessionUser={sessionUser}
           upsertOptimisticPost={upsertOptimisticPost}
         />
       </div>

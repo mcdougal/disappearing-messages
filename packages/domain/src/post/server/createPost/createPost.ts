@@ -36,7 +36,6 @@ export default async ({ data }: InsertArgs): Promise<void> => {
     columns: {
       expiresAt: true,
       id: true,
-      numUpvotes: true,
       postedAt: true,
       text: true,
     },
@@ -51,7 +50,6 @@ export default async ({ data }: InsertArgs): Promise<void> => {
         },
         expiresAt: postData.expiresAt,
         id: postData.id,
-        numUpvotes: postData.numUpvotes,
         postedAt: postData.postedAt,
         text: postData.text,
       },

@@ -1,7 +1,7 @@
 import 'server-only';
 
 import { db, eq } from '@/db/connection';
-import { post } from '@/db/schema';
+import { post, upvote } from '@/db/schema';
 
 import {
   getPublicChannelName,
@@ -10,40 +10,31 @@ import {
 import { triggerRealtimeEvent } from '@/domain/realtime/server';
 
 type UpdateArgs = {
-  data: Pick<typeof post.$inferInsert, 'expiresAt'>;
-  where: { id: string };
+  data: Omit<typeof upvote.$inferInsert, 'createdAt'> & {
+    expiresAt: Date;
+    updatedAt: Date;
+  };
 };
 
-export default async ({ data, where }: UpdateArgs): Promise<void> => {
-  const existingPost = await db.query.post.findFirst({
-    where: eq(post.id, where.id),
-    columns: {
-      id: true,
-      numUpvotes: true,
-    },
-  });
+export default async ({ data }: UpdateArgs): Promise<void> => {
+  const { expiresAt, updatedAt, ...upvoteData } = data;
 
-  if (existingPost) {
-    const [updatedPost] = await db
-      .update(post)
-      .set({
-        expiresAt: data.expiresAt,
-        numUpvotes: existingPost.numUpvotes + 1,
-      })
-      .where(eq(post.id, existingPost.id))
-      .returning();
+  const [insertedUpvote] = await db
+    .insert(upvote)
+    .values(upvoteData)
+    .returning();
 
-    if (updatedPost) {
-      await triggerRealtimeEvent(
-        PostUpvotedEventSchema,
-        getPublicChannelName(),
-        {
-          post: {
-            id: updatedPost.id,
-            numUpvotes: updatedPost.numUpvotes,
-          },
-        }
-      );
-    }
+  await db
+    .update(post)
+    .set({ expiresAt, updatedAt })
+    .where(eq(post.id, data.postId));
+
+  if (insertedUpvote) {
+    await triggerRealtimeEvent(PostUpvotedEventSchema, getPublicChannelName(), {
+      post: {
+        postId: data.postId,
+        userId: data.userId,
+      },
+    });
   }
 };

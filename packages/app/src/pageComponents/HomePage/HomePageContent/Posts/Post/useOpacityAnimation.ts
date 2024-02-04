@@ -1,3 +1,4 @@
+import { getExpirationDurationString } from '@/domain/post/common';
 import { PostsFeedPost } from '@/domain/post/server';
 import ms from 'ms';
 import { RefObject, useEffect } from 'react';
@@ -8,20 +9,23 @@ export default (
   postRef: RefObject<HTMLDivElement>,
   post: PostsFeedPost
 ): void => {
-  const { expiresAt, postedAt } = post;
+  const { expiresAt, updatedAt } = post;
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (postRef.current) {
-        postRef.current.style.opacity = getOpacity(
-          postedAt,
-          expiresAt
-        ).toString();
-      }
-    }, ms(`1 minute`));
+    const interval = setInterval(
+      () => {
+        if (postRef.current) {
+          postRef.current.style.opacity = getOpacity(
+            updatedAt,
+            expiresAt
+          ).toString();
+        }
+      },
+      Math.max(ms(getExpirationDurationString()) / 1000, ms(`1 second`))
+    );
 
     return () => {
       clearInterval(interval);
     };
-  }, [postedAt, expiresAt, postRef]);
+  }, [expiresAt, updatedAt, postRef]);
 };
