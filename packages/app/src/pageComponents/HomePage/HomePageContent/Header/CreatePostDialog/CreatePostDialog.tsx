@@ -81,6 +81,7 @@ const CreatePostDialog = ({
                   <Textarea
                     autoFocus
                     id="post-textarea"
+                    maxLength={255}
                     name="text"
                     placeholder="What do you want to say?"
                     rows={12}

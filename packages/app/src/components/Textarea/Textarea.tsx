@@ -7,6 +7,7 @@ type Props = Readonly<{
   error?: boolean;
   helperText?: string;
   id: string;
+  maxLength?: number;
   name: string;
   placeholder?: string;
   rows?: number;
@@ -18,6 +19,7 @@ const Textarea = ({
   error,
   helperText,
   id,
+  maxLength,
   name,
   placeholder,
   rows = 3,
@@ -46,6 +48,7 @@ const Textarea = ({
           className="block w-full resize-none border-0 bg-transparent px-4 py-3 text-sm leading-6 text-gray-900 placeholder:text-gray-400 focus:ring-0"
           defaultValue=""
           id={id}
+          maxLength={maxLength}
           name={name}
           placeholder={placeholder}
           rows={rows}
