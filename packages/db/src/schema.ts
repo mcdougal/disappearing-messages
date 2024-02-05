@@ -2,18 +2,20 @@
 /* eslint-disable arrow-body-style */
 import { relations } from 'drizzle-orm';
 import {
-  pgTable,
+  pgSchema,
   primaryKey,
   text,
   timestamp,
   varchar,
 } from 'drizzle-orm/pg-core';
 
+export const schema = pgSchema(`disappearing_messages`);
+
 // -----------------------------------------------------------------------------
 // Tables
 // -----------------------------------------------------------------------------
 
-export const user = pgTable(`user`, {
+export const user = schema.table(`user`, {
   avatarSrc: varchar(`avatar_src`, { length: 256 }).notNull(),
   createdAt: timestamp(`created_at`).defaultNow().notNull(),
   id: text(`id`).primaryKey(),
@@ -23,7 +25,7 @@ export const user = pgTable(`user`, {
 
 const userId = () => user.id;
 
-export const post = pgTable(`post`, {
+export const post = schema.table(`post`, {
   authorId: text(`author_id`).references(userId).notNull(),
   createdAt: timestamp(`created_at`).defaultNow().notNull(),
   expiresAt: timestamp(`expires_at`).notNull(),
@@ -35,7 +37,7 @@ export const post = pgTable(`post`, {
 
 const postId = () => post.id;
 
-export const comment = pgTable(`comment`, {
+export const comment = schema.table(`comment`, {
   authorId: text(`author_id`).references(userId).notNull(),
   createdAt: timestamp(`created_at`).defaultNow().notNull(),
   id: text(`id`).primaryKey(),
@@ -43,7 +45,7 @@ export const comment = pgTable(`comment`, {
   text: varchar(`text`, { length: 2048 }).notNull(),
 });
 
-export const upvote = pgTable(
+export const upvote = schema.table(
   `upvote`,
   {
     createdAt: timestamp(`created_at`).defaultNow().notNull(),

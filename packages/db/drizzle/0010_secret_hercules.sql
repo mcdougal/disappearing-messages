@@ -1,1 +1,0 @@
-ALTER TABLE "post" ADD COLUMN "updated_at" timestamp NOT NULL;

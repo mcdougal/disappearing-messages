@@ -1,1 +1,0 @@
-ALTER TABLE "messages" ADD COLUMN "num_upvotes" integer DEFAULT 0 NOT NULL;

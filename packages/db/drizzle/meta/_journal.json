@@ -5,78 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1706780953546,
-      "tag": "0000_keen_blink",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1706783588052,
-      "tag": "0001_new_dexter_bennett",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1706810187101,
-      "tag": "0002_magical_paladin",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1706811706020,
-      "tag": "0003_wise_squadron_sinister",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "5",
-      "when": 1706961267884,
-      "tag": "0004_flaky_mikhail_rasputin",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "5",
-      "when": 1706962477987,
-      "tag": "0005_shocking_mongoose",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "5",
-      "when": 1707034269500,
-      "tag": "0006_heavy_sleeper",
-      "breakpoints": true
-    },
-    {
-      "idx": 7,
-      "version": "5",
-      "when": 1707034476547,
-      "tag": "0007_shocking_ares",
-      "breakpoints": true
-    },
-    {
-      "idx": 8,
-      "version": "5",
-      "when": 1707036618512,
-      "tag": "0008_green_purple_man",
-      "breakpoints": true
-    },
-    {
-      "idx": 9,
-      "version": "5",
-      "when": 1707046801095,
-      "tag": "0009_adorable_stingray",
-      "breakpoints": true
-    },
-    {
-      "idx": 10,
-      "version": "5",
-      "when": 1707047386467,
-      "tag": "0010_secret_hercules",
+      "when": 1707091590338,
+      "tag": "0000_lush_lilith",
       "breakpoints": true
     }
   ]
