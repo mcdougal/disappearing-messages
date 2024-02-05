@@ -8,6 +8,8 @@ import {
   ChatBubbleOvalLeftIcon,
 } from '@heroicons/react/24/outline';
 
+import { saveScrollPosition } from '@/app/scrollRestore';
+
 import Avatar from '../Avatar';
 import PostMetadataButton from '../PostMetadataButton';
 import Typography from '../Typography';
@@ -52,6 +54,7 @@ const PostHeader = ({
         href={ReadPostPageRoute.getPath({ postId: post.id })}
         icon={ChatBubbleOvalLeftIcon}
         label={numCommentsLabel}
+        onClick={saveScrollPosition}
         value={numComments}
       />
       <form action={formAction}>

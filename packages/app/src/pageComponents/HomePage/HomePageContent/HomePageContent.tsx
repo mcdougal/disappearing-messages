@@ -4,6 +4,7 @@ import { PostsFeedPost } from '@/domain/post/server';
 import { SessionUser } from '@/domain/user/server';
 
 import { TextLink, Typography } from '@/app/components';
+import { useRestoreScrollPosition } from '@/app/scrollRestore';
 
 import Description from './Description';
 import Header from './Header';
@@ -24,6 +25,8 @@ const HomePageContent = ({
   sessionUser,
 }: Props): React.ReactElement => {
   const [optimisticPosts, upsertOptimisticPost] = useOptimisticPosts(posts);
+
+  useRestoreScrollPosition();
 
   return (
     <>

@@ -14,6 +14,7 @@ const Header = (): React.ReactElement => {
       </Typography>
       <Button
         as="a"
+        className="min-w-20"
         color="secondary"
         href={CreatePostPageRoute.getPath({})}
         size="md">
