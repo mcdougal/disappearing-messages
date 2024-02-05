@@ -11,6 +11,7 @@ import { Container } from '@/app/components';
 
 import CloseButton from './CloseButton';
 import CreateCommentForm from './CreateCommentForm';
+import getExitBehavior from './getExitBehavior';
 
 export const generateMetadata: GenerateMetadata<
   CreateCommentPageRouteParams,
@@ -31,13 +32,14 @@ const CreateCommentPage: Page<
   const { postId } = params;
   const sessionId = getSessionId();
   const sessionUser = await getOrCreateUserForSession({ where: { sessionId } });
+  const exitBehavior = getExitBehavior(postId);
 
   return (
     <>
       <Container className="h-screen sm:pt-36" size="xs">
         <CreateCommentForm postId={postId} sessionUser={sessionUser} />
       </Container>
-      <CloseButton />
+      <CloseButton exitBehavior={exitBehavior} />
     </>
   );
 };

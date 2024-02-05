@@ -1,3 +1,5 @@
+'use client';
+
 import { HomePageRoute } from '@/domain/routes/common';
 import { CheckCircleIcon } from '@heroicons/react/20/solid';
 

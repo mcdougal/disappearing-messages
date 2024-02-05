@@ -4,16 +4,28 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 
 import { IconButton } from '@/app/components';
 
-const CloseButton = (): React.ReactElement => {
-  return (
+import { ExitBehavior } from '../types';
+
+type Props = {
+  exitBehavior: ExitBehavior;
+};
+
+const CloseButton = ({ exitBehavior }: Props): React.ReactElement => {
+  const props = {
+    icon: XMarkIcon,
+    label: `Close`,
+    size: `md`,
+  } as const;
+
+  return exitBehavior.action === `back` ? (
     <IconButton
-      icon={XMarkIcon}
-      label="Close"
+      {...props}
       onClick={(): void => {
         history.back();
       }}
-      size="md"
     />
+  ) : (
+    <IconButton {...props} as="a" href={exitBehavior.path} />
   );
 };
 

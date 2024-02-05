@@ -1,20 +1,32 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { ButtonHTMLAttributes, forwardRef } from 'react';
+'use client';
+
+import Link from 'next/link';
+import { AnchorHTMLAttributes, ButtonHTMLAttributes, forwardRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 import { IconButtonIcon, IconButtonSize } from './types';
 
-type Ref = HTMLButtonElement;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Ref = any;
 
-type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
+type CommonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   icon: IconButtonIcon;
   label: string;
   size: IconButtonSize;
 };
 
+type ConditionalProps =
+  | ({ as?: `button` } & ButtonHTMLAttributes<HTMLButtonElement>)
+  | ({ as: `a` } & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> & {
+        href: string;
+      });
+
+type Props = CommonProps & ConditionalProps;
+
 const IconButton = forwardRef<Ref, Props>(
   (
-    { className, icon, label, size, type = `button`, ...buttonProps },
+    { className, icon, label, size, ...otherProps },
     ref
   ): React.ReactElement => {
     const Icon = icon;
@@ -35,22 +47,42 @@ const IconButton = forwardRef<Ref, Props>(
       xl: `h-7 w-7`,
     };
 
-    return (
-      <button
-        ref={ref}
-        aria-label={label}
-        className={twMerge(
-          `rounded-full hover:bg-gray-200`,
-          classNameBySize[size],
-          className
-        )}
-        tabIndex={0}
-        title={label}
-        type={type}
-        {...buttonProps}>
-        <Icon className={iconClassNameBySize[size]} />
-      </button>
-    );
+    const containerProps = {
+      'aria-label': label,
+      className: twMerge(
+        `rounded-full hover:bg-gray-200`,
+        classNameBySize[size],
+        className
+      ),
+      tabIndex: 0,
+      title: label,
+    };
+
+    const inner = <Icon className={iconClassNameBySize[size]} />;
+
+    if (!otherProps.as || otherProps.as === `button`) {
+      const { type = `button` } = otherProps;
+
+      return (
+        <button ref={ref} {...containerProps} {...otherProps} type={type}>
+          {inner}
+        </button>
+      );
+    }
+
+    if (otherProps.as === `a`) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { as, ...anchorProps } = otherProps;
+
+      return (
+        <Link {...containerProps} {...anchorProps}>
+          {inner}
+        </Link>
+      );
+    }
+
+    const exhaustiveCheck: never = otherProps.as;
+    return exhaustiveCheck;
   }
 );
 

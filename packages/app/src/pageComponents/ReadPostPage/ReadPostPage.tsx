@@ -11,6 +11,7 @@ import { notFound } from 'next/navigation';
 import CloseButton from './CloseButton';
 import CommentAction from './CommentAction';
 import Comments from './Comments';
+import getExitBehavior from './getExitBehavior';
 import OriginalPost from './OriginalPost';
 
 export const generateMetadata: GenerateMetadata<
@@ -44,6 +45,7 @@ const ReadPostPage: Page<
   const sessionUser = await getOrCreateUserForSession({ where: { sessionId } });
   const post = await queryPost({ where: { id: params.postId } });
   const serverRenderedAt = new Date();
+  const exitBehavior = getExitBehavior();
 
   if (!post) {
     notFound();
@@ -52,7 +54,7 @@ const ReadPostPage: Page<
   return (
     <>
       <div className="sticky top-0 z-10 flex justify-end bg-white px-2 pb-4 pt-3 sm:p-6">
-        <CloseButton />
+        <CloseButton exitBehavior={exitBehavior} />
       </div>
       <div className="mx-auto max-w-2xl pb-40 pt-1">
         <OriginalPost
