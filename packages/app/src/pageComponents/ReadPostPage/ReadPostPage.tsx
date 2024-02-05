@@ -12,7 +12,6 @@ import CloseButton from './CloseButton';
 import CommentAction from './CommentAction';
 import Comments from './Comments';
 import OriginalPost from './OriginalPost';
-import ReadPostPageContent from './ReadPostPageContent';
 
 export const generateMetadata: GenerateMetadata<
   ReadPostPageRouteParams,
