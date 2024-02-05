@@ -1,13 +1,16 @@
 import { queryPostsFeed } from '@/domain/post/server';
-import { Page } from '@/domain/routes/client';
 import {
   HomePageRouteParams,
   HomePageRouteSearchParams,
 } from '@/domain/routes/common';
-import { getSessionId } from '@/domain/user/client';
 import { getOrCreateUserForSession } from '@/domain/user/server';
 
+import { Page } from '@/app/pageUtils';
+import { getSessionId } from '@/app/session';
+
 import HomePageContent from './HomePageContent';
+
+export const dynamic = `force-dynamic`;
 
 const HomePage: Page<
   HomePageRouteParams,

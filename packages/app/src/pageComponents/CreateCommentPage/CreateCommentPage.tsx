@@ -1,17 +1,19 @@
 import { queryPost } from '@/domain/post/server';
-import { GenerateMetadata, Page } from '@/domain/routes/client';
 import {
   CreateCommentPageRouteParams,
   CreateCommentPageRouteSearchParams,
 } from '@/domain/routes/common';
-import { getSessionId } from '@/domain/user/client';
 import { getOrCreateUserForSession } from '@/domain/user/server';
 
 import { Container } from '@/app/components';
+import { GenerateMetadata, Page } from '@/app/pageUtils';
+import { getSessionId } from '@/app/session';
 
 import CloseButton from './CloseButton';
 import CreateCommentForm from './CreateCommentForm';
 import getExitBehavior from './getExitBehavior';
+
+export const dynamic = `force-dynamic`;
 
 export const generateMetadata: GenerateMetadata<
   CreateCommentPageRouteParams,

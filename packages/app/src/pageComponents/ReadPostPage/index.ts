@@ -1,4 +1,4 @@
-import ReadPostPage, { generateMetadata } from './ReadPostPage';
+import ReadPostPage, { dynamic, generateMetadata } from './ReadPostPage';
 
-export { generateMetadata };
+export { dynamic, generateMetadata };
 export default ReadPostPage;

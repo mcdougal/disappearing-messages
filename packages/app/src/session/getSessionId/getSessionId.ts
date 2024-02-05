@@ -1,7 +1,6 @@
+import { getSessionCookieName } from '@/domain/user/common';
 import { headers } from 'next/headers';
 import { parse } from 'set-cookie-parser';
-
-import { getSessionCookieName } from '@/domain/user/common';
 
 export default (): string => {
   // Can't use `cookies()` because we set the session ID from middleware

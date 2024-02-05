@@ -1,11 +1,11 @@
 'use client';
 
-import { getOpacity, useOpacityAnimation } from '@/domain/post/client';
 import { Post } from '@/domain/post/server';
 import { SessionUser } from '@/domain/user/server';
 import { useRef } from 'react';
 
 import { PostContent, PostHeader } from '@/app/components';
+import { getOpacity, useOpacityAnimation } from '@/app/post';
 
 import useOptimisticPost from './useOptimisticPost';
 

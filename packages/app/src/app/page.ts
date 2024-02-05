@@ -1,5 +1,6 @@
 /* eslint-disable @disappearing-messages/package-imports */
 /* eslint-disable filenames/match-exported */
-import HomePage from '@/app/pageComponents/HomePage';
+import HomePage, { dynamic } from '@/app/pageComponents/HomePage';
 
+export { dynamic };
 export default HomePage;

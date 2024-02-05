@@ -3,20 +3,22 @@ import 'server-only';
 import { db, eq } from '@/db/connection';
 import { post } from '@/db/schema';
 import { createId } from '@paralleldrive/cuid2';
-import { revalidatePath } from 'next/cache';
 
 import {
   PostCreatedEventSchema,
   getPublicChannelName,
 } from '@/domain/realtime/common';
 import { triggerRealtimeEvent } from '@/domain/realtime/server';
-import { HomePageRoute, ReadPostPageRoute } from '@/domain/routes/common';
 
 type InsertArgs = {
   data: Omit<typeof post.$inferInsert, 'createdAt' | 'id'>;
 };
 
-export default async ({ data }: InsertArgs): Promise<void> => {
+type CreatedPost = {
+  id: string;
+};
+
+export default async ({ data }: InsertArgs): Promise<CreatedPost | null> => {
   const [insertedPost] = await db
     .insert(post)
     .values({
@@ -56,8 +58,7 @@ export default async ({ data }: InsertArgs): Promise<void> => {
         text: postData.text,
       },
     });
-
-    revalidatePath(HomePageRoute.getPath({}));
-    revalidatePath(ReadPostPageRoute.getPath({ postId: postData.id }));
   }
+
+  return postData ? { id: postData.id } : null;
 };

@@ -1,16 +1,18 @@
 import { getExpirationDurationString } from '@/domain/post/common';
-import { GenerateMetadata, Page } from '@/domain/routes/client';
 import {
   CreatePostPageRouteParams,
   CreatePostPageRouteSearchParams,
 } from '@/domain/routes/common';
-import { getSessionId } from '@/domain/user/client';
 import { getOrCreateUserForSession } from '@/domain/user/server';
 
 import { Container } from '@/app/components';
+import { GenerateMetadata, Page } from '@/app/pageUtils';
+import { getSessionId } from '@/app/session';
 
 import CloseButton from './CloseButton';
 import CreatePostForm from './CreatePostForm';
+
+export const dynamic = `force-dynamic`;
 
 export const generateMetadata: GenerateMetadata<
   CreatePostPageRouteParams,

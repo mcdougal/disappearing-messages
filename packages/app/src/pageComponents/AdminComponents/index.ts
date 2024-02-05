@@ -1,4 +1,4 @@
-import AdminComponents, { generateMetadata } from './AdminComponents';
+import AdminComponents, { dynamic, generateMetadata } from './AdminComponents';
 
-export { generateMetadata };
+export { dynamic, generateMetadata };
 export default AdminComponents;

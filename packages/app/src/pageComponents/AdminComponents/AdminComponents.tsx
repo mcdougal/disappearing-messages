@@ -1,16 +1,18 @@
-import { GenerateMetadata, Page } from '@/domain/routes/client';
 import {
   AdminComponentsRouteParams,
   AdminComponentsRouteSearchParams,
 } from '@/domain/routes/common';
 
 import { Container, Typography } from '@/app/components';
+import { GenerateMetadata, Page } from '@/app/pageUtils';
 
 import ButtonDemos from './ButtonDemos';
 import ContainerDemos from './ContainerDemos';
 import IconButtonDemos from './IconButtonDemos';
 import TextareaDemos from './TextareaDemos';
 import TypographyDemos from './TypographyDemos';
+
+export const dynamic = `force-dynamic`;
 
 export const generateMetadata: GenerateMetadata<
   AdminComponentsRouteParams,

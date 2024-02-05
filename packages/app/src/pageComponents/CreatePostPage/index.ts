@@ -1,4 +1,4 @@
-import CreatePostPage, { generateMetadata } from './CreatePostPage';
+import CreatePostPage, { dynamic, generateMetadata } from './CreatePostPage';
 
-export { generateMetadata };
+export { dynamic, generateMetadata };
 export default CreatePostPage;

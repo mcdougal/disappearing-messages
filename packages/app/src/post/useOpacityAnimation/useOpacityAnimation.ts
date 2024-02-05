@@ -1,8 +1,7 @@
-import ms from 'ms';
-import { RefObject, useEffect } from 'react';
-
 import { getExpirationDurationString } from '@/domain/post/common';
 import { PostsFeedPost } from '@/domain/post/server';
+import ms from 'ms';
+import { RefObject, useEffect } from 'react';
 
 import getOpacity from '../getOpacity';
 

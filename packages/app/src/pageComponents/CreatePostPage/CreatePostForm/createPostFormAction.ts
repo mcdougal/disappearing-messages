@@ -4,6 +4,7 @@ import { getExpiresAt } from '@/domain/post/common';
 import { createPost } from '@/domain/post/server';
 import { HomePageRoute } from '@/domain/routes/common';
 import { SessionUser } from '@/domain/user/server';
+import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
@@ -38,5 +39,6 @@ export default async (
     },
   });
 
+  revalidatePath(HomePageRoute.getPath({}));
   redirect(HomePageRoute.getPath({}));
 };

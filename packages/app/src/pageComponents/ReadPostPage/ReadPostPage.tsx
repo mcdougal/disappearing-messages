@@ -1,18 +1,20 @@
 import { queryPost } from '@/domain/post/server';
-import { GenerateMetadata, Page } from '@/domain/routes/client';
 import {
   ReadPostPageRouteParams,
   ReadPostPageRouteSearchParams,
 } from '@/domain/routes/common';
-import { getSessionId } from '@/domain/user/client';
 import { getOrCreateUserForSession } from '@/domain/user/server';
-import { notFound } from 'next/navigation';
+
+import { GenerateMetadata, Page } from '@/app/pageUtils';
+import { getSessionId } from '@/app/session';
 
 import CloseButton from './CloseButton';
 import CommentAction from './CommentAction';
 import Comments from './Comments';
 import getExitBehavior from './getExitBehavior';
 import OriginalPost from './OriginalPost';
+
+export const dynamic = `force-dynamic`;
 
 export const generateMetadata: GenerateMetadata<
   ReadPostPageRouteParams,
@@ -48,7 +50,7 @@ const ReadPostPage: Page<
   const exitBehavior = getExitBehavior();
 
   if (!post) {
-    notFound();
+    return <>Not Found</>;
   }
 
   return (

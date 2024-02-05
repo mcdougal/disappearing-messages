@@ -1,4 +1,7 @@
-import CreateCommentPage, { generateMetadata } from './CreateCommentPage';
+import CreateCommentPage, {
+  dynamic,
+  generateMetadata,
+} from './CreateCommentPage';
 
-export { generateMetadata };
+export { dynamic, generateMetadata };
 export default CreateCommentPage;
