@@ -1,6 +1,5 @@
 'use client';
 
-import { getExpirationDurationString } from '@/domain/post/common';
 import { SessionUser } from '@/domain/user/server';
 import { useFormStatus } from 'react-dom';
 
@@ -10,11 +9,11 @@ type Props = {
   sessionUser: SessionUser;
 };
 
-const CreatePostFormInner = ({ sessionUser }: Props): React.ReactElement => {
+const CreateCommentFormInner = ({ sessionUser }: Props): React.ReactElement => {
   const status = useFormStatus();
 
   return (
-    <div className="flex h-full flex-col">
+    <div className="flex h-full w-full flex-col">
       <div className="flex items-center gap-2 pb-3 pt-5">
         <Avatar name={sessionUser.name} size={32} src={sessionUser.avatarSrc} />
         <Typography size="sm">{sessionUser.name}</Typography>
@@ -25,25 +24,21 @@ const CreatePostFormInner = ({ sessionUser }: Props): React.ReactElement => {
           defaultValue=""
           maxLength={255}
           name="text"
-          placeholder="What do you want to say?"
+          placeholder="Post your comment"
           rows={1}
         />
       </div>
       <div className="py-4">
-        <Typography className="text-gray-500" size="sm">
-          Your post will disappear after{` `}
-          {getExpirationDurationString()}. Upvotes and comments reset the clock.
-        </Typography>
         <Button
           className="mt-4 w-full"
           loading={status.pending}
           size="xl"
           type="submit">
-          Post
+          Comment
         </Button>
       </div>
     </div>
   );
 };
 
-export default CreatePostFormInner;
+export default CreateCommentFormInner;

@@ -1,8 +1,7 @@
 'use server';
 
-import { getExpiresAt } from '@/domain/post/common';
-import { createPost } from '@/domain/post/server';
-import { HomePageRoute } from '@/domain/routes/common';
+import { createComment } from '@/domain/comment/server';
+import { ReadPostPageRoute } from '@/domain/routes/common';
 import { SessionUser } from '@/domain/user/server';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
@@ -13,6 +12,7 @@ const FormDataSchema = z.object({
 
 export default async (
   sessionUser: SessionUser,
+  postId: string,
   formData: FormData
 ): Promise<void> => {
   const parsed = FormDataSchema.safeParse({
@@ -24,19 +24,14 @@ export default async (
   }
 
   const { text } = parsed.data;
-  const postedAt = new Date();
-  const updatedAt = postedAt;
-  const expiresAt = getExpiresAt(updatedAt);
 
-  await createPost({
+  await createComment({
     data: {
       authorId: sessionUser.id,
-      expiresAt,
-      postedAt,
+      postId,
       text,
-      updatedAt,
     },
   });
 
-  redirect(HomePageRoute.getPath({}));
+  redirect(ReadPostPageRoute.getPath({ postId }));
 };
