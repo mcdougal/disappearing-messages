@@ -1,4 +1,7 @@
+'use client';
+
 import { SessionUser } from '@/domain/user/server';
+import { useRouter } from 'next/navigation';
 
 import createCommentFormAction from './createCommentFormAction';
 import CreateCommentFormInner from './CreateCommentFormInner';
@@ -8,14 +11,20 @@ type Props = {
   sessionUser: SessionUser;
 };
 
-const CreateCommentForm = async ({
+const CreateCommentForm = ({
   postId,
   sessionUser,
-}: Props): Promise<React.ReactElement> => {
+}: Props): React.ReactElement => {
+  const router = useRouter();
+
   return (
     <form
-      action={createCommentFormAction.bind(null, sessionUser, postId)}
-      className="flex h-full sm:h-96">
+      action={async (formData) => {
+        await createCommentFormAction(sessionUser, postId, formData);
+        router.refresh();
+        router.back();
+      }}
+      className="flex sm:h-96">
       <CreateCommentFormInner sessionUser={sessionUser} />
     </form>
   );

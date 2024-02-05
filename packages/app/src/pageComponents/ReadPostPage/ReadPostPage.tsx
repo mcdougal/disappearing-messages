@@ -55,7 +55,7 @@ const ReadPostPage: Page<
 
   return (
     <>
-      <div className="sticky top-0 z-10 flex justify-end bg-white px-2 pb-4 pt-3 sm:p-6">
+      <div className="sticky top-0 z-10 flex bg-white px-2 pb-4 pt-3 sm:p-6">
         <CloseButton exitBehavior={exitBehavior} />
       </div>
       <div className="mx-auto max-w-2xl pb-40 pt-1">

@@ -33,7 +33,7 @@ const OriginalPost = ({
   return (
     <div
       ref={postRef}
-      className="mb-10 pl-4 pr-3"
+      className="mb-6 pl-4 pr-3"
       style={{ opacity: initialOpacity }}>
       <PostHeader
         post={optimisticPost}

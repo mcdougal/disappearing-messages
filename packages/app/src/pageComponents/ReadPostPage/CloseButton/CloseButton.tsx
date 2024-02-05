@@ -1,6 +1,6 @@
 'use client';
 
-import { XMarkIcon } from '@heroicons/react/24/outline';
+import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 
 import { IconButton } from '@/app/components';
 
@@ -12,8 +12,8 @@ type Props = {
 
 const CloseButton = ({ exitBehavior }: Props): React.ReactElement => {
   const props = {
-    icon: XMarkIcon,
-    label: `Close`,
+    icon: ArrowLeftIcon,
+    label: `Back`,
     size: `md`,
   } as const;
 

@@ -1,10 +1,8 @@
 'use server';
 
 import { createComment } from '@/domain/comment/server';
-import { HomePageRoute, ReadPostPageRoute } from '@/domain/routes/common';
+import { getExpiresAt } from '@/domain/post/common';
 import { SessionUser } from '@/domain/user/server';
-import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
 const FormDataSchema = z.object({
@@ -25,16 +23,16 @@ export default async (
   }
 
   const { text } = parsed.data;
+  const updatedAt = new Date();
+  const expiresAt = getExpiresAt(updatedAt);
 
   await createComment({
     data: {
       authorId: sessionUser.id,
+      expiresAt,
       postId,
       text,
+      updatedAt,
     },
   });
-
-  revalidatePath(HomePageRoute.getPath({}));
-  revalidatePath(ReadPostPageRoute.getPath({ postId }));
-  redirect(ReadPostPageRoute.getPath({ postId }));
 };

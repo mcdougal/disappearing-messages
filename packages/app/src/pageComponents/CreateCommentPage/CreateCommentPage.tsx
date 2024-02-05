@@ -38,7 +38,7 @@ const CreateCommentPage: Page<
 
   return (
     <>
-      <Container className="h-screen sm:pt-36" size="xs">
+      <Container className="sm:pt-36" size="xs">
         <CreateCommentForm postId={postId} sessionUser={sessionUser} />
       </Container>
       <CloseButton exitBehavior={exitBehavior} />

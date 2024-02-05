@@ -33,7 +33,7 @@ const CreatePostPage: Page<
 
   return (
     <>
-      <Container className="h-screen sm:pt-36" size="xs">
+      <Container className="sm:pt-36" size="xs">
         <CreatePostForm sessionUser={sessionUser} />
       </Container>
       <CloseButton />

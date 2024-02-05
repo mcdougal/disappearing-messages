@@ -10,7 +10,7 @@ const Comments = async ({ post }: Props): Promise<React.ReactElement> => {
   return (
     <>
       {post.comments.length === 0 ? (
-        <div className="py-4 pl-4 pr-3 md:py-6">
+        <div className="pl-4 pr-3 md:py-6">
           <Typography color="gray" size="sm">
             No comments
           </Typography>

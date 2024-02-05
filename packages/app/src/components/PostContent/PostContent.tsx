@@ -11,7 +11,7 @@ const PostContent = ({ post }: Props): React.ReactElement => {
   return (
     <Linkify
       as="p"
-      className="md:text-md overflow-hidden whitespace-pre break-words text-sm"
+      className="md:text-md whitespace-pre-wrap break-words text-sm"
       options={{
         defaultProtocol: `https`,
         target: `_blank`,

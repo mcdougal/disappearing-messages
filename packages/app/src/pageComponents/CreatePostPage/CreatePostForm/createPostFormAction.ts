@@ -2,10 +2,7 @@
 
 import { getExpiresAt } from '@/domain/post/common';
 import { createPost } from '@/domain/post/server';
-import { HomePageRoute } from '@/domain/routes/common';
 import { SessionUser } from '@/domain/user/server';
-import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
 const FormDataSchema = z.object({
@@ -38,7 +35,4 @@ export default async (
       updatedAt,
     },
   });
-
-  revalidatePath(HomePageRoute.getPath({}));
-  redirect(HomePageRoute.getPath({}));
 };
