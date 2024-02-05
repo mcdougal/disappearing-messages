@@ -1,8 +1,8 @@
 /* eslint-disable @disappearing-messages/package-imports */
 /* eslint-disable filenames/match-exported */
-import AdminComponents, {
+import ReadPostPage, {
   generateMetadata,
-} from '@/app/pageComponents/AdminComponents';
+} from '@/app/pageComponents/ReadPostPage';
 
 export { generateMetadata };
-export default AdminComponents;
+export default ReadPostPage;

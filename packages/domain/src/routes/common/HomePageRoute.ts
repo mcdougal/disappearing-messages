@@ -1,8 +1,10 @@
 import { makeRoute } from './utils';
 
-export type HomePageRouteData = Record<string, never>;
+export type HomePageRouteParams = Record<string, never>;
 
-export default makeRoute<HomePageRouteData>({
+export type HomePageRouteSearchParams = Record<string, never>;
+
+export default makeRoute<HomePageRouteParams>({
   path: (): string => {
     return `/`;
   },

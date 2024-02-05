@@ -1,25 +1,26 @@
 'use client';
 
 import { getOpacity, useOpacityAnimation } from '@/domain/post/client';
-import { PostsFeedPost } from '@/domain/post/server';
+import { Post } from '@/domain/post/server';
 import { SessionUser } from '@/domain/user/server';
 import { useRef } from 'react';
 
 import { PostContent, PostHeader } from '@/app/components';
 
+import useOptimisticPost from './useOptimisticPost';
+
 type Props = {
-  post: PostsFeedPost;
+  post: Post;
   serverRenderedAt: Date;
   sessionUser: SessionUser;
-  upsertOptimisticPost: (post: PostsFeedPost) => void;
 };
 
-const Post = ({
+const OriginalPost = ({
   post,
   serverRenderedAt,
   sessionUser,
-  upsertOptimisticPost,
 }: Props): React.ReactElement => {
+  const [optimisticPost, updateOptimisticPost] = useOptimisticPost(post);
   const postRef = useRef<HTMLDivElement>(null);
   const initialOpacity = getOpacity(
     post.updatedAt,
@@ -30,20 +31,18 @@ const Post = ({
   useOpacityAnimation(postRef, post);
 
   return (
-    <div className="border-t border-gray-100 last:border-b">
-      <div
-        ref={postRef}
-        className="pb-4 pl-4 pr-3 pt-2 transition-opacity ease-linear md:py-6"
-        style={{ opacity: initialOpacity }}>
-        <PostHeader
-          post={post}
-          sessionUser={sessionUser}
-          upsertOptimisticPost={upsertOptimisticPost}
-        />
-        <PostContent post={post} />
-      </div>
+    <div
+      ref={postRef}
+      className="mb-10 pl-4 pr-3"
+      style={{ opacity: initialOpacity }}>
+      <PostHeader
+        post={optimisticPost}
+        sessionUser={sessionUser}
+        upsertOptimisticPost={updateOptimisticPost}
+      />
+      <PostContent post={optimisticPost} />
     </div>
   );
 };
 
-export default Post;
+export default OriginalPost;

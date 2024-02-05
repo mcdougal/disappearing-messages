@@ -1,10 +1,18 @@
 import { queryPostsFeed } from '@/domain/post/server';
+import { Page } from '@/domain/routes/client';
+import {
+  HomePageRouteParams,
+  HomePageRouteSearchParams,
+} from '@/domain/routes/common';
 import { getSessionId } from '@/domain/user/client';
 import { getOrCreateUserForSession } from '@/domain/user/server';
 
 import HomePageContent from './HomePageContent';
 
-const HomePage = async (): Promise<React.ReactElement> => {
+const HomePage: Page<
+  HomePageRouteParams,
+  HomePageRouteSearchParams
+> = async () => {
   const sessionId = getSessionId();
   const sessionUser = await getOrCreateUserForSession({ where: { sessionId } });
   const posts = await queryPostsFeed();

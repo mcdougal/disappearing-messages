@@ -6,6 +6,15 @@ import IconButtonDemos from './IconButtonDemos';
 import TextareaDemos from './TextareaDemos';
 import TypographyDemos from './TypographyDemos';
 
+export const generateMetadata = async ({
+  params,
+}: Props): Promise<Metadata> => {
+  return {
+    title: `Components - Admin`,
+    description: `Component demos.`,
+  };
+};
+
 const AdminComponents = (): React.ReactElement => {
   return (
     <Container className="pb-40 pt-8" size="xl">

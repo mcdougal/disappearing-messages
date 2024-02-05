@@ -1,28 +1,69 @@
-import { HomePageRoute } from '@/domain/routes/common';
+import { queryPost } from '@/domain/post/server';
+import { GenerateMetadata, Page } from '@/domain/routes/client';
+import {
+  ReadPostPageRouteParams,
+  ReadPostPageRouteSearchParams,
+} from '@/domain/routes/common';
 import { getSessionId } from '@/domain/user/client';
 import { getOrCreateUserForSession } from '@/domain/user/server';
-import { XMarkIcon } from '@heroicons/react/24/outline';
-import Link from 'next/link';
+import { notFound } from 'next/navigation';
 
-import { Container } from '@/app/components';
+import CloseButton from './CloseButton';
+import CommentAction from './CommentAction';
+import Comments from './Comments';
+import OriginalPost from './OriginalPost';
+import ReadPostPageContent from './ReadPostPageContent';
 
-import CreatePostForm from './CreatePostForm';
+export const generateMetadata: GenerateMetadata<
+  ReadPostPageRouteParams,
+  ReadPostPageRouteSearchParams
+> = async ({ params }) => {
+  const post = await queryPost({ where: { id: params.postId } });
 
-const ReadPostPage = async (): Promise<React.ReactElement> => {
+  if (!post) {
+    return {
+      title: `Post Not Found - disappearing.chat`,
+      description: `The post you are looking for does not exist.`,
+    };
+  }
+
+  const postText = post.text;
+  const postTextTruncated =
+    postText.length > 100 ? `${postText.slice(0, 100)}...` : postText;
+
+  return {
+    title: `${postTextTruncated} - disappearing.chat`,
+    description: postText,
+  };
+};
+
+const ReadPostPage: Page<
+  ReadPostPageRouteParams,
+  ReadPostPageRouteSearchParams
+> = async ({ params }) => {
   const sessionId = getSessionId();
   const sessionUser = await getOrCreateUserForSession({ where: { sessionId } });
+  const post = await queryPost({ where: { id: params.postId } });
+  const serverRenderedAt = new Date();
+
+  if (!post) {
+    notFound();
+  }
 
   return (
     <>
-      <Container className="h-screen" size="sm">
-        <CreatePostForm sessionUser={sessionUser} />
-      </Container>
-      <Link
-        aria-label="Close"
-        className="absolute right-4 top-5 -mt-1 rounded-full p-2 hover:bg-gray-200 sm:right-6 sm:top-7 sm:-mr-1 sm:-mt-3"
-        href={HomePageRoute.getPath({})}>
-        <XMarkIcon className="h-5 w-5" />
-      </Link>
+      <div className="sticky top-0 flex justify-end bg-white px-2 pb-4 pt-3 sm:p-6">
+        <CloseButton />
+      </div>
+      <div className="mx-auto max-w-2xl pb-40">
+        <OriginalPost
+          post={post}
+          serverRenderedAt={serverRenderedAt}
+          sessionUser={sessionUser}
+        />
+        <Comments post={post} />
+        <CommentAction post={post} />
+      </div>
     </>
   );
 };

@@ -1,6 +1,6 @@
 /* eslint-disable @disappearing-messages/package-imports */
 /* eslint-disable filenames/match-exported */
-import HomePageLayout, { metadata } from '@/app/pageComponents/HomePageLayout';
+import RootLayout, { metadata } from '@/app/pageComponents/RootLayout';
 
 export { metadata };
-export default HomePageLayout;
+export default RootLayout;

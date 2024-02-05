@@ -1,8 +1,10 @@
 import { makeRoute } from './utils';
 
-export type CreatePostPageRouteData = Record<string, never>;
+export type CreatePostPageRouteParams = Record<string, never>;
 
-export default makeRoute<CreatePostPageRouteData>({
+export type CreatePostPageRouteSearchParams = Record<string, never>;
+
+export default makeRoute<CreatePostPageRouteParams>({
   path: (): string => {
     return `/post`;
   },
