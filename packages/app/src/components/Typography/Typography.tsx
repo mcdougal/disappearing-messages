@@ -33,13 +33,13 @@ const Typography = forwardRef<any, Props>(
   ): React.ReactElement => {
     const Component = as;
 
-    const classNamesByColor: { [key in TypographyColor]: string | undefined } =
-      {
-        inherit: undefined,
-        gray: `text-gray-500`,
-      };
+    const classNameByColor: { [key in TypographyColor]: string | undefined } = {
+      inherit: undefined,
+      gray: `text-gray-500`,
+      white: `text-white`,
+    };
 
-    const classNamesBySize: { [key in TypographySize]: string } = {
+    const classNameBySize: { [key in TypographySize]: string } = {
       xs: `text-xs`,
       sm: `text-sm`,
       md: `text-md`,
@@ -55,7 +55,7 @@ const Typography = forwardRef<any, Props>(
       '9xl': `text-9xl`,
     };
 
-    const classNamesByWeight: { [key in TypographyWeight]: string } = {
+    const classNameByWeight: { [key in TypographyWeight]: string } = {
       light: `font-light`,
       normal: `font-normal`,
       bold: `font-extrabold`,
@@ -66,9 +66,9 @@ const Typography = forwardRef<any, Props>(
         ref={ref}
         className={twMerge(
           className,
-          classNamesByColor[color],
-          classNamesBySize[size],
-          classNamesByWeight[weight]
+          classNameByColor[color],
+          classNameBySize[size],
+          classNameByWeight[weight]
         )}
         {...divProps}>
         {children}

@@ -2,6 +2,7 @@ import { Container, Typography } from '@/app/components';
 
 import ButtonDemos from './ButtonDemos';
 import ContainerDemos from './ContainerDemos';
+import IconButtonDemos from './IconButtonDemos';
 import TextareaDemos from './TextareaDemos';
 import TypographyDemos from './TypographyDemos';
 
@@ -13,6 +14,7 @@ const AdminComponents = (): React.ReactElement => {
       </Typography>
       <TypographyDemos />
       <ButtonDemos />
+      <IconButtonDemos />
       <TextareaDemos />
       <ContainerDemos />
     </Container>

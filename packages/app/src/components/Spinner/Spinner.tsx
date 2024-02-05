@@ -13,7 +13,7 @@ type Props = HTMLAttributes<SVGElement> & {
 
 const Spinner = forwardRef<Ref, Props>(
   ({ className, size, ...svgProps }, ref): React.ReactElement => {
-    const classNamesBySize: { [key in SpinnerSize]: string } = {
+    const classNameBySize: { [key in SpinnerSize]: string } = {
       '0.5': `w-0.5 h-0.5`,
       '1': `w-1 h-1`,
       '1.5': `w-1.5 h-1.5`,
@@ -52,7 +52,7 @@ const Spinner = forwardRef<Ref, Props>(
     return (
       <svg
         ref={ref}
-        className={twMerge(`animate-spin`, classNamesBySize[size], className)}
+        className={twMerge(`animate-spin`, classNameBySize[size], className)}
         fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"

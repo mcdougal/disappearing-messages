@@ -13,7 +13,7 @@ const CreatePostForm = async ({
   return (
     <form
       action={createPostFormAction.bind(null, sessionUser)}
-      className="flex h-full sm:h-96">
+      className="flex h-full sm:mt-10 sm:h-1/2">
       <CreatePostFormInner sessionUser={sessionUser} />
     </form>
   );

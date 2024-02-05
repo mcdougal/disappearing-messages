@@ -1,6 +1,7 @@
 import Avatar from './Avatar';
 import Button, { ButtonColor, ButtonIcon, ButtonSize } from './Button';
 import Container, { ContainerSize } from './Container';
+import IconButton, { IconButtonIcon } from './IconButton';
 import NotProse from './NotProse';
 import PostMetadataButton from './PostMetadataButton';
 import Prose from './Prose';
@@ -17,6 +18,7 @@ export {
   Avatar,
   Button,
   Container,
+  IconButton,
   NotProse,
   PostMetadataButton,
   Prose,
@@ -31,6 +33,7 @@ export type {
   ButtonIcon,
   ButtonSize,
   ContainerSize,
+  IconButtonIcon,
   SpinnerSize,
   TypographyAs,
   TypographySize,

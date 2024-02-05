@@ -2,6 +2,7 @@
 
 import { getExpirationDurationString } from '@/domain/post/common';
 import { SessionUser } from '@/domain/user/server';
+import Image from 'next/image';
 import { useFormStatus } from 'react-dom';
 
 import { Avatar, Button, Textarea, Typography } from '@/app/components';
