@@ -1,8 +1,6 @@
 import { getExpiresAt } from '@/domain/post/common';
 import { PostsFeedPost } from '@/domain/post/server';
-import { HomePageRoute, ReadPostPageRoute } from '@/domain/routes/common';
 import { SessionUser } from '@/domain/user/server';
-import { revalidatePath } from 'next/cache';
 
 import upvotePost from './upvotePost';
 
@@ -31,8 +29,5 @@ export default (
         userId: sessionUser.id,
       },
     });
-
-    revalidatePath(HomePageRoute.getPath({}));
-    revalidatePath(ReadPostPageRoute.getPath({ postId: post.id }));
   };
 };
