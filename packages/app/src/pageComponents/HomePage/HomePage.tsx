@@ -1,11 +1,11 @@
 import { queryPostsFeed } from '@/domain/post/server';
 import { getOrCreateUserForSession } from '@/domain/user/server';
-import { cookies } from 'next/headers';
 
+import getSessionId from './getSessionId';
 import HomePageContent from './HomePageContent';
 
 const HomePage = async (): Promise<React.ReactElement> => {
-  const sessionId = cookies().get(`s`)?.value;
+  const sessionId = getSessionId();
 
   if (!sessionId) {
     throw new Error(`No session id`);

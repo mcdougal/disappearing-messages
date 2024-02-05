@@ -4,10 +4,11 @@ import { getExpirationDurationString } from '@/domain/post/common';
 import { PostsFeedPost } from '@/domain/post/server';
 import { SessionUser } from '@/domain/user/server';
 import { Dialog, Transition } from '@headlessui/react';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import { Fragment, useRef } from 'react';
 
-import { Button, Textarea } from '@/app/components';
+import { Button } from '@/app/components';
 
 import getCreatePostFormAction from './getCreatePostFormAction';
 
@@ -42,13 +43,13 @@ const CreatePostDialog = ({
           leave="ease-in duration-200"
           leaveFrom="opacity-100"
           leaveTo="opacity-0">
-          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+          <div className="invisible fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity sm:visible" />
         </Transition.Child>
         <form
           ref={formRef}
           action={formAction}
           className="fixed inset-0 z-10 w-screen overflow-y-auto">
-          <div className="flex min-h-full justify-center p-4 text-center sm:items-center sm:p-0">
+          <div className="flex min-h-full justify-center text-center sm:items-center sm:p-0">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -57,18 +58,8 @@ const CreatePostDialog = ({
               leave="ease-in duration-200"
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
-              <Dialog.Panel className="relative flex transform flex-col overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+              <Dialog.Panel className="relative flex transform flex-col overflow-hidden bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:rounded-lg sm:p-6">
                 <div className="flex-1">
-                  <Dialog.Title
-                    as="h3"
-                    className="mb-3 text-base font-semibold leading-6 text-gray-900">
-                    Make a Post
-                  </Dialog.Title>
-                  <p className="mb-6 text-sm text-gray-500">
-                    Your post will disappear after{` `}
-                    {getExpirationDurationString()}. Every upvote or reply will
-                    reset the clock.
-                  </p>
                   <div className="mb-2 flex items-center gap-2">
                     <Image
                       alt={`User avatar for ${sessionUser.name}`}
@@ -78,31 +69,45 @@ const CreatePostDialog = ({
                     />
                     <span className="text-sm">{sessionUser.name}</span>
                   </div>
-                  <Textarea
+                  <label
+                    className="sr-only"
+                    htmlFor="create-post-dialog-textarea">
+                    What do you want to say?
+                  </label>
+                  <textarea
+                    aria-describedby="create-post-dialog-textarea-helper-text"
                     autoFocus
-                    id="post-textarea"
+                    className="block w-full resize-none border-0 bg-transparent px-0 py-3 text-lg leading-6 text-gray-900 placeholder:text-gray-400 focus:ring-0"
+                    defaultValue=""
+                    id="create-post-dialog-textarea"
                     maxLength={255}
                     name="text"
                     placeholder="What do you want to say?"
-                    rows={12}
+                    rows={10}
                   />
                 </div>
-                <div className="mt-5 flex justify-end gap-2 sm:mt-6">
+                <p
+                  className="mt-3 text-sm text-gray-500"
+                  id="create-post-dialog-textarea-helper-text">
+                  Your post will disappear after{` `}
+                  {getExpirationDurationString()}. Upvotes and comments reset
+                  the clock.
+                </p>
+                <div className="mt-4 flex justify-end gap-2">
                   <Button
-                    className="min-w-24"
-                    color="secondary"
-                    onClick={onClose}
-                    size="xl">
-                    Cancel
-                  </Button>
-                  <Button
-                    className="min-w-24"
+                    className="flex-1"
                     onClick={onClose}
                     size="xl"
                     type="submit">
                     Post
                   </Button>
                 </div>
+                <button
+                  aria-label="Close"
+                  className="absolute right-5 top-6 -mt-1 rounded-full p-1 hover:bg-slate-200 sm:right-7 sm:top-8 sm:-mr-1 sm:-mt-3"
+                  onClick={onClose}>
+                  <XMarkIcon className="h-5 w-5" />
+                </button>
               </Dialog.Panel>
             </Transition.Child>
           </div>

@@ -12,6 +12,7 @@ type Props = Readonly<{
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   size: ButtonSize;
   startIcon?: ButtonIcon;
+  tabIndex?: number;
   type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
 }>;
 
@@ -23,6 +24,7 @@ const Button = ({
   onClick,
   size,
   startIcon,
+  tabIndex,
   type = `button`,
 }: Props): React.ReactElement => {
   const EndIcon = endIcon;
@@ -58,6 +60,7 @@ const Button = ({
         className
       )}
       onClick={onClick}
+      tabIndex={tabIndex}
       type={type}>
       {StartIcon && (
         <div className="flex h-0 items-center">

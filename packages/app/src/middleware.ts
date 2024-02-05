@@ -1,12 +1,14 @@
+import { getSessionCookieName } from '@/domain/user/common';
 import { NextRequest, NextResponse } from 'next/server';
 
-const SESSION_COOKIE_NAME = `s`;
-
 export default async (request: NextRequest): Promise<NextResponse> => {
-  const sessionId = request.cookies.get(`s`)?.value || crypto.randomUUID();
+  const sessionCookieName = getSessionCookieName();
+
+  const sessionId =
+    request.cookies.get(sessionCookieName)?.value || crypto.randomUUID();
 
   request.cookies.set({
-    name: SESSION_COOKIE_NAME,
+    name: sessionCookieName,
     value: sessionId,
   });
 
@@ -14,7 +16,7 @@ export default async (request: NextRequest): Promise<NextResponse> => {
 
   response.cookies.set({
     httpOnly: true,
-    name: SESSION_COOKIE_NAME,
+    name: sessionCookieName,
     secure: true,
     value: sessionId,
   });
