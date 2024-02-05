@@ -25,10 +25,7 @@ const HomePageContent = ({
 
   return (
     <>
-      <Header
-        sessionUser={sessionUser}
-        upsertOptimisticPost={upsertOptimisticPost}
-      />
+      <Header />
       <div className="mx-auto max-w-2xl pb-40">
         <Description />
         <Posts

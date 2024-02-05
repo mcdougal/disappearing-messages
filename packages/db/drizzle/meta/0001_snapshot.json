@@ -1,0 +1,245 @@
+{
+  "id": "4c947add-6ea0-4760-8ae3-7eda9b4efd84",
+  "prevId": "076eecba-74c1-4ea5-baf9-c6b403de89a1",
+  "version": "5",
+  "dialect": "pg",
+  "tables": {
+    "comment": {
+      "name": "comment",
+      "schema": "disappearing_messages",
+      "columns": {
+        "author_id": {
+          "name": "author_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "post_id": {
+          "name": "post_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "text": {
+          "name": "text",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "comment_author_id_user_id_fk": {
+          "name": "comment_author_id_user_id_fk",
+          "tableFrom": "comment",
+          "tableTo": "user",
+          "schemaTo": "disappearing_messages",
+          "columnsFrom": ["author_id"],
+          "columnsTo": ["id"],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "comment_post_id_post_id_fk": {
+          "name": "comment_post_id_post_id_fk",
+          "tableFrom": "comment",
+          "tableTo": "post",
+          "schemaTo": "disappearing_messages",
+          "columnsFrom": ["post_id"],
+          "columnsTo": ["id"],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "post": {
+      "name": "post",
+      "schema": "disappearing_messages",
+      "columns": {
+        "author_id": {
+          "name": "author_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "expires_at": {
+          "name": "expires_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "posted_at": {
+          "name": "posted_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "text": {
+          "name": "text",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "post_author_id_user_id_fk": {
+          "name": "post_author_id_user_id_fk",
+          "tableFrom": "post",
+          "tableTo": "user",
+          "schemaTo": "disappearing_messages",
+          "columnsFrom": ["author_id"],
+          "columnsTo": ["id"],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "upvote": {
+      "name": "upvote",
+      "schema": "disappearing_messages",
+      "columns": {
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "post_id": {
+          "name": "post_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "upvote_post_id_post_id_fk": {
+          "name": "upvote_post_id_post_id_fk",
+          "tableFrom": "upvote",
+          "tableTo": "post",
+          "schemaTo": "disappearing_messages",
+          "columnsFrom": ["post_id"],
+          "columnsTo": ["id"],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "upvote_user_id_user_id_fk": {
+          "name": "upvote_user_id_user_id_fk",
+          "tableFrom": "upvote",
+          "tableTo": "user",
+          "schemaTo": "disappearing_messages",
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "upvote_post_id_user_id_pk": {
+          "name": "upvote_post_id_user_id_pk",
+          "columns": ["post_id", "user_id"]
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "user": {
+      "name": "user",
+      "schema": "disappearing_messages",
+      "columns": {
+        "avatar_src": {
+          "name": "avatar_src",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "session_id": {
+          "name": "session_id",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "user_session_id_unique": {
+          "name": "user_session_id_unique",
+          "nullsNotDistinct": false,
+          "columns": ["session_id"]
+        }
+      }
+    }
+  },
+  "enums": {},
+  "schemas": {
+    "disappearing_messages": "disappearing_messages"
+  },
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

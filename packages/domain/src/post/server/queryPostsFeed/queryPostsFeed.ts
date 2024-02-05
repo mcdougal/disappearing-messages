@@ -1,7 +1,7 @@
 import 'server-only';
 
 import { db, desc, gt } from '@/db/connection';
-import { post } from '@/db/schema';
+import { comment, post } from '@/db/schema';
 import { QueryResult } from '@/db/types';
 
 export type PostsFeedPost = QueryResult<
@@ -19,6 +19,20 @@ export type PostsFeedPost = QueryResult<
       columns: {
         avatarSrc: true;
         name: true;
+      };
+    };
+    comments: {
+      columns: {
+        id: true;
+        text: true;
+      };
+      with: {
+        author: {
+          columns: {
+            avatarSrc: true;
+            name: true;
+          };
+        };
       };
     };
     upvotes: {
@@ -45,6 +59,21 @@ export default async (): Promise<Array<PostsFeedPost>> => {
         columns: {
           avatarSrc: true,
           name: true,
+        },
+      },
+      comments: {
+        orderBy: [desc(comment.createdAt)],
+        columns: {
+          id: true,
+          text: true,
+        },
+        with: {
+          author: {
+            columns: {
+              avatarSrc: true,
+              name: true,
+            },
+          },
         },
       },
       upvotes: {

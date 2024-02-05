@@ -1,14 +1,15 @@
-import { getSessionCookieName } from '@/domain/user/common';
 import { headers } from 'next/headers';
 import { parse } from 'set-cookie-parser';
 
-export default (): string | null => {
+import { getSessionCookieName } from '@/domain/user/common';
+
+export default (): string => {
   // Can't use `cookies()` because we set the session ID from middleware
   // See: https://github.com/vercel/next.js/discussions/50374
   const setCookieHeader = headers().get(`set-cookie`);
 
   if (!setCookieHeader) {
-    return null;
+    throw new Error(`No set-cookie header found`);
   }
 
   const parsedCookies = parse(setCookieHeader);
@@ -17,5 +18,9 @@ export default (): string | null => {
     return cookie.name === getSessionCookieName();
   });
 
-  return sessionCookie?.value || null;
+  if (!sessionCookie || !sessionCookie.value) {
+    throw new Error(`No session cookie found`);
+  }
+
+  return sessionCookie.value;
 };

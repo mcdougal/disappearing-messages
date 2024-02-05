@@ -1,0 +1,2 @@
+ALTER TABLE "disappearing_messages"."comment" ALTER COLUMN "text" SET DATA TYPE varchar(256);--> statement-breakpoint
+ALTER TABLE "disappearing_messages"."post" ALTER COLUMN "text" SET DATA TYPE varchar(256);

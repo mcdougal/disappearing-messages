@@ -1,12 +1,13 @@
+import { PostsFeedPost } from '@/domain/post/server';
 import Linkify from 'linkify-react';
 
 import { TextLink } from '@/app/components';
 
 type Props = {
-  text: string;
+  post: PostsFeedPost;
 };
 
-const PostContent = ({ text }: Props): React.ReactElement => {
+const PostContent = ({ post }: Props): React.ReactElement => {
   return (
     <Linkify
       as="p"
@@ -23,7 +24,7 @@ const PostContent = ({ text }: Props): React.ReactElement => {
           );
         },
       }}>
-      {text}
+      {post.text}
     </Linkify>
   );
 };

@@ -7,9 +7,11 @@ import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import { Fragment, useRef } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 import { Button } from '@/app/components';
 
+import styles from './CreatePostDialog.module.scss';
 import getCreatePostFormAction from './getCreatePostFormAction';
 
 type Props = {
@@ -48,7 +50,7 @@ const CreatePostDialog = ({
         <form
           ref={formRef}
           action={formAction}
-          className="fixed inset-0 z-10 w-screen overflow-y-auto">
+          className="fixed inset-0 z-10 w-screen">
           <div className="flex min-h-full justify-center text-center sm:items-center sm:p-0">
             <Transition.Child
               as={Fragment}
@@ -74,17 +76,30 @@ const CreatePostDialog = ({
                     htmlFor="create-post-dialog-textarea">
                     What do you want to say?
                   </label>
-                  <textarea
-                    aria-describedby="create-post-dialog-textarea-helper-text"
-                    autoFocus
-                    className="block w-full resize-none border-0 bg-transparent px-0 py-3 text-lg leading-6 text-gray-900 placeholder:text-gray-400 focus:ring-0"
-                    defaultValue=""
-                    id="create-post-dialog-textarea"
-                    maxLength={255}
-                    name="text"
-                    placeholder="What do you want to say?"
-                    rows={10}
-                  />
+                  <div
+                    className={twMerge(
+                      `after:py-3 after:text-lg after:leading-6`,
+                      styles.textAreaContainer
+                    )}>
+                    <textarea
+                      aria-describedby="create-post-dialog-textarea-helper-text"
+                      autoFocus
+                      className="block w-full resize-none border-0 bg-transparent px-0 py-3 text-lg leading-6 text-gray-900 placeholder:text-gray-400 focus:ring-0"
+                      defaultValue=""
+                      id="create-post-dialog-textarea"
+                      maxLength={255}
+                      name="text"
+                      onChange={(event): void => {
+                        const { parentNode } = event.currentTarget;
+                        if (parentNode && parentNode instanceof HTMLElement) {
+                          parentNode.dataset.replicatedValue =
+                            event.currentTarget.value;
+                        }
+                      }}
+                      placeholder="What do you want to say?"
+                      rows={1}
+                    />
+                  </div>
                 </div>
                 <p
                   className="mt-3 text-sm text-gray-500"
@@ -104,8 +119,9 @@ const CreatePostDialog = ({
                 </div>
                 <button
                   aria-label="Close"
-                  className="absolute right-5 top-6 -mt-1 rounded-full p-1 hover:bg-slate-200 sm:right-7 sm:top-8 sm:-mr-1 sm:-mt-3"
-                  onClick={onClose}>
+                  className="absolute right-4 top-5 -mt-1 rounded-full p-2 hover:bg-gray-200 sm:right-6 sm:top-7 sm:-mr-1 sm:-mt-3"
+                  onClick={onClose}
+                  type="button">
                   <XMarkIcon className="h-5 w-5" />
                 </button>
               </Dialog.Panel>

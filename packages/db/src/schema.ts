@@ -31,7 +31,7 @@ export const post = schema.table(`post`, {
   expiresAt: timestamp(`expires_at`).notNull(),
   id: text(`id`).primaryKey(),
   postedAt: timestamp(`posted_at`).notNull(),
-  text: varchar(`text`, { length: 2048 }).notNull(),
+  text: varchar(`text`, { length: 256 }).notNull(),
   updatedAt: timestamp(`updated_at`).notNull(),
 });
 
@@ -42,7 +42,7 @@ export const comment = schema.table(`comment`, {
   createdAt: timestamp(`created_at`).defaultNow().notNull(),
   id: text(`id`).primaryKey(),
   postId: text(`post_id`).references(postId).notNull(),
-  text: varchar(`text`, { length: 2048 }).notNull(),
+  text: varchar(`text`, { length: 256 }).notNull(),
 });
 
 export const upvote = schema.table(

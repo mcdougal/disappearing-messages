@@ -44,6 +44,7 @@ export default (
         avatarSrc: sessionUser.avatarSrc,
         name: sessionUser.name,
       },
+      comments: [],
       upvotes: [],
     });
 

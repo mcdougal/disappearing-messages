@@ -8,6 +8,13 @@
       "when": 1707091590338,
       "tag": "0000_lush_lilith",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1707098373033,
+      "tag": "0001_swift_jubilee",
+      "breakpoints": true
     }
   ]
 }

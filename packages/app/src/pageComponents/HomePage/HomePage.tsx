@@ -1,16 +1,11 @@
 import { queryPostsFeed } from '@/domain/post/server';
+import { getSessionId } from '@/domain/user/client';
 import { getOrCreateUserForSession } from '@/domain/user/server';
 
-import getSessionId from './getSessionId';
 import HomePageContent from './HomePageContent';
 
 const HomePage = async (): Promise<React.ReactElement> => {
   const sessionId = getSessionId();
-
-  if (!sessionId) {
-    throw new Error(`No session id`);
-  }
-
   const sessionUser = await getOrCreateUserForSession({ where: { sessionId } });
   const posts = await queryPostsFeed();
   const serverRenderedAt = new Date();
