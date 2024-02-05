@@ -1,3 +1,4 @@
+import { HomePageRoute } from '@/domain/routes/common';
 import { CheckCircleIcon } from '@heroicons/react/20/solid';
 
 import { Button } from '@/app/components';
@@ -134,6 +135,14 @@ const ButtonDemos = (): React.ReactElement => {
           loading
           size="xl">
           Button text
+        </Button>,
+      ],
+    },
+    {
+      title: `Link`,
+      demos: [
+        <Button key="link" as="a" href={HomePageRoute.getPath({})} size="xl">
+          Home Page
         </Button>,
       ],
     },

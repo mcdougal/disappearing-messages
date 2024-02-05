@@ -1,3 +1,11 @@
+import AdminComponentsRoute, {
+  AdminComponentsRouteParams,
+  AdminComponentsRouteSearchParams,
+} from './AdminComponentsRoute';
+import CreateCommentPageRoute, {
+  CreateCommentPageRouteParams,
+  CreateCommentPageRouteSearchParams,
+} from './CreateCommentPageRoute';
 import CreatePostPageRoute, {
   CreatePostPageRouteParams,
   CreatePostPageRouteSearchParams,
@@ -12,6 +20,10 @@ import ReadPostPageRoute, {
 } from './ReadPostPageRoute';
 
 export type {
+  AdminComponentsRouteParams,
+  AdminComponentsRouteSearchParams,
+  CreateCommentPageRouteParams,
+  CreateCommentPageRouteSearchParams,
   CreatePostPageRouteParams,
   CreatePostPageRouteSearchParams,
   HomePageRouteParams,
@@ -20,4 +32,10 @@ export type {
   ReadPostPageRouteSearchParams,
 };
 
-export { CreatePostPageRoute, HomePageRoute, ReadPostPageRoute };
+export {
+  AdminComponentsRoute,
+  CreateCommentPageRoute,
+  CreatePostPageRoute,
+  HomePageRoute,
+  ReadPostPageRoute,
+};

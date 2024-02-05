@@ -52,18 +52,18 @@ const ReadPostPage: Page<
 
   return (
     <>
-      <div className="sticky top-0 flex justify-end bg-white px-2 pb-4 pt-3 sm:p-6">
+      <div className="sticky top-0 z-10 flex justify-end bg-white px-2 pb-4 pt-3 sm:p-6">
         <CloseButton />
       </div>
-      <div className="mx-auto max-w-2xl pb-40">
+      <div className="mx-auto max-w-2xl pb-40 pt-1">
         <OriginalPost
           post={post}
           serverRenderedAt={serverRenderedAt}
           sessionUser={sessionUser}
         />
         <Comments post={post} />
-        <CommentAction post={post} />
       </div>
+      <CommentAction post={post} />
     </>
   );
 };

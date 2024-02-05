@@ -7,7 +7,6 @@ import {
   ArrowUpIcon,
   ChatBubbleOvalLeftIcon,
 } from '@heroicons/react/24/outline';
-import Link from 'next/link';
 
 import Avatar from '../Avatar';
 import PostMetadataButton from '../PostMetadataButton';
@@ -48,14 +47,13 @@ const PostHeader = ({
         <Avatar name={post.author.name} size={24} src={post.author.avatarSrc} />
         <Typography size="xs">{post.author.name}</Typography>
       </div>
-      <Link href={ReadPostPageRoute.getPath({ postId: post.id })}>
-        <PostMetadataButton
-          disabled={post.id.startsWith(`optimistic-`)}
-          icon={ChatBubbleOvalLeftIcon}
-          label={numCommentsLabel}
-          value={numComments}
-        />
-      </Link>
+      <PostMetadataButton
+        disabled={post.id.startsWith(`optimistic-`)}
+        href={ReadPostPageRoute.getPath({ postId: post.id })}
+        icon={ChatBubbleOvalLeftIcon}
+        label={numCommentsLabel}
+        value={numComments}
+      />
       <form action={formAction}>
         <PostMetadataButton
           completed={sessionUserUpvoted}

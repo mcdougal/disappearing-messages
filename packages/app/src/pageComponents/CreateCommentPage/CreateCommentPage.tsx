@@ -1,8 +1,8 @@
 import { getExpirationDurationString } from '@/domain/post/common';
 import { GenerateMetadata, Page } from '@/domain/routes/client';
 import {
-  CreatePostPageRouteParams,
-  CreatePostPageRouteSearchParams,
+  CreateCommentPageRouteParams,
+  CreateCommentPageRouteSearchParams,
 } from '@/domain/routes/common';
 import { getSessionId } from '@/domain/user/client';
 import { getOrCreateUserForSession } from '@/domain/user/server';
@@ -13,8 +13,8 @@ import CloseButton from './CloseButton';
 import CreatePostForm from './CreatePostForm';
 
 export const generateMetadata: GenerateMetadata<
-  CreatePostPageRouteParams,
-  CreatePostPageRouteSearchParams
+  CreateCommentPageRouteParams,
+  CreateCommentPageRouteSearchParams
 > = async () => {
   return {
     title: `Post - disappearing.chat`,
@@ -22,16 +22,16 @@ export const generateMetadata: GenerateMetadata<
   };
 };
 
-const CreatePostPage: Page<
-  CreatePostPageRouteParams,
-  CreatePostPageRouteSearchParams
+const CreateCommentPage: Page<
+  CreateCommentPageRouteParams,
+  CreateCommentPageRouteSearchParams
 > = async () => {
   const sessionId = getSessionId();
   const sessionUser = await getOrCreateUserForSession({ where: { sessionId } });
 
   return (
     <>
-      <Container className="h-screen sm:pt-36" size="xs">
+      <Container className="h-screen sm:pt-36" size="sm">
         <CreatePostForm sessionUser={sessionUser} />
       </Container>
       <CloseButton />
@@ -39,4 +39,4 @@ const CreatePostPage: Page<
   );
 };
 
-export default CreatePostPage;
+export default CreateCommentPage;

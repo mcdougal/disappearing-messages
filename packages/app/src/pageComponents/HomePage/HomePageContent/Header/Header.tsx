@@ -1,7 +1,6 @@
 'use client';
 
 import { CreatePostPageRoute } from '@/domain/routes/common';
-import Link from 'next/link';
 
 import { Button, Typography } from '@/app/components';
 
@@ -13,11 +12,13 @@ const Header = (): React.ReactElement => {
         size="2xl">
         disappearing.chat
       </Typography>
-      <Link href={CreatePostPageRoute.getPath({})}>
-        <Button color="secondary" size="md">
-          Post
-        </Button>
-      </Link>
+      <Button
+        as="a"
+        color="secondary"
+        href={CreatePostPageRoute.getPath({})}
+        size="md">
+        Post
+      </Button>
     </div>
   );
 };

@@ -51,6 +51,7 @@ const Textarea = forwardRef<Ref, Props>(
             }
           }}
           placeholder={placeholder}
+          tabIndex={0}
           {...textareaProps}
         />
       </div>

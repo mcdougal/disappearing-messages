@@ -7,7 +7,7 @@ export type ReadPostPageRouteParams = {
 export type ReadPostPageRouteSearchParams = Record<string, never>;
 
 export default makeRoute<ReadPostPageRouteParams>({
-  path: (data): string => {
-    return `/post/${data.postId}`;
+  path: (params): string => {
+    return `/post/${params.postId}`;
   },
 });

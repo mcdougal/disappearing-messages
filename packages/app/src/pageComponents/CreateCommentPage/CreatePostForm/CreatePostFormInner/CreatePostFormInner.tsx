@@ -14,7 +14,7 @@ const CreatePostFormInner = ({ sessionUser }: Props): React.ReactElement => {
   const status = useFormStatus();
 
   return (
-    <div className="flex h-full w-full flex-col">
+    <div className="flex h-full flex-col">
       <div className="flex items-center gap-2 pb-3 pt-5">
         <Avatar name={sessionUser.name} size={32} src={sessionUser.avatarSrc} />
         <Typography size="sm">{sessionUser.name}</Typography>

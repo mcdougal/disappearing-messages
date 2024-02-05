@@ -44,6 +44,7 @@ const IconButton = forwardRef<Ref, Props>(
           classNameBySize[size],
           className
         )}
+        tabIndex={0}
         title={label}
         type={type}
         {...buttonProps}>
