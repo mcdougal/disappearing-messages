@@ -29,7 +29,7 @@ const HomePageContent = ({
         sessionUser={sessionUser}
         upsertOptimisticPost={upsertOptimisticPost}
       />
-      <div className="mx-auto max-w-4xl pb-40">
+      <div className="mx-auto max-w-2xl pb-40">
         <Description />
         <Posts
           posts={optimisticPosts}
