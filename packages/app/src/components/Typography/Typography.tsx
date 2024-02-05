@@ -3,23 +3,43 @@
 import { HTMLAttributes, forwardRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import { TypographyAs, TypographySize, TypographyWeight } from './types';
+import {
+  TypographyAs,
+  TypographyColor,
+  TypographySize,
+  TypographyWeight,
+} from './types';
 
 type Props = HTMLAttributes<HTMLDivElement> & {
   as?: TypographyAs;
   children: React.ReactNode;
+  color?: TypographyColor;
   size: TypographySize;
   weight?: TypographyWeight;
 };
 
 const Typography = forwardRef<any, Props>(
   (
-    { as = `span`, children, className, size, weight = `normal`, ...divProps },
+    {
+      as = `span`,
+      children,
+      className,
+      color = `inherit`,
+      size,
+      weight = `normal`,
+      ...divProps
+    },
     ref
   ): React.ReactElement => {
     const Component = as;
 
-    const classNameBySize: { [key in TypographySize]: string } = {
+    const classNamesByColor: { [key in TypographyColor]: string | undefined } =
+      {
+        inherit: undefined,
+        gray: `text-gray-500`,
+      };
+
+    const classNamesBySize: { [key in TypographySize]: string } = {
       xs: `text-xs`,
       sm: `text-sm`,
       md: `text-md`,
@@ -35,7 +55,7 @@ const Typography = forwardRef<any, Props>(
       '9xl': `text-9xl`,
     };
 
-    const classNameByWeight: { [key in TypographyWeight]: string } = {
+    const classNamesByWeight: { [key in TypographyWeight]: string } = {
       light: `font-light`,
       normal: `font-normal`,
       bold: `font-extrabold`,
@@ -46,8 +66,9 @@ const Typography = forwardRef<any, Props>(
         ref={ref}
         className={twMerge(
           className,
-          classNameBySize[size],
-          classNameByWeight[weight]
+          classNamesByColor[color],
+          classNamesBySize[size],
+          classNamesByWeight[weight]
         )}
         {...divProps}>
         {children}

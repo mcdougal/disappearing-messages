@@ -8,6 +8,8 @@ export type TypographyAs =
   | 'p'
   | 'span';
 
+export type TypographyColor = 'inherit' | 'gray';
+
 export type TypographySize =
   | 'xs'
   | 'sm'

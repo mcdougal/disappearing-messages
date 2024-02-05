@@ -6,8 +6,8 @@ import {
   ArrowUpIcon,
   ChatBubbleOvalLeftIcon,
 } from '@heroicons/react/24/outline';
-import Image from 'next/image';
-import { twMerge } from 'tailwind-merge';
+
+import { Avatar, PostMetadataButton, Typography } from '@/app/components';
 
 import getUpvotePostFormAction from './getUpvotePostFormAction';
 
@@ -34,6 +34,7 @@ const PostHeader = ({
     return upvote.userId === sessionUser.id;
   });
 
+  const numUpvotes = post.upvotes.length;
   const upvoteLabel = sessionUserUpvoted ? `Upvoted` : `Upvote`;
   const numComments = post.comments.length;
   const numCommentsLabel =
@@ -42,41 +43,27 @@ const PostHeader = ({
   return (
     <div className="mb-4 flex items-center gap-3">
       <div className="flex flex-1 items-center gap-2">
-        <Image
-          alt={`User avatar for ${post.author.name}`}
-          height={24}
-          src={post.author.avatarSrc}
-          width={24}
-        />
-        <span className="text-xs">{post.author.name}</span>
+        <Avatar name={post.author.name} size={24} src={post.author.avatarSrc} />
+        <Typography size="xs">{post.author.name}</Typography>
       </div>
       {onOpenComments && (
-        <button
-          aria-label={numCommentsLabel}
-          className="flex items-center gap-2 rounded-full bg-gray-100 px-3 py-2"
+        <PostMetadataButton
           disabled={post.id.startsWith(`optimistic-`)}
+          icon={ChatBubbleOvalLeftIcon}
+          label={numCommentsLabel}
           onClick={onOpenComments}
-          title={numCommentsLabel}
-          type="button">
-          <ChatBubbleOvalLeftIcon className="aspect-square w-4" />
-          <span className="text-xs">{numComments}</span>
-        </button>
+          value={numComments}
+        />
       )}
       <form action={formAction}>
-        <button
-          aria-label={upvoteLabel}
-          className={twMerge(
-            `flex items-center gap-2 rounded-full px-3 py-2`,
-            sessionUserUpvoted
-              ? `bg-red-500 text-white`
-              : `bg-gray-100 hover:bg-gray-200`
-          )}
-          disabled={post.id.startsWith(`optimistic-`) || sessionUserUpvoted}
-          title={upvoteLabel}
-          type="submit">
-          <ArrowUpIcon className="aspect-square w-4" />
-          <span className="text-xs">{post.upvotes.length}</span>
-        </button>
+        <PostMetadataButton
+          completed={sessionUserUpvoted}
+          disabled={post.id.startsWith(`optimistic-`)}
+          icon={ArrowUpIcon}
+          label={upvoteLabel}
+          type="submit"
+          value={numUpvotes}
+        />
       </form>
     </div>
   );

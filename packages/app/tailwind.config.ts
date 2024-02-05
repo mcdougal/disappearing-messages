@@ -18,6 +18,11 @@ const config: Config = {
       transparent: `transparent`,
       white: colors.white,
     },
+    fontWeight: {
+      light: `300`,
+      normal: `400`,
+      bold: `800`,
+    },
     extend: {
       fontFamily: {
         sans: [`Inter var`, ...defaultTheme.fontFamily.sans],

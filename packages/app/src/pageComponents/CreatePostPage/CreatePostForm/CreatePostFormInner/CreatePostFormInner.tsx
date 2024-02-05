@@ -5,7 +5,7 @@ import { SessionUser } from '@/domain/user/server';
 import Image from 'next/image';
 import { useFormStatus } from 'react-dom';
 
-import { Button, Textarea, Typography } from '@/app/components';
+import { Avatar, Button, Textarea, Typography } from '@/app/components';
 
 type Props = {
   sessionUser: SessionUser;
@@ -17,12 +17,7 @@ const CreatePostFormInner = ({ sessionUser }: Props): React.ReactElement => {
   return (
     <div className="flex h-full flex-col">
       <div className="flex items-center gap-2 pb-3 pt-5">
-        <Image
-          alt={`User avatar for ${sessionUser.name}`}
-          height={32}
-          src={sessionUser.avatarSrc}
-          width={32}
-        />
+        <Avatar name={sessionUser.name} size={32} src={sessionUser.avatarSrc} />
         <Typography size="sm">{sessionUser.name}</Typography>
       </div>
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
