@@ -1,6 +1,5 @@
 'use client';
 
-import { PostsFeedPost } from '@/domain/post/server';
 import { SessionUser } from '@/domain/user/server';
 import {
   ArrowUpIcon,
@@ -14,24 +13,25 @@ import PostMetadataButton from '../PostMetadataButton';
 import Typography from '../Typography';
 
 import getUpvotePostFormAction from './getUpvotePostFormAction';
+import { OptimisticUpvote, Post } from './types';
 
 type Props = {
   commentHref: string;
-  post: PostsFeedPost;
+  onOptimisticUpvote: (optimisticUpvote: OptimisticUpvote) => void;
+  post: Post;
   sessionUser: SessionUser;
-  upsertOptimisticPost: (post: PostsFeedPost) => void;
 };
 
 const PostHeader = ({
   commentHref,
+  onOptimisticUpvote,
   post,
   sessionUser,
-  upsertOptimisticPost,
 }: Props): React.ReactElement => {
   const formAction = getUpvotePostFormAction(
-    post,
+    post.id,
     sessionUser,
-    upsertOptimisticPost
+    onOptimisticUpvote
   );
 
   const sessionUserUpvoted = post.upvotes.some((upvote) => {

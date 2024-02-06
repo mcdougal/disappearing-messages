@@ -1,29 +1,31 @@
 import { getExpiresAt } from '@/domain/post/common';
-import { PostsFeedPost } from '@/domain/post/server';
 import { SessionUser } from '@/domain/user/server';
+
+import { OptimisticUpvote } from '../types';
 
 import upvotePost from './upvotePost';
 
 type FormAction = () => Promise<void>;
 
 export default (
-  post: PostsFeedPost,
+  postId: string,
   sessionUser: SessionUser,
-  upsertOptimisticPost: (post: PostsFeedPost) => void
+  onOptimisticUpvote: (optimisticUpvote: OptimisticUpvote) => void
 ): FormAction => {
   return async (): Promise<void> => {
     const updatedAt = new Date();
     const expiresAt = getExpiresAt(updatedAt);
 
-    upsertOptimisticPost({
-      ...post,
+    onOptimisticUpvote({
       expiresAt,
-      upvotes: [...post.upvotes, { userId: sessionUser.id }],
+      postId,
+      updatedAt,
+      userId: sessionUser.id,
     });
 
     await upvotePost({
       data: {
-        postId: post.id,
+        postId,
         expiresAt,
         updatedAt,
         userId: sessionUser.id,

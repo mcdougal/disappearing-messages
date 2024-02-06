@@ -40,9 +40,16 @@ const Post = ({
           commentHref={ReadPostPageRoute.getPath({
             params: { postId: post.id },
           })}
+          onOptimisticUpvote={(optimisticUpvote) => {
+            upsertOptimisticPost({
+              ...post,
+              expiresAt: optimisticUpvote.expiresAt,
+              updatedAt: optimisticUpvote.updatedAt,
+              upvotes: [...post.upvotes, { userId: optimisticUpvote.userId }],
+            });
+          }}
           post={post}
           sessionUser={sessionUser}
-          upsertOptimisticPost={upsertOptimisticPost}
         />
         <PostContent post={post} />
       </div>

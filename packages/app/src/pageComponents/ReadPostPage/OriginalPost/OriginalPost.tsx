@@ -41,9 +41,16 @@ const OriginalPost = ({
           params: { postId: post.id },
           searchParams: {},
         })}
+        onOptimisticUpvote={(optimisticUpvote) => {
+          updateOptimisticPost({
+            ...post,
+            expiresAt: optimisticUpvote.expiresAt,
+            updatedAt: optimisticUpvote.updatedAt,
+            upvotes: [...post.upvotes, { userId: optimisticUpvote.userId }],
+          });
+        }}
         post={optimisticPost}
         sessionUser={sessionUser}
-        upsertOptimisticPost={updateOptimisticPost}
       />
       <PostContent post={optimisticPost} />
     </div>
