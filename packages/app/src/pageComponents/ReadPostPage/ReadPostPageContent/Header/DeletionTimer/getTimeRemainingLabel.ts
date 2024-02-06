@@ -13,8 +13,12 @@ export default (expiresAt: Date, now?: Date): string => {
     msRemainingAfterHours - minutesUntilExpirationMs;
   const secondsUntilExpiration = Math.floor(msRemainingAfterMinutes / 1000);
 
+  if (hoursUntilExpiration < 0) {
+    return `0:00:00`;
+  }
+
   return [
-    hoursUntilExpiration,
+    `${hoursUntilExpiration}`,
     `${minutesUntilExpiration}`.padStart(2, `0`),
     `${secondsUntilExpiration}`.padStart(2, `0`),
   ].join(`:`);

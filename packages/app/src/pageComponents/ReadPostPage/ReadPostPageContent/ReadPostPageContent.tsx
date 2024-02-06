@@ -4,10 +4,12 @@ import { Post } from '@/domain/post/server';
 import { SessionUser } from '@/domain/user/server';
 
 import { PageBackBehavior } from '@/app/pageUtils';
+import { useRestoreScrollPosition } from '@/app/scrollRestore';
 
 import Comments from './Comments';
 import Header from './Header';
 import OriginalPost from './OriginalPost';
+import use404Timer from './use404Timer';
 import useOptimisticPost from './useOptimisticPost';
 
 type Props = {
@@ -24,6 +26,9 @@ const ReadPostPageContent = ({
   sessionUser,
 }: Props): React.ReactElement => {
   const [optimisticPost, updateOptimisticPost] = useOptimisticPost(post);
+
+  use404Timer(optimisticPost);
+  useRestoreScrollPosition({ behavior: `smooth` });
 
   return (
     <>
