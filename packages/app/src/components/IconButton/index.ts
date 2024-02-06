@@ -1,5 +1,6 @@
 import IconButton from './IconButton';
-import { IconButtonIcon } from './types';
+import { IconButtonEdge, IconButtonIcon, IconButtonSize } from './types';
+
+export type { IconButtonEdge, IconButtonIcon, IconButtonSize };
 
 export default IconButton;
-export type { IconButtonIcon };

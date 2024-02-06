@@ -1,3 +1,4 @@
+import { getExpirationDurationString } from '@/domain/post/common';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
@@ -8,7 +9,8 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: `disappearing.chat`,
-  description: `Posts slowly disappear. Upvote or reply to keep them alive.`,
+  description: `👉 Posts are deleted after ${getExpirationDurationString()}. Upvote or
+  comment to reset the clock.`,
 };
 
 type Props = Readonly<{

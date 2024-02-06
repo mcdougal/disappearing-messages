@@ -9,16 +9,18 @@ const FormDataSchema = z.object({
   text: z.string().min(1),
 });
 
+type ResponseStatus = `invalid` | `success`;
+
 export default async (
   sessionUser: SessionUser,
   formData: FormData
-): Promise<void> => {
+): Promise<ResponseStatus> => {
   const parsed = FormDataSchema.safeParse({
     text: formData.get(`text`),
   });
 
   if (!parsed.success) {
-    return;
+    return `invalid`;
   }
 
   const { text } = parsed.data;
@@ -35,4 +37,6 @@ export default async (
       updatedAt,
     },
   });
+
+  return `success`;
 };

@@ -14,7 +14,9 @@ export default async (): Promise<void> => {
     const updatedAt = postedAt;
     const expiresAt = getExpiresAt(updatedAt);
 
-    const message = await createChatCompletion(`Say something random`);
+    const message = await createChatCompletion(
+      `Say an opinion about a random pop culture reference`
+    );
 
     if (message) {
       await createPost({

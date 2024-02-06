@@ -3,26 +3,33 @@
 import { PostsFeedPost } from '@/domain/post/server';
 import { SessionUser } from '@/domain/user/server';
 
-import { getPostKey } from '../utils';
+import {
+  useClearPositionOnScrollToTop,
+  useRestoreScrollPosition,
+} from '@/app/scrollRestore';
 
 import Post from './Post';
+import { getPostKey, useOptimisticPosts } from './utils';
 
 type Props = {
   posts: Array<PostsFeedPost>;
   serverRenderedAt: Date;
   sessionUser: SessionUser;
-  upsertOptimisticPost: (post: PostsFeedPost) => void;
 };
 
 const Posts = ({
   posts,
   serverRenderedAt,
   sessionUser,
-  upsertOptimisticPost,
 }: Props): React.ReactElement => {
+  const [optimisticPosts, upsertOptimisticPost] = useOptimisticPosts(posts);
+
+  useRestoreScrollPosition();
+  useClearPositionOnScrollToTop();
+
   return (
     <div className="flex flex-col">
-      {posts.map((post) => {
+      {optimisticPosts.map((post) => {
         return (
           <Post
             key={getPostKey(post)}

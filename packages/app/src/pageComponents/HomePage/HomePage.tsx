@@ -8,7 +8,10 @@ import { getOrCreateUserForSession } from '@/domain/user/server';
 import { Page } from '@/app/pageUtils';
 import { getSessionId } from '@/app/session';
 
-import HomePageContent from './HomePageContent';
+import DeletionWarning from './DeletionWarning';
+import Footer from './Footer';
+import Header from './Header';
+import Posts from './Posts';
 
 export const dynamic = `force-dynamic`;
 
@@ -22,11 +25,18 @@ const HomePage: Page<
   const serverRenderedAt = new Date();
 
   return (
-    <HomePageContent
-      posts={posts}
-      serverRenderedAt={serverRenderedAt}
-      sessionUser={sessionUser}
-    />
+    <>
+      <Header />
+      <div className="mx-auto max-w-2xl pb-40">
+        <DeletionWarning />
+        <Posts
+          posts={posts}
+          serverRenderedAt={serverRenderedAt}
+          sessionUser={sessionUser}
+        />
+      </div>
+      <Footer />
+    </>
   );
 };
 

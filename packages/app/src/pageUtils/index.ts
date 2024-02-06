@@ -1,3 +1,6 @@
-import { GenerateMetadata, Page } from './types';
+import getPageBackBehavior from './getPageBackBehavior';
+import { GenerateMetadata, Page, PageBackBehavior } from './types';
 
-export type { GenerateMetadata, Page };
+export type { GenerateMetadata, Page, PageBackBehavior };
+
+export { getPageBackBehavior };

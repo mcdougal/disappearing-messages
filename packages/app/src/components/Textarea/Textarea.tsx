@@ -15,7 +15,7 @@ type Props = Omit<
 const Textarea = forwardRef<Ref, Props>(
   ({ onChange, placeholder, ...textareaProps }, ref): React.ReactElement => {
     const id = useId();
-    const textareaHeightAffectingClassNames = [`py-3`, `text-lg`, `leading-6`];
+    const textareaHeightAffectingClassNames = [`p-0`, `text-lg`, `leading-6`];
     const textareaAfterClassNames = textareaHeightAffectingClassNames.map(
       (c) => {
         return `after:${c}`;

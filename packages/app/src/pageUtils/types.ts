@@ -15,3 +15,7 @@ export type GenerateMetadata<Params, SearchParams> = ({
   params: Params;
   searchParams: SearchParams;
 }) => Promise<Metadata>;
+
+export type PageBackBehavior =
+  | { action: `back` }
+  | { action: `navigate`; path: string };

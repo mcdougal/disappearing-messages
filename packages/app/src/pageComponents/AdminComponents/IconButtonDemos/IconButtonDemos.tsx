@@ -4,6 +4,7 @@ import { HomePageRoute } from '@/domain/routes/common';
 import {
   ArrowTopRightOnSquareIcon,
   HandThumbUpIcon,
+  XCircleIcon,
 } from '@heroicons/react/24/outline';
 
 import { IconButton } from '@/app/components';
@@ -40,9 +41,8 @@ const IconButtonDemos = (): React.ReactElement => {
                   className="mb-4"
                   icon={HandThumbUpIcon}
                   label="Like"
-                  size={size}>
-                  <div className="bg-gray-200 p-4 text-center">{size}</div>
-                </IconButton>
+                  size={size}
+                />
               );
             })}
           </SubsectionContent>
@@ -59,9 +59,40 @@ const IconButtonDemos = (): React.ReactElement => {
                   href={HomePageRoute.getPath({})}
                   icon={ArrowTopRightOnSquareIcon}
                   label="Open"
-                  size={size}>
-                  <div className="bg-gray-200 p-4 text-center">{size}</div>
-                </IconButton>
+                  size={size}
+                />
+              );
+            })}
+          </SubsectionContent>
+        </Subsection>
+        <Subsection>
+          <SubsectionTitle>Edge Start</SubsectionTitle>
+          <SubsectionContent className="flex items-center justify-center gap-20">
+            {sizes.map((size) => {
+              return (
+                <IconButton
+                  key={size}
+                  edge="start"
+                  icon={XCircleIcon}
+                  label="Close"
+                  size={size}
+                />
+              );
+            })}
+          </SubsectionContent>
+        </Subsection>
+        <Subsection>
+          <SubsectionTitle>Edge End</SubsectionTitle>
+          <SubsectionContent className="flex items-center justify-center gap-20">
+            {sizes.map((size) => {
+              return (
+                <IconButton
+                  key={size}
+                  edge="end"
+                  icon={XCircleIcon}
+                  label="Close"
+                  size={size}
+                />
               );
             })}
           </SubsectionContent>

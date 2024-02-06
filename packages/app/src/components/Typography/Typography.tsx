@@ -65,10 +65,10 @@ const Typography = forwardRef<any, Props>(
       <Component
         ref={ref}
         className={twMerge(
-          className,
           classNameByColor[color],
           classNameBySize[size],
-          classNameByWeight[weight]
+          classNameByWeight[weight],
+          className
         )}
         {...divProps}>
         {children}

@@ -1,17 +1,17 @@
 import { queryPost } from '@/domain/post/server';
 import {
+  HomePageRoute,
   ReadPostPageRouteParams,
   ReadPostPageRouteSearchParams,
 } from '@/domain/routes/common';
 import { getOrCreateUserForSession } from '@/domain/user/server';
 
-import { GenerateMetadata, Page } from '@/app/pageUtils';
+import { BackButton } from '@/app/components';
+import { GenerateMetadata, getPageBackBehavior, Page } from '@/app/pageUtils';
 import { getSessionId } from '@/app/session';
 
-import CloseButton from './CloseButton';
 import CommentAction from './CommentAction';
 import Comments from './Comments';
-import getExitBehavior from './getExitBehavior';
 import OriginalPost from './OriginalPost';
 
 export const dynamic = `force-dynamic`;
@@ -47,7 +47,7 @@ const ReadPostPage: Page<
   const sessionUser = await getOrCreateUserForSession({ where: { sessionId } });
   const post = await queryPost({ where: { id: params.postId } });
   const serverRenderedAt = new Date();
-  const exitBehavior = getExitBehavior();
+  const backBehavior = getPageBackBehavior(HomePageRoute.getPath({}));
 
   if (!post) {
     return <>Not Found</>;
@@ -56,7 +56,7 @@ const ReadPostPage: Page<
   return (
     <>
       <div className="sticky top-0 z-10 flex bg-white px-2 pb-4 pt-3 sm:p-6">
-        <CloseButton exitBehavior={exitBehavior} />
+        <BackButton backBehavior={backBehavior} icon="back" />
       </div>
       <div className="mx-auto max-w-2xl pb-40 pt-1">
         <OriginalPost

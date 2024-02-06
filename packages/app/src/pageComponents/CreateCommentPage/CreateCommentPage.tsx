@@ -2,16 +2,15 @@ import { queryPost } from '@/domain/post/server';
 import {
   CreateCommentPageRouteParams,
   CreateCommentPageRouteSearchParams,
+  ReadPostPageRoute,
 } from '@/domain/routes/common';
 import { getOrCreateUserForSession } from '@/domain/user/server';
 
-import { Container } from '@/app/components';
-import { GenerateMetadata, Page } from '@/app/pageUtils';
+import { BackButton, Container } from '@/app/components';
+import { GenerateMetadata, Page, getPageBackBehavior } from '@/app/pageUtils';
 import { getSessionId } from '@/app/session';
 
-import CloseButton from './CloseButton';
 import CreateCommentForm from './CreateCommentForm';
-import getExitBehavior from './getExitBehavior';
 
 export const dynamic = `force-dynamic`;
 
@@ -34,14 +33,16 @@ const CreateCommentPage: Page<
   const { postId } = params;
   const sessionId = getSessionId();
   const sessionUser = await getOrCreateUserForSession({ where: { sessionId } });
-  const exitBehavior = getExitBehavior(postId);
+  const backBehavior = getPageBackBehavior(
+    ReadPostPageRoute.getPath({ postId })
+  );
 
   return (
     <>
       <Container className="sm:pt-36" size="xs">
         <CreateCommentForm postId={postId} sessionUser={sessionUser} />
       </Container>
-      <CloseButton exitBehavior={exitBehavior} />
+      <BackButton backBehavior={backBehavior} icon="close" />
     </>
   );
 };

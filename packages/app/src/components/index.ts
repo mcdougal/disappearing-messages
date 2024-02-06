@@ -1,4 +1,6 @@
+import Announcement from './Announcement';
 import Avatar from './Avatar';
+import BackButton from './BackButton';
 import Button, { ButtonColor, ButtonIcon, ButtonSize } from './Button';
 import CommentContent from './CommentContent';
 import CommentHeader from './CommentHeader';
@@ -31,7 +33,9 @@ export type {
 };
 
 export {
+  Announcement,
   Avatar,
+  BackButton,
   Button,
   CommentContent,
   CommentHeader,

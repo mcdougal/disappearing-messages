@@ -2,14 +2,13 @@ import { getExpirationDurationString } from '@/domain/post/common';
 import {
   CreatePostPageRouteParams,
   CreatePostPageRouteSearchParams,
+  HomePageRoute,
 } from '@/domain/routes/common';
 import { getOrCreateUserForSession } from '@/domain/user/server';
 
-import { Container } from '@/app/components';
-import { GenerateMetadata, Page } from '@/app/pageUtils';
+import { GenerateMetadata, Page, getPageBackBehavior } from '@/app/pageUtils';
 import { getSessionId } from '@/app/session';
 
-import CloseButton from './CloseButton';
 import CreatePostForm from './CreatePostForm';
 
 export const dynamic = `force-dynamic`;
@@ -30,14 +29,10 @@ const CreatePostPage: Page<
 > = async () => {
   const sessionId = getSessionId();
   const sessionUser = await getOrCreateUserForSession({ where: { sessionId } });
+  const backBehavior = getPageBackBehavior(HomePageRoute.getPath({}));
 
   return (
-    <>
-      <Container className="sm:pt-36" size="xs">
-        <CreatePostForm sessionUser={sessionUser} />
-      </Container>
-      <CloseButton />
-    </>
+    <CreatePostForm backBehavior={backBehavior} sessionUser={sessionUser} />
   );
 };
 

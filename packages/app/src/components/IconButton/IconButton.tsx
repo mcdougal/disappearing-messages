@@ -5,12 +5,13 @@ import Link from 'next/link';
 import { AnchorHTMLAttributes, ButtonHTMLAttributes, forwardRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import { IconButtonIcon, IconButtonSize } from './types';
+import { IconButtonEdge, IconButtonIcon, IconButtonSize } from './types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Ref = any;
 
 type CommonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  edge?: IconButtonEdge;
   icon: IconButtonIcon;
   label: string;
   size: IconButtonSize;
@@ -26,7 +27,7 @@ type Props = CommonProps & ConditionalProps;
 
 const IconButton = forwardRef<Ref, Props>(
   (
-    { className, icon, label, size, ...otherProps },
+    { className, edge, icon, label, size, ...otherProps },
     ref
   ): React.ReactElement => {
     const Icon = icon;
@@ -37,6 +38,16 @@ const IconButton = forwardRef<Ref, Props>(
       md: `p-2`,
       lg: `p-2`,
       xl: `p-2`,
+    };
+
+    const classNameBySizeAndEdge: {
+      [key in IconButtonSize]: { [key2 in IconButtonEdge]: string };
+    } = {
+      xs: { start: `-ml-2`, end: `-mr-2` },
+      sm: { start: `-ml-2`, end: `-mr-2` },
+      md: { start: `-ml-2`, end: `-mr-2` },
+      lg: { start: `-ml-2`, end: `-mr-2` },
+      xl: { start: `-ml-2`, end: `-mr-2` },
     };
 
     const iconClassNameBySize: { [key in IconButtonSize]: string } = {
@@ -52,6 +63,7 @@ const IconButton = forwardRef<Ref, Props>(
       className: twMerge(
         `rounded-full hover:bg-gray-200`,
         classNameBySize[size],
+        edge ? classNameBySizeAndEdge[size][edge] : undefined,
         className
       ),
       tabIndex: 0,
