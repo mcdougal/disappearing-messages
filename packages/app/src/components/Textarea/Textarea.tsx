@@ -15,7 +15,16 @@ type Props = Omit<
 const Textarea = forwardRef<Ref, Props>(
   ({ onChange, placeholder, ...textareaProps }, ref): React.ReactElement => {
     const id = useId();
-    const textareaHeightAffectingClassNames = [`p-0`, `text-lg`, `leading-6`];
+    const textareaHeightAffectingClassNames = [
+      `p-0`,
+      `text-lg`,
+      `leading-6`,
+      `whitespace-pre-wrap`,
+      `text-wrap`,
+      `break-words`,
+      `tracking-normal`,
+      `font-normal`,
+    ];
     const textareaAfterClassNames = textareaHeightAffectingClassNames.map(
       (c) => {
         return `after:${c}`;
@@ -26,6 +35,7 @@ const Textarea = forwardRef<Ref, Props>(
       <div
         ref={ref}
         className={twMerge(
+          ...textareaHeightAffectingClassNames,
           ...textareaAfterClassNames,
           styles.textAreaContainer
         )}>
@@ -37,7 +47,7 @@ const Textarea = forwardRef<Ref, Props>(
         <textarea
           className={twMerge(
             ...textareaHeightAffectingClassNames,
-            `block w-full resize-none border-0 bg-transparent px-0 text-gray-900 placeholder:text-gray-400 focus:ring-0`
+            `block w-full resize-none border-0 bg-transparent text-gray-900 placeholder:text-gray-400 focus:ring-0`
           )}
           defaultValue=""
           id={id}
