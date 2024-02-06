@@ -20,7 +20,7 @@ const Comments = ({ post }: Props): React.ReactElement => {
               params: { postId: post.id },
               searchParams: {},
             })}>
-            <Typography color="gray" size="sm">
+            <Typography className="block min-h-52" color="gray" size="sm">
               No comments
             </Typography>
           </Link>
