@@ -7,6 +7,7 @@ import { useRef } from 'react';
 
 import { PostContent, PostHeader } from '@/app/components';
 import { getOpacity, useOpacityAnimation } from '@/app/post';
+import { useRestoreScrollPosition } from '@/app/scrollRestore';
 
 import useOptimisticPost from './useOptimisticPost';
 
@@ -29,6 +30,7 @@ const OriginalPost = ({
     serverRenderedAt
   );
 
+  useRestoreScrollPosition({ behavior: `smooth` });
   useOpacityAnimation(postRef, post);
 
   return (

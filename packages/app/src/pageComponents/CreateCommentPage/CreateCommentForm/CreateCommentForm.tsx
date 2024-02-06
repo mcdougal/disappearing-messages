@@ -1,10 +1,12 @@
 'use client';
 
 import { Post } from '@/domain/post/server';
+import { ReadPostPageRoute } from '@/domain/routes/common';
 import { SessionUser } from '@/domain/user/server';
 import { useRouter } from 'next/navigation';
 
 import { PageBackBehavior } from '@/app/pageUtils';
+import { saveScrollPosition } from '@/app/scrollRestore';
 
 import { Comment } from '../types';
 
@@ -38,6 +40,10 @@ const CreateCommentForm = ({
         );
 
         if (status === `success`) {
+          saveScrollPosition(
+            ReadPostPageRoute.getPath({ params: { postId: post.id } }),
+            99999
+          );
           router.refresh();
           router.back();
         }

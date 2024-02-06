@@ -55,7 +55,9 @@ const PostHeader = ({
         href={commentHref}
         icon={ChatBubbleOvalLeftIcon}
         label={numCommentsLabel}
-        onClick={saveScrollPosition}
+        onClick={(): void => {
+          saveScrollPosition();
+        }}
         value={numComments}
       />
       <form action={formAction}>
