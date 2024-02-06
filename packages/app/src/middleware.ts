@@ -1,4 +1,5 @@
 import { getSessionCookieName } from '@/domain/user/common';
+import ms from 'ms';
 import { NextRequest, NextResponse } from 'next/server';
 
 export default async (request: NextRequest): Promise<NextResponse> => {
@@ -15,8 +16,10 @@ export default async (request: NextRequest): Promise<NextResponse> => {
   const response = NextResponse.next();
 
   response.cookies.set({
+    expires: new Date(Date.now() + ms(`10 years`)),
     httpOnly: true,
     name: sessionCookieName,
+    sameSite: `lax`,
     secure: true,
     value: sessionId,
   });
