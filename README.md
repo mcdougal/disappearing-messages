@@ -21,7 +21,7 @@ Environment variables:
 
 1. Copy `.env.template` to `.env`
 2. Restrict access to the `.env` file: `chmod 600 .env`
-3. Fill out environment variables in `.env`
+3. Fill out environment variables in `.env` file
 
 ```sh
 npm run install
