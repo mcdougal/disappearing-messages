@@ -9,20 +9,19 @@ import { PostContent, PostHeader } from '@/app/components';
 import { getOpacity, useOpacityAnimation } from '@/app/post';
 import { useRestoreScrollPosition } from '@/app/scrollRestore';
 
-import useOptimisticPost from './useOptimisticPost';
-
 type Props = {
   post: Post;
   serverRenderedAt: Date;
   sessionUser: SessionUser;
+  updateOptimisticPost: (post: Post) => void;
 };
 
 const OriginalPost = ({
   post,
   serverRenderedAt,
   sessionUser,
+  updateOptimisticPost,
 }: Props): React.ReactElement => {
-  const [optimisticPost, updateOptimisticPost] = useOptimisticPost(post);
   const postRef = useRef<HTMLDivElement>(null);
   const initialOpacity = getOpacity(
     post.updatedAt,
@@ -51,10 +50,10 @@ const OriginalPost = ({
             upvotes: [...post.upvotes, { userId: optimisticUpvote.userId }],
           });
         }}
-        post={optimisticPost}
+        post={post}
         sessionUser={sessionUser}
       />
-      <PostContent className="text-md" post={optimisticPost} />
+      <PostContent className="text-md" post={post} />
     </div>
   );
 };

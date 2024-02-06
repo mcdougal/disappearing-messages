@@ -6,9 +6,7 @@ import { notFound } from 'next/navigation';
 import { GenerateMetadata, getPageBackBehavior, Page } from '@/app/pageUtils';
 import { getSessionId } from '@/app/session';
 
-import Comments from './Comments';
-import Header from './Header';
-import OriginalPost from './OriginalPost';
+import ReadPostPageContent from './ReadPostPageContent';
 
 export const dynamic = `force-dynamic`;
 
@@ -46,21 +44,12 @@ const ReadPostPage: Page<ReadPostPageRouteParams> = async ({ params }) => {
   }
 
   return (
-    <>
-      <Header
-        backBehavior={backBehavior}
-        post={post}
-        serverRenderedAt={serverRenderedAt}
-      />
-      <div className="mx-auto max-w-2xl pb-40">
-        <OriginalPost
-          post={post}
-          serverRenderedAt={serverRenderedAt}
-          sessionUser={sessionUser}
-        />
-        <Comments post={post} />
-      </div>
-    </>
+    <ReadPostPageContent
+      backBehavior={backBehavior}
+      post={post}
+      serverRenderedAt={serverRenderedAt}
+      sessionUser={sessionUser}
+    />
   );
 };
 

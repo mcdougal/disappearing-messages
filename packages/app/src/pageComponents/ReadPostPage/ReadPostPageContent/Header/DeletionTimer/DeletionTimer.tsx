@@ -24,6 +24,8 @@ const DeletionTimer = ({
   );
 
   useEffect(() => {
+    setTimeRemainingLabel(getTimeRemainingLabel(expiresAt));
+
     const interval = setInterval(() => {
       setTimeRemainingLabel(getTimeRemainingLabel(expiresAt));
     }, ms(`1 second`));

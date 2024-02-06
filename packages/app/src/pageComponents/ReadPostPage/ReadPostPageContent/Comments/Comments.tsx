@@ -1,3 +1,5 @@
+'use client';
+
 import { Post } from '@/domain/post/server';
 import { CreateCommentPageRoute } from '@/domain/routes/common';
 import Link from 'next/link';
@@ -8,7 +10,7 @@ type Props = {
   post: Post;
 };
 
-const Comments = async ({ post }: Props): Promise<React.ReactElement> => {
+const Comments = ({ post }: Props): React.ReactElement => {
   return (
     <>
       {post.comments.length === 0 ? (
