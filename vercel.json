@@ -2,7 +2,7 @@
   "crons": [
     {
       "path": "/api/cron/createFakePost",
-      "schedule": "*/30 * * * *"
+      "schedule": "* */6 * * *"
     }
   ]
 }
