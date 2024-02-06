@@ -1,7 +1,6 @@
 'use client';
 
 import { PostsFeedPost } from '@/domain/post/server';
-import { ReadPostPageRoute } from '@/domain/routes/common';
 import { SessionUser } from '@/domain/user/server';
 import {
   ArrowUpIcon,
@@ -17,12 +16,14 @@ import Typography from '../Typography';
 import getUpvotePostFormAction from './getUpvotePostFormAction';
 
 type Props = {
+  commentHref: string;
   post: PostsFeedPost;
   sessionUser: SessionUser;
   upsertOptimisticPost: (post: PostsFeedPost) => void;
 };
 
 const PostHeader = ({
+  commentHref,
   post,
   sessionUser,
   upsertOptimisticPost,
@@ -51,7 +52,7 @@ const PostHeader = ({
       </div>
       <PostMetadataButton
         disabled={post.id.startsWith(`optimistic-`)}
-        href={ReadPostPageRoute.getPath({ postId: post.id })}
+        href={commentHref}
         icon={ChatBubbleOvalLeftIcon}
         label={numCommentsLabel}
         onClick={saveScrollPosition}

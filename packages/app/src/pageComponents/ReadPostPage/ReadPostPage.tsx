@@ -5,13 +5,13 @@ import {
   ReadPostPageRouteSearchParams,
 } from '@/domain/routes/common';
 import { getOrCreateUserForSession } from '@/domain/user/server';
+import { notFound } from 'next/navigation';
 
-import { BackButton } from '@/app/components';
 import { GenerateMetadata, getPageBackBehavior, Page } from '@/app/pageUtils';
 import { getSessionId } from '@/app/session';
 
-import CommentAction from './CommentAction';
 import Comments from './Comments';
+import Header from './Header';
 import OriginalPost from './OriginalPost';
 
 export const dynamic = `force-dynamic`;
@@ -50,15 +50,13 @@ const ReadPostPage: Page<
   const backBehavior = getPageBackBehavior(HomePageRoute.getPath({}));
 
   if (!post) {
-    return <>Not Found</>;
+    return notFound();
   }
 
   return (
     <>
-      <div className="sticky top-0 z-10 flex bg-white px-2 pb-4 pt-3 sm:p-6">
-        <BackButton backBehavior={backBehavior} icon="back" />
-      </div>
-      <div className="mx-auto max-w-2xl pb-40 pt-1">
+      <Header backBehavior={backBehavior} post={post} />
+      <div className="mx-auto max-w-2xl pb-40">
         <OriginalPost
           post={post}
           serverRenderedAt={serverRenderedAt}
@@ -66,7 +64,6 @@ const ReadPostPage: Page<
         />
         <Comments post={post} />
       </div>
-      <CommentAction post={post} />
     </>
   );
 };

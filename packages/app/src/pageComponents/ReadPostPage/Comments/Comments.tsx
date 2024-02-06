@@ -1,4 +1,6 @@
 import { Post } from '@/domain/post/server';
+import { CreateCommentPageRoute } from '@/domain/routes/common';
+import Link from 'next/link';
 
 import { CommentContent, CommentHeader, Typography } from '@/app/components';
 
@@ -10,10 +12,12 @@ const Comments = async ({ post }: Props): Promise<React.ReactElement> => {
   return (
     <>
       {post.comments.length === 0 ? (
-        <div className="pl-4 pr-3 md:py-6">
-          <Typography color="gray" size="sm">
-            No comments
-          </Typography>
+        <div className="py-6 pl-4 pr-3">
+          <Link href={CreateCommentPageRoute.getPath({ postId: post.id })}>
+            <Typography color="gray" size="sm">
+              No comments
+            </Typography>
+          </Link>
         </div>
       ) : (
         <>
@@ -21,7 +25,7 @@ const Comments = async ({ post }: Props): Promise<React.ReactElement> => {
             return (
               <div
                 key={comment.id}
-                className="border-t border-gray-100 py-4 pl-4 pr-3 last:border-b md:py-6">
+                className="border-t border-gray-100 py-4 pl-4 pr-3 last:border-b md:pb-6 md:pt-5">
                 <CommentHeader comment={comment} />
                 <CommentContent comment={comment} />
               </div>

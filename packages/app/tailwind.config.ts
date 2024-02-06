@@ -14,6 +14,7 @@ const config: Config = {
       current: `currentColor`,
       gray: colors.slate,
       green: colors.green,
+      orange: colors.orange,
       red: colors.red,
       transparent: `transparent`,
       white: colors.white,

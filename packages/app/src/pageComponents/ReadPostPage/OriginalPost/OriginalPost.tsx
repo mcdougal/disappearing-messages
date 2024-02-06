@@ -1,6 +1,7 @@
 'use client';
 
 import { Post } from '@/domain/post/server';
+import { CreateCommentPageRoute } from '@/domain/routes/common';
 import { SessionUser } from '@/domain/user/server';
 import { useRef } from 'react';
 
@@ -33,9 +34,10 @@ const OriginalPost = ({
   return (
     <div
       ref={postRef}
-      className="mb-6 pl-4 pr-3"
+      className="bg-orange-200 py-3 pl-4 pr-3 transition-opacity ease-linear md:pb-6 md:pt-5"
       style={{ opacity: initialOpacity }}>
       <PostHeader
+        commentHref={CreateCommentPageRoute.getPath({ postId: post.id })}
         post={optimisticPost}
         sessionUser={sessionUser}
         upsertOptimisticPost={updateOptimisticPost}

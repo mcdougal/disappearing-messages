@@ -1,10 +1,10 @@
-import { getLocalStorageKey } from '../utils';
+import { getSessionStorageKey } from '../utils';
 
 export default (): void => {
-  const key = getLocalStorageKey();
-  const positions = JSON.parse(localStorage.getItem(key) || `{}`);
+  const key = getSessionStorageKey();
+  const positions = JSON.parse(sessionStorage.getItem(key) || `{}`);
 
   positions[window.location.pathname] = window.scrollY;
 
-  localStorage.setItem(key, JSON.stringify(positions));
+  sessionStorage.setItem(key, JSON.stringify(positions));
 };

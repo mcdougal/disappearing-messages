@@ -1,3 +1,3 @@
-import getLocalStorageKey from './getLocalStorageKey';
+import getSessionStorageKey from './getSessionStorageKey';
 
-export { getLocalStorageKey };
+export { getSessionStorageKey };

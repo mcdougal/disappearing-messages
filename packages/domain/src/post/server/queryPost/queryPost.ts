@@ -1,6 +1,6 @@
 import 'server-only';
 
-import { db, desc, eq } from '@/db/connection';
+import { asc, db, eq } from '@/db/connection';
 import { comment, post } from '@/db/schema';
 import { QueryResult } from '@/db/types';
 
@@ -67,7 +67,7 @@ export default async ({ where }: QueryArgs): Promise<Post | null> => {
         },
       },
       comments: {
-        orderBy: [desc(comment.createdAt)],
+        orderBy: [asc(comment.createdAt)],
         columns: {
           id: true,
           text: true,
