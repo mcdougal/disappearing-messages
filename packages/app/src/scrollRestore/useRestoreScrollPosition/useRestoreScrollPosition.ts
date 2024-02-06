@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 
+import clearScrollPosition from '../clearScrollPosition';
 import { getSessionStorageKey } from '../utils';
 
 type Args = {
@@ -8,9 +9,12 @@ type Args = {
 
 export default (args?: Args): void => {
   useEffect(() => {
+    let timeout: NodeJS.Timeout | null = null;
+
+    const pathname = window.location.pathname;
     const key = getSessionStorageKey();
     const positions = JSON.parse(sessionStorage.getItem(key) || `{}`);
-    const position = positions[window.location.pathname];
+    const position = positions[pathname];
 
     if (window.scrollY === 0 && position) {
       window.scrollTo({
@@ -18,6 +22,16 @@ export default (args?: Args): void => {
         top: position,
         behavior: args?.behavior,
       });
+
+      timeout = setTimeout(() => {
+        clearScrollPosition(pathname);
+      }, 1000);
     }
+
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+    };
   }, [args?.behavior]);
 };
