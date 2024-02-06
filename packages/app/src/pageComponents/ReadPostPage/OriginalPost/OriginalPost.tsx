@@ -36,7 +36,7 @@ const OriginalPost = ({
   return (
     <div
       ref={postRef}
-      className="bg-orange-200 py-3 pl-4 pr-3 transition-opacity ease-linear md:pb-6 md:pt-5"
+      className="bg-orange-200 pb-5 pl-4 pr-3 pt-3 transition-opacity ease-linear md:pb-6 md:pt-5"
       style={{ opacity: initialOpacity }}>
       <PostHeader
         commentHref={CreateCommentPageRoute.getPath({
@@ -54,7 +54,7 @@ const OriginalPost = ({
         post={optimisticPost}
         sessionUser={sessionUser}
       />
-      <PostContent post={optimisticPost} />
+      <PostContent className="text-md" post={optimisticPost} />
     </div>
   );
 };

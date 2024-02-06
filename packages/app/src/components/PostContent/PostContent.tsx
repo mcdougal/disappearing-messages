@@ -1,17 +1,22 @@
 import { PostsFeedPost } from '@/domain/post/server';
 import Linkify from 'linkify-react';
+import { twMerge } from 'tailwind-merge';
 
 import TextLink from '../TextLink';
 
 type Props = {
+  className?: string;
   post: PostsFeedPost;
 };
 
-const PostContent = ({ post }: Props): React.ReactElement => {
+const PostContent = ({ className, post }: Props): React.ReactElement => {
   return (
     <Linkify
       as="p"
-      className="md:text-md whitespace-pre-wrap break-words text-sm"
+      className={twMerge(
+        `md:text-md whitespace-pre-wrap break-words text-sm`,
+        className
+      )}
       options={{
         defaultProtocol: `https`,
         target: `_blank`,

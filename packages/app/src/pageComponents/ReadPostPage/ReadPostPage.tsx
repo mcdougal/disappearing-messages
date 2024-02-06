@@ -47,7 +47,11 @@ const ReadPostPage: Page<ReadPostPageRouteParams> = async ({ params }) => {
 
   return (
     <>
-      <Header backBehavior={backBehavior} post={post} />
+      <Header
+        backBehavior={backBehavior}
+        post={post}
+        serverRenderedAt={serverRenderedAt}
+      />
       <div className="mx-auto max-w-2xl pb-40">
         <OriginalPost
           post={post}
