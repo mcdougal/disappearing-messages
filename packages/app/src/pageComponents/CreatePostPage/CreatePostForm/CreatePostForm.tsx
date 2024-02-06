@@ -3,6 +3,7 @@
 import { HomePageRoute } from '@/domain/routes/common';
 import { SessionUser } from '@/domain/user/server';
 import { useRouter } from 'next/navigation';
+import { useRef } from 'react';
 
 import { PageBackBehavior } from '@/app/pageUtils';
 import { clearScrollPosition } from '@/app/scrollRestore';
@@ -17,11 +18,12 @@ type Props = {
   sessionUser: SessionUser;
 };
 
-const CreatePostForm = async ({
+const CreatePostForm = ({
   backBehavior,
   sessionUser,
-}: Props): Promise<React.ReactElement> => {
+}: Props): React.ReactElement => {
   const router = useRouter();
+  const updateCharacterCounterRef = useRef<(text: string) => void>();
 
   return (
     <form
@@ -34,10 +36,16 @@ const CreatePostForm = async ({
           router.back();
         }
       }}>
-      <Header backBehavior={backBehavior} />
+      <Header
+        backBehavior={backBehavior}
+        updateCharacterCounterRef={updateCharacterCounterRef}
+      />
       <div className="mx-auto max-w-2xl pb-40">
         <DeletionWarning />
-        <CreatePostInput sessionUser={sessionUser} />
+        <CreatePostInput
+          sessionUser={sessionUser}
+          updateCharacterCounterRef={updateCharacterCounterRef}
+        />
       </div>
     </form>
   );

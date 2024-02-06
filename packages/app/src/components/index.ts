@@ -2,6 +2,7 @@ import Announcement from './Announcement';
 import Avatar from './Avatar';
 import BackButton from './BackButton';
 import Button, { ButtonColor, ButtonIcon, ButtonSize } from './Button';
+import CharacterCounter from './CharacterCounter';
 import CommentContent from './CommentContent';
 import CommentHeader from './CommentHeader';
 import Container, { ContainerSize } from './Container';
@@ -37,6 +38,7 @@ export {
   Avatar,
   BackButton,
   Button,
+  CharacterCounter,
   CommentContent,
   CommentHeader,
   Container,

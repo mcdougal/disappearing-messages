@@ -2,7 +2,7 @@
 
 import { Post } from '@/domain/post/server';
 import { SessionUser } from '@/domain/user/server';
-import { useRef } from 'react';
+import { MutableRefObject, useRef } from 'react';
 
 import { Avatar, Textarea, Typography } from '@/app/components';
 
@@ -12,12 +12,16 @@ type Props = {
   post: Post;
   replyingTo: Comment | null;
   sessionUser: SessionUser;
+  updateCharacterCounterRef: MutableRefObject<
+    ((text: string) => void) | undefined
+  >;
 };
 
 const CreateCommentInput = ({
   post,
   replyingTo,
   sessionUser,
+  updateCharacterCounterRef,
 }: Props): React.ReactElement => {
   const placeholderRef = useRef<HTMLSpanElement>(null);
 
@@ -39,13 +43,15 @@ const CreateCommentInput = ({
         <Textarea
           autoFocus
           defaultValue=""
-          maxLength={255}
           name="text"
           onChange={(event) => {
             if (placeholderRef.current) {
               placeholderRef.current.style.display = event.target.value
                 ? `none`
                 : `block`;
+            }
+            if (updateCharacterCounterRef.current) {
+              updateCharacterCounterRef.current(event.target.value);
             }
           }}
           rows={2}

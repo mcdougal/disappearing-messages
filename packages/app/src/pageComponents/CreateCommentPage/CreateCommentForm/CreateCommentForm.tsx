@@ -4,6 +4,7 @@ import { Post } from '@/domain/post/server';
 import { ReadPostPageRoute } from '@/domain/routes/common';
 import { SessionUser } from '@/domain/user/server';
 import { useRouter } from 'next/navigation';
+import { useRef } from 'react';
 
 import { PageBackBehavior } from '@/app/pageUtils';
 import { saveScrollPosition } from '@/app/scrollRestore';
@@ -28,6 +29,7 @@ const CreateCommentForm = ({
   sessionUser,
 }: Props): React.ReactElement => {
   const router = useRouter();
+  const updateCharacterCounterRef = useRef<(text: string) => void>();
 
   return (
     <form
@@ -48,12 +50,17 @@ const CreateCommentForm = ({
           router.back();
         }
       }}>
-      <Header backBehavior={backBehavior} />
+      <Header
+        backBehavior={backBehavior}
+        replyingTo={replyingTo}
+        updateCharacterCounterRef={updateCharacterCounterRef}
+      />
       <div className="mx-auto max-w-2xl pb-40">
         <CreateCommentInput
           post={post}
           replyingTo={replyingTo}
           sessionUser={sessionUser}
+          updateCharacterCounterRef={updateCharacterCounterRef}
         />
       </div>
     </form>

@@ -1,14 +1,21 @@
 'use client';
 
 import { SessionUser } from '@/domain/user/server';
+import { MutableRefObject } from 'react';
 
 import { Avatar, Textarea, Typography } from '@/app/components';
 
 type Props = {
   sessionUser: SessionUser;
+  updateCharacterCounterRef: MutableRefObject<
+    ((text: string) => void) | undefined
+  >;
 };
 
-const CreatePostInput = ({ sessionUser }: Props): React.ReactElement => {
+const CreatePostInput = ({
+  sessionUser,
+  updateCharacterCounterRef,
+}: Props): React.ReactElement => {
   return (
     <div className="px-3 pt-1 sm:pt-4">
       <div className="flex items-center gap-2 pb-3 sm:pb-6">
@@ -19,8 +26,12 @@ const CreatePostInput = ({ sessionUser }: Props): React.ReactElement => {
         <Textarea
           autoFocus
           defaultValue=""
-          maxLength={255}
           name="text"
+          onChange={(event) => {
+            if (updateCharacterCounterRef.current) {
+              updateCharacterCounterRef.current(event.target.value);
+            }
+          }}
           placeholder="What do you want to say?"
           rows={2}
         />

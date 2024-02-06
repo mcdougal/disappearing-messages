@@ -36,6 +36,7 @@ const Typography = forwardRef<any, Props>(
     const classNameByColor: { [key in TypographyColor]: string | undefined } = {
       inherit: undefined,
       gray: `text-gray-500`,
+      red: `text-red-600`,
       white: `text-white`,
     };
 

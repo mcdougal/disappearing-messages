@@ -6,7 +6,7 @@ import { SessionUser } from '@/domain/user/server';
 import { z } from 'zod';
 
 const FormDataSchema = z.object({
-  text: z.string().trim().min(1),
+  text: z.string().min(1).max(255),
 });
 
 type ResponseStatus = `invalid` | `success`;
@@ -33,7 +33,7 @@ export default async (
       authorId: sessionUser.id,
       expiresAt,
       postedAt,
-      text,
+      text: text.trim(),
       updatedAt,
     },
   });
