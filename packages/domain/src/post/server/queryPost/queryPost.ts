@@ -1,6 +1,6 @@
 import 'server-only';
 
-import { asc, db, eq } from '@/db/connection';
+import { and, asc, db, eq, gt } from '@/db/connection';
 import { comment, post } from '@/db/schema';
 import { QueryResult } from '@/db/types';
 
@@ -60,7 +60,7 @@ export type Post = QueryResult<
 
 export default async ({ where }: QueryArgs): Promise<Post | null> => {
   const matchingPost = await db.query.post.findFirst({
-    where: eq(post.id, where.id),
+    where: and(eq(post.id, where.id), gt(post.expiresAt, new Date())),
     columns: {
       expiresAt: true,
       id: true,
