@@ -13,7 +13,11 @@ const Comments = async ({ post }: Props): Promise<React.ReactElement> => {
     <>
       {post.comments.length === 0 ? (
         <div className="py-6 pl-4 pr-3">
-          <Link href={CreateCommentPageRoute.getPath({ postId: post.id })}>
+          <Link
+            href={CreateCommentPageRoute.getPath({
+              params: { postId: post.id },
+              searchParams: {},
+            })}>
             <Typography color="gray" size="sm">
               No comments
             </Typography>
@@ -26,7 +30,7 @@ const Comments = async ({ post }: Props): Promise<React.ReactElement> => {
               <div
                 key={comment.id}
                 className="border-t border-gray-100 py-4 pl-4 pr-3 last:border-b md:pb-6 md:pt-5">
-                <CommentHeader comment={comment} />
+                <CommentHeader comment={comment} postId={post.id} />
                 <CommentContent comment={comment} />
               </div>
             );

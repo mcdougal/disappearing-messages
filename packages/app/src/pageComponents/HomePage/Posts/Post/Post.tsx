@@ -37,7 +37,9 @@ const Post = ({
         className="pb-4 pl-4 pr-3 pt-2 transition-opacity ease-linear md:pb-6 md:pt-5"
         style={{ opacity: initialOpacity }}>
         <PostHeader
-          commentHref={ReadPostPageRoute.getPath({ postId: post.id })}
+          commentHref={ReadPostPageRoute.getPath({
+            params: { postId: post.id },
+          })}
           post={post}
           sessionUser={sessionUser}
           upsertOptimisticPost={upsertOptimisticPost}

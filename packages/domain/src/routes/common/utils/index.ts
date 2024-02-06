@@ -1,4 +1,4 @@
-import makeQueryString from './makeQueryString';
+import addSearchParams from './addSearchParams';
 import makeRoute from './makeRoute';
 
-export { makeQueryString, makeRoute };
+export { addSearchParams, makeRoute };

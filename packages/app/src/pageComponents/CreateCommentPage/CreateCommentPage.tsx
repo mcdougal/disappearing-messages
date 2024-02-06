@@ -34,7 +34,7 @@ const CreateCommentPage: Page<
   const sessionId = getSessionId();
   const sessionUser = await getOrCreateUserForSession({ where: { sessionId } });
   const backBehavior = getPageBackBehavior(
-    ReadPostPageRoute.getPath({ postId })
+    ReadPostPageRoute.getPath({ params: { postId } })
   );
 
   return (

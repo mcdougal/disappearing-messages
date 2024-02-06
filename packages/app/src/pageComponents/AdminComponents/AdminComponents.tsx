@@ -1,8 +1,3 @@
-import {
-  AdminComponentsRouteParams,
-  AdminComponentsRouteSearchParams,
-} from '@/domain/routes/common';
-
 import { Container, Typography } from '@/app/components';
 import { GenerateMetadata, Page } from '@/app/pageUtils';
 
@@ -14,20 +9,14 @@ import TypographyDemos from './TypographyDemos';
 
 export const dynamic = `force-dynamic`;
 
-export const generateMetadata: GenerateMetadata<
-  AdminComponentsRouteParams,
-  AdminComponentsRouteSearchParams
-> = async () => {
+export const generateMetadata: GenerateMetadata = async () => {
   return {
     title: `Components - Admin`,
     description: `Component demos.`,
   };
 };
 
-const AdminComponents: Page<
-  AdminComponentsRouteParams,
-  AdminComponentsRouteSearchParams
-> = async () => {
+const AdminComponents: Page = async () => {
   return (
     <Container className="pb-40 pt-8" size="xl">
       <Typography as="h1" className="mb-14" size="5xl">

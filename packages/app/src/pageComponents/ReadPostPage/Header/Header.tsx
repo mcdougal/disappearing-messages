@@ -18,7 +18,10 @@ const Header = ({ backBehavior, post }: Props): React.ReactElement => {
           as="a"
           className="min-w-20"
           color="secondary"
-          href={CreateCommentPageRoute.getPath({ postId: post.id })}
+          href={CreateCommentPageRoute.getPath({
+            params: { postId: post.id },
+            searchParams: {},
+          })}
           size="md"
           type="submit">
           Comment

@@ -1,6 +1,9 @@
 import { Metadata } from 'next';
 
-export type Page<Params, SearchParams> = ({
+export type Page<
+  Params = Record<string, never>,
+  SearchParams = Record<string, never>,
+> = ({
   params,
   searchParams,
 }: {
@@ -8,7 +11,10 @@ export type Page<Params, SearchParams> = ({
   searchParams: SearchParams;
 }) => Promise<React.ReactElement>;
 
-export type GenerateMetadata<Params, SearchParams> = ({
+export type GenerateMetadata<
+  Params = Record<string, never>,
+  SearchParams = Record<string, never>,
+> = ({
   params,
   searchParams,
 }: {

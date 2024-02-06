@@ -1,9 +1,5 @@
 import { getExpirationDurationString } from '@/domain/post/common';
-import {
-  CreatePostPageRouteParams,
-  CreatePostPageRouteSearchParams,
-  HomePageRoute,
-} from '@/domain/routes/common';
+import { HomePageRoute } from '@/domain/routes/common';
 import { getOrCreateUserForSession } from '@/domain/user/server';
 
 import { GenerateMetadata, Page, getPageBackBehavior } from '@/app/pageUtils';
@@ -13,20 +9,14 @@ import CreatePostForm from './CreatePostForm';
 
 export const dynamic = `force-dynamic`;
 
-export const generateMetadata: GenerateMetadata<
-  CreatePostPageRouteParams,
-  CreatePostPageRouteSearchParams
-> = async () => {
+export const generateMetadata: GenerateMetadata = async () => {
   return {
     title: `Post - disappearing.chat`,
     description: `Your post will disappear after ${getExpirationDurationString()}. Upvotes and comments reset the clock.`,
   };
 };
 
-const CreatePostPage: Page<
-  CreatePostPageRouteParams,
-  CreatePostPageRouteSearchParams
-> = async () => {
+const CreatePostPage: Page = async () => {
   const sessionId = getSessionId();
   const sessionUser = await getOrCreateUserForSession({ where: { sessionId } });
   const backBehavior = getPageBackBehavior(HomePageRoute.getPath({}));

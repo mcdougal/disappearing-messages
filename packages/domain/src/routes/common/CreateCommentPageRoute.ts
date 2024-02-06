@@ -1,13 +1,20 @@
-import { makeRoute } from './utils';
+import { addSearchParams, makeRoute } from './utils';
 
 export type CreateCommentPageRouteParams = {
   postId: string;
 };
 
-export type CreateCommentPageRouteSearchParams = Record<string, never>;
+export type CreateCommentPageRouteSearchParams = {
+  message?: string;
+};
 
-export default makeRoute<CreateCommentPageRouteParams>({
-  path: (params): string => {
-    return `/post/${params.postId}/comment`;
+export default makeRoute<
+  CreateCommentPageRouteParams,
+  CreateCommentPageRouteSearchParams
+>({
+  path: ({ params, searchParams }): string => {
+    return addSearchParams(`/post/${params.postId}/comment`, {
+      message: searchParams.message,
+    });
   },
 });

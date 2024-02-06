@@ -37,7 +37,10 @@ const OriginalPost = ({
       className="bg-orange-200 py-3 pl-4 pr-3 transition-opacity ease-linear md:pb-6 md:pt-5"
       style={{ opacity: initialOpacity }}>
       <PostHeader
-        commentHref={CreateCommentPageRoute.getPath({ postId: post.id })}
+        commentHref={CreateCommentPageRoute.getPath({
+          params: { postId: post.id },
+          searchParams: {},
+        })}
         post={optimisticPost}
         sessionUser={sessionUser}
         upsertOptimisticPost={updateOptimisticPost}

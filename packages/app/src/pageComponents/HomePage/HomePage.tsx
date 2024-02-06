@@ -1,8 +1,4 @@
 import { queryPostsFeed } from '@/domain/post/server';
-import {
-  HomePageRouteParams,
-  HomePageRouteSearchParams,
-} from '@/domain/routes/common';
 import { getOrCreateUserForSession } from '@/domain/user/server';
 
 import { Page } from '@/app/pageUtils';
@@ -15,10 +11,7 @@ import Posts from './Posts';
 
 export const dynamic = `force-dynamic`;
 
-const HomePage: Page<
-  HomePageRouteParams,
-  HomePageRouteSearchParams
-> = async () => {
+const HomePage: Page = async () => {
   const sessionId = getSessionId();
   const sessionUser = await getOrCreateUserForSession({ where: { sessionId } });
   const posts = await queryPostsFeed();

@@ -10,5 +10,7 @@ export default async (args: UpvotePostArgs): Promise<void> => {
   await upvotePost(args);
 
   revalidatePath(HomePageRoute.getPath({}));
-  revalidatePath(ReadPostPageRoute.getPath({ postId: args.data.postId }));
+  revalidatePath(
+    ReadPostPageRoute.getPath({ params: { postId: args.data.postId } })
+  );
 };

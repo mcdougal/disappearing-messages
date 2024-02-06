@@ -1,9 +1,5 @@
 import { queryPost } from '@/domain/post/server';
-import {
-  HomePageRoute,
-  ReadPostPageRouteParams,
-  ReadPostPageRouteSearchParams,
-} from '@/domain/routes/common';
+import { HomePageRoute, ReadPostPageRouteParams } from '@/domain/routes/common';
 import { getOrCreateUserForSession } from '@/domain/user/server';
 import { notFound } from 'next/navigation';
 
@@ -17,8 +13,7 @@ import OriginalPost from './OriginalPost';
 export const dynamic = `force-dynamic`;
 
 export const generateMetadata: GenerateMetadata<
-  ReadPostPageRouteParams,
-  ReadPostPageRouteSearchParams
+  ReadPostPageRouteParams
 > = async ({ params }) => {
   const post = await queryPost({ where: { id: params.postId } });
 
@@ -39,10 +34,7 @@ export const generateMetadata: GenerateMetadata<
   };
 };
 
-const ReadPostPage: Page<
-  ReadPostPageRouteParams,
-  ReadPostPageRouteSearchParams
-> = async ({ params }) => {
+const ReadPostPage: Page<ReadPostPageRouteParams> = async ({ params }) => {
   const sessionId = getSessionId();
   const sessionUser = await getOrCreateUserForSession({ where: { sessionId } });
   const post = await queryPost({ where: { id: params.postId } });

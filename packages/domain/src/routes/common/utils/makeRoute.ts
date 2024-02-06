@@ -4,25 +4,34 @@ export type Router = {
   query: ParsedUrlQuery;
 };
 
-type RouteDefinition<T> = {
+type GetPathArgs<P, S> =
+  P extends Record<string, never>
+    ? S extends Record<string, never>
+      ? Record<string, never>
+      : { searchParams: S }
+    : S extends Record<string, never>
+      ? { params: P }
+      : { params: P; searchParams: S };
+
+type RouteDefinition<P, S> = {
   /**
    * Build a link to this page in the app.
    */
-  path: (params: T) => string;
+  path: (args: GetPathArgs<P, S>) => string;
 };
 
-export type Route<T> = {
+export type Route<P, S> = {
   /**
    * Build a link to this page in the app.
    */
-  getPath: (params: T) => string;
+  getPath: (args: GetPathArgs<P, S>) => string;
 };
 
-export default <Params = Record<string, never>>(
-  routeDefinition: RouteDefinition<Params>
-): Route<Params> => {
-  const getPath = (params: Params): string => {
-    return routeDefinition.path(params);
+export default <P = Record<string, never>, S = Record<string, never>>(
+  routeDefinition: RouteDefinition<P, S>
+): Route<P, S> => {
+  const getPath = (args: GetPathArgs<P, S>): string => {
+    return routeDefinition.path(args);
   };
 
   const route = {
