@@ -14,7 +14,7 @@ export default async (): Promise<void> => {
   const expiresAt = getExpiresAt(updatedAt);
 
   const message = await createChatCompletion(
-    `Say an opinion about a random pop culture reference`
+    `Say an opinion about a random pop culture or technology reference without using proper capitalization and grammar`
   );
 
   if (message) {
