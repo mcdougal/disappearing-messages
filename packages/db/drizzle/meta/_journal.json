@@ -15,6 +15,20 @@
       "when": 1707098373033,
       "tag": "0001_swift_jubilee",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1707195238809,
+      "tag": "0002_reflective_frank_castle",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1707195414620,
+      "tag": "0003_stale_wolf_cub",
+      "breakpoints": true
     }
   ]
 }

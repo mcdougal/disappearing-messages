@@ -42,6 +42,7 @@ export const comment = schema.table(`comment`, {
   createdAt: timestamp(`created_at`).defaultNow().notNull(),
   id: text(`id`).primaryKey(),
   postId: text(`post_id`).references(postId).notNull(),
+  replyingToId: text(`replying_to_id`),
   text: varchar(`text`, { length: 256 }).notNull(),
 });
 
@@ -76,6 +77,10 @@ export const postRelations = relations(post, ({ many, one }) => ({
 export const commentRelations = relations(comment, ({ one }) => ({
   author: one(user, { fields: [comment.authorId], references: [user.id] }),
   post: one(post, { fields: [comment.postId], references: [post.id] }),
+  replyingTo: one(comment, {
+    fields: [comment.replyingToId],
+    references: [comment.id],
+  }),
 }));
 
 export const upvoteRelations = relations(upvote, ({ one }) => ({

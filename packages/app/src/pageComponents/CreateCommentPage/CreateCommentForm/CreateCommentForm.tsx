@@ -1,18 +1,28 @@
 'use client';
 
+import { Post } from '@/domain/post/server';
 import { SessionUser } from '@/domain/user/server';
 import { useRouter } from 'next/navigation';
 
+import { PageBackBehavior } from '@/app/pageUtils';
+
+import { Comment } from '../types';
+
 import createCommentFormAction from './createCommentFormAction';
-import CreateCommentFormInner from './CreateCommentFormInner';
+import CreateCommentInput from './CreateCommentInput';
+import Header from './Header';
 
 type Props = {
-  postId: string;
+  backBehavior: PageBackBehavior;
+  post: Post;
+  replyingTo: Comment | null;
   sessionUser: SessionUser;
 };
 
 const CreateCommentForm = ({
-  postId,
+  backBehavior,
+  post,
+  replyingTo,
   sessionUser,
 }: Props): React.ReactElement => {
   const router = useRouter();
@@ -20,12 +30,26 @@ const CreateCommentForm = ({
   return (
     <form
       action={async (formData) => {
-        await createCommentFormAction(sessionUser, postId, formData);
-        router.refresh();
-        router.back();
-      }}
-      className="flex sm:h-96">
-      <CreateCommentFormInner sessionUser={sessionUser} />
+        const status = await createCommentFormAction(
+          sessionUser,
+          post.id,
+          replyingTo?.id || null,
+          formData
+        );
+
+        if (status === `success`) {
+          router.refresh();
+          router.back();
+        }
+      }}>
+      <Header backBehavior={backBehavior} />
+      <div className="mx-auto max-w-2xl pb-40">
+        <CreateCommentInput
+          post={post}
+          replyingTo={replyingTo}
+          sessionUser={sessionUser}
+        />
+      </div>
     </form>
   );
 };

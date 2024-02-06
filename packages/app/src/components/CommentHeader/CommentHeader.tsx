@@ -14,8 +14,6 @@ type Props = {
 };
 
 const CommentHeader = ({ comment, postId }: Props): React.ReactElement => {
-  const replyMessage = `@${comment.author.name} - `;
-
   return (
     <div className="mb-4 flex items-center justify-between gap-3">
       <div className="flex items-center gap-2">
@@ -30,7 +28,7 @@ const CommentHeader = ({ comment, postId }: Props): React.ReactElement => {
         as="a"
         href={CreateCommentPageRoute.getPath({
           params: { postId },
-          searchParams: { message: replyMessage },
+          searchParams: { replyTo: comment.id },
         })}
         icon={ArrowUturnLeftIcon}
         label="Reply"

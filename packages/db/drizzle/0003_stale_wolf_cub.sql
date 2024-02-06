@@ -1,0 +1,1 @@
+ALTER TABLE "disappearing_messages"."comment" RENAME COLUMN "replying_to" TO "replying_to_id";

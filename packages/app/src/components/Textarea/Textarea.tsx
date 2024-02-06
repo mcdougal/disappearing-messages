@@ -50,7 +50,13 @@ const Textarea = forwardRef<Ref, Props>(
               onChange(event);
             }
           }}
-          placeholder={placeholder}
+          placeholder={
+            placeholder
+              ? placeholder.trim().replace(/\s+/g, () => {
+                  return ` `;
+                })
+              : undefined
+          }
           tabIndex={0}
           {...textareaProps}
         />

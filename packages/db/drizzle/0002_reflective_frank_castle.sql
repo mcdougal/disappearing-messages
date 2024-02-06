@@ -1,0 +1,1 @@
+ALTER TABLE "disappearing_messages"."comment" ADD COLUMN "replying_to" text;

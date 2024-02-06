@@ -5,12 +5,13 @@ import {
   ReadPostPageRoute,
 } from '@/domain/routes/common';
 import { getOrCreateUserForSession } from '@/domain/user/server';
+import { notFound } from 'next/navigation';
 
-import { BackButton, Container } from '@/app/components';
 import { GenerateMetadata, Page, getPageBackBehavior } from '@/app/pageUtils';
 import { getSessionId } from '@/app/session';
 
 import CreateCommentForm from './CreateCommentForm';
+import findComment from './findComment';
 
 export const dynamic = `force-dynamic`;
 
@@ -29,21 +30,25 @@ export const generateMetadata: GenerateMetadata<
 const CreateCommentPage: Page<
   CreateCommentPageRouteParams,
   CreateCommentPageRouteSearchParams
-> = async ({ params }) => {
-  const { postId } = params;
+> = async ({ params, searchParams }) => {
   const sessionId = getSessionId();
   const sessionUser = await getOrCreateUserForSession({ where: { sessionId } });
+  const post = await queryPost({ where: { id: params.postId } });
   const backBehavior = getPageBackBehavior(
-    ReadPostPageRoute.getPath({ params: { postId } })
+    ReadPostPageRoute.getPath({ params: { postId: params.postId } })
   );
 
+  if (!post) {
+    notFound();
+  }
+
   return (
-    <>
-      <Container className="sm:pt-36" size="xs">
-        <CreateCommentForm postId={postId} sessionUser={sessionUser} />
-      </Container>
-      <BackButton backBehavior={backBehavior} icon="close" />
-    </>
+    <CreateCommentForm
+      backBehavior={backBehavior}
+      post={post}
+      replyingTo={findComment(post, searchParams.replyTo)}
+      sessionUser={sessionUser}
+    />
   );
 };
 

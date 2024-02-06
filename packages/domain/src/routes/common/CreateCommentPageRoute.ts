@@ -5,7 +5,7 @@ export type CreateCommentPageRouteParams = {
 };
 
 export type CreateCommentPageRouteSearchParams = {
-  message?: string;
+  replyTo?: string;
 };
 
 export default makeRoute<
@@ -14,7 +14,7 @@ export default makeRoute<
 >({
   path: ({ params, searchParams }): string => {
     return addSearchParams(`/post/${params.postId}/comment`, {
-      message: searchParams.message,
+      replyTo: searchParams.replyTo,
     });
   },
 });

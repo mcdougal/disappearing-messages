@@ -39,6 +39,15 @@ export type Post = QueryResult<
             name: true;
           };
         };
+        replyingTo: {
+          with: {
+            author: {
+              columns: {
+                name: true;
+              };
+            };
+          };
+        };
       };
     };
     upvotes: {
@@ -77,6 +86,15 @@ export default async ({ where }: QueryArgs): Promise<Post | null> => {
             columns: {
               avatarSrc: true,
               name: true,
+            },
+          },
+          replyingTo: {
+            with: {
+              author: {
+                columns: {
+                  name: true,
+                },
+              },
             },
           },
         },

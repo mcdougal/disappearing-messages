@@ -1,10 +1,10 @@
-import { PostsFeedPost } from '@/domain/post/server';
+import { Post } from '@/domain/post/server';
 import Linkify from 'linkify-react';
 
 import TextLink from '../TextLink';
 
 type Props = {
-  comment: PostsFeedPost['comments'][number];
+  comment: Post['comments'][number];
 };
 
 const CommentContent = ({ comment }: Props): React.ReactElement => {
@@ -24,6 +24,11 @@ const CommentContent = ({ comment }: Props): React.ReactElement => {
           );
         },
       }}>
+      {comment.replyingTo && (
+        <span className="mr-1 inline-block bg-blue-50">
+          @{comment.replyingTo.author.name}
+        </span>
+      )}
       {comment.text}
     </Linkify>
   );
