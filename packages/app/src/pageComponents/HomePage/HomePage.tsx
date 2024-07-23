@@ -5,7 +5,6 @@ import { Page } from '@/app/pageUtils';
 import { getSessionId } from '@/app/session';
 
 import DeletionWarning from './DeletionWarning';
-import Footer from './Footer';
 import Header from './Header';
 import Posts from './Posts';
 
@@ -28,7 +27,6 @@ const HomePage: Page = async () => {
           sessionUser={sessionUser}
         />
       </div>
-      <Footer />
     </>
   );
 };
