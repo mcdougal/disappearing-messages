@@ -5,10 +5,6 @@
  * so we have to keep a hard-coded map of them.
  */
 const NEXT_PUBLIC_ENV_VARS = {
-  NEXT_PUBLIC_PUSHER_CHANNEL_NAMESPACE:
-    process.env.NEXT_PUBLIC_PUSHER_CHANNEL_NAMESPACE,
-  NEXT_PUBLIC_PUSHER_CLUSTER: process.env.NEXT_PUBLIC_PUSHER_CLUSTER,
-  NEXT_PUBLIC_PUSHER_KEY: process.env.NEXT_PUBLIC_PUSHER_KEY,
   NODE_ENV: process.env.NODE_ENV,
 };
 

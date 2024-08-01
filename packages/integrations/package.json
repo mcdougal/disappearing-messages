@@ -14,8 +14,6 @@
   "dependencies": {
     "@disappearing-messages/common": "file:../common",
     "openai": "^4.26.1",
-    "pusher": "^5.2.0",
-    "pusher-js": "^8.4.0-rc2",
     "zod": "^3.22.4"
   }
 }
