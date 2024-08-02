@@ -3,6 +3,7 @@
 import { createComment } from '@/domain/comment/server';
 import { getExpiresAt } from '@/domain/post/common';
 import { SessionUser } from '@/domain/user/server';
+import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 
 const FormDataSchema = z.object({
@@ -39,6 +40,8 @@ export default async (
       updatedAt,
     },
   });
+
+  revalidatePath(`/`, `layout`);
 
   return `success`;
 };

@@ -24,7 +24,7 @@ Environment variables:
 3. Fill out environment variables in `.env` file
 
 ```sh
-npm run install
+npm install
 ```
 
 Avoid `code ENOWORKSPACES` error when running `next dev` in an NPM workspace. See <https://github.com/vercel/next.js/issues/47121>.
